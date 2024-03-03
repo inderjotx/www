@@ -1,6 +1,7 @@
 import { poppins } from "@/lib/fonts/poppins";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { Dashboard } from "./_components/Dashboard";
 
 export default function Home() {
   return (
@@ -26,6 +27,9 @@ export default function Home() {
         <p className="text-sm text-muted-foreground">
           That&apos;s it. Feel free to reach me out at <Link className="underline-offset-auto text-white underline  " href={'https://twitter.com/__Inderjot'} >@__Inderjot</Link>  or <Link className=" underline underline-offset-auto text-white " href={'mailto:inderjotsingh141@gmail.com'} >inderjotsingh141@gmail.com</Link>
         </p>
+      </div>
+      <div>
+        <Dashboard />
       </div>
     </div>
   );
