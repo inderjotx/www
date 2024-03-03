@@ -4,6 +4,7 @@ import { Navbar } from '@/components/Navbar/index'
 
 import "./globals.css";
 import { ThemeProvider } from "@/components/Provider/ThemeProvider";
+import { cn } from "@/lib/utils";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={cn(inter.className)}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -27,7 +28,11 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <Navbar />
-          {children}
+          <div className='h-full flex justify-center w-full ' >
+            <div className='flex  flex-col gap-2 w-10/12 lg:w-2/3' >
+              {children}
+            </div>
+          </div>
         </ThemeProvider>
       </body>
     </html>
