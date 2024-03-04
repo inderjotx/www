@@ -2,6 +2,9 @@ import { poppins } from "@/lib/fonts/poppins";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { Dashboard } from "./_components/Dashboard";
+import { metadata } from "./layout";
+
+metadata.title = "Inderjot Singh"
 
 export default function Home() {
   return (

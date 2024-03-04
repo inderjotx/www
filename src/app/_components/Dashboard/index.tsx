@@ -2,6 +2,8 @@ import React from 'react'
 import { Carousel } from './carousel'
 import { Time } from './time'
 import { Code } from './code'
+import { Github } from './github'
+import { Tools } from './tools-carousel'
 
 export function Dashboard() {
     return (
@@ -13,14 +15,18 @@ export function Dashboard() {
                         <Carousel />
                     </div>
                     <div className='grid gap-2 grid-cols-3 ' >
-                        <div className='col-span-2  gap-2 border' >Github activity</div>
+                        <div className='col-span-2  gap-2 rounded-md overflow-hidden' >
+                            <Github />
+                        </div>
                         <div className='border' >Discord Activity</div>
                     </div>
                 </div>
             </div>
             <div>
                 <div className='w-full h-[150px] gap-2  grid grid-cols-6' >
-                    <div className='border col-span-4  md:col-span-2 '>Carousel Tools </div>
+                    <div className='border col-span-4  md:col-span-2 '>
+                        <Tools />
+                    </div>
                     <div className='grid col-span-2   md:col-span-1 w-full  md:order-3'>
                         <div className='grid grid-rows-2 gap-2 md:order-2' >
                             <div className=''>
