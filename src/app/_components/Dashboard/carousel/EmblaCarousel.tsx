@@ -22,7 +22,6 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
     const { slides, options } = props
     const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()])
 
-    console.log(slides)
     const onNavButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
         const autoplay = emblaApi?.plugins()?.autoplay
         if (!autoplay) return
@@ -49,7 +48,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
             <div className="overflow-hidden h-full " ref={emblaRef}>
                 <div className="embla__container   h-full">
                     {slides.map((url, index) => (
-                        <div className="embla__slide flex overflow-hidden rounded-lg  relative  " key={index}>
+                        <div className="embla__slide flex  overflow-hidden rounded-lg  relative  " key={index}>
                             <Image key={url} src={url} fill className='object-cover h-full w-full absolute ' quality={100} sizes='100' alt={url} />
                         </div>
                     ))}
