@@ -13,17 +13,27 @@ export function weeklyCodeTime() {
     // const apiUrl: string = `https://wakatime.com/api/v1/users/${USERNAME}/stats/${formattedDate}`;
     const apiUrl: string = `https://wakatime.com/api/v1/users/${USERNAME}/all_time_since_today`;
 
-    fetch(apiUrl, {
+    const response = fetch(apiUrl, {
         headers: {
             Authorization: `Basic ${btoa(API_KEY)}`,
         },
     })
         .then((response: Response) => response.json())
         .then((data: any) => {
-            console.log(data.data);
+
+            const startDate = data.data.range.start_date
+            const time = data.data.digital
+            return {
+                startDate,
+                time
+            }
+
         })
         .catch((error: Error) => {
             console.error('Error fetching data:', error);
         });
+
+
+    return response
 
 }
