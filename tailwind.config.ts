@@ -69,7 +69,7 @@ const config = {
           to: { height: "0" },
         },
 
-        slide: {
+        slide_left: {
           from: {
             'transform': "translate(0)"
           }
@@ -78,12 +78,24 @@ const config = {
             'transform': "translate(-100%)"
           }
         }
+        ,
+
+        slide_right: {
+          from: {
+            'transform': "translate(0)"
+          }
+          ,
+          to: {
+            'transform': "translate(100%)"
+          }
+        }
 
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "slide": "slide 10s infinite linear "
+        "slide_left": "slide_left 10s infinite linear ",
+        "slide_right": "slide_right 10s infinite linear "
       },
     },
   },
