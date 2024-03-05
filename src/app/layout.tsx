@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Navbar } from '@/components/Navbar/index'
-
+import { Gradient } from "@/components/gradient";
 import "./globals.css";
 import { ThemeProvider } from "@/components/Provider/ThemeProvider";
 import { cn } from "@/lib/utils";
@@ -28,7 +28,8 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className='h-full flex justify-center w-full ' >
-            <div className='flex  flex-col gap-2 w-11/12 md:w-[600px]   ' >
+            <div className='flex  flex-col gap-2 w-11/12 md:w-[600px] relative  ' >
+              <Gradient />
               <Navbar />
               {children}
             </div>
