@@ -40,7 +40,7 @@ function Background() {
                         const opacity = Math.random()
 
                         return (
-                            <div key={val} className='bg-green-500 m-[2px] rounded-[2px]  size-3' style={{ opacity: opacity }}  >
+                            <div key={val} className='bg-green-400 m-[2px] rounded-[2px]  size-3' style={{ opacity: opacity }}  >
                             </div>
                         )
                     }
