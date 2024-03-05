@@ -28,11 +28,12 @@ export function Tools() {
 
 
   return (
-    <div className='w-full h-full flex flex-col gap-3 justify-center relative ' >
+    <div className='w-full h-full flex flex-col gap-3 justify-center relative   ' >
       <Carousel icons={icons} direction='left' />
       <Carousel icons={reversedIcons} direction='right' />
-
-    </div>
+      <div className='absolute top-0 h-full w-2/5 bg-gradient-to-r from-black ' />
+      <div className='absolute top-0 w-1/3 right-0 h-full  bg-gradient-to-l from-black ' />
+    </div >
   )
 }
 
@@ -46,8 +47,8 @@ export function Carousel({ icons, direction }: { icons: any, direction: "left" |
 
 
   return (
-    <div className={cn('overflow-hidden whitespace-nowrap relative ')} style={styleDir}  >
-      <div className={cn('flex gap-6 ', effect)} >
+    <div className={cn('overflow-hidden whitespace-nowrap group  relative ')} style={styleDir}  >
+      <div className={cn('flex gap-8 md:gap-6 group-hover:paused ', effect)} >
         {
           icons.map((Icon: any, index: number) => (
             <IconWrapper key={index} >
@@ -71,10 +72,4 @@ function IconWrapper({ children }: { children: React.ReactNode }) {
 }
 
 
-function Fade() {
-  return (
-    <div className='absolute h-full top-0 w-1/5'>
 
-    </div>
-  )
-}

@@ -23,8 +23,8 @@ export function Dashboard() {
                 </div>
             </div>
             <div>
-                <div className='w-full h-[150px] gap-2  grid grid-cols-6' >
-                    <div className='border col-span-4  md:col-span-2 '>
+                <div className='w-full h-[200px] md:h-[150px]  gap-2  grid grid-cols-6' >
+                    <div className='rounded-md overflow-hidden border col-span-4  md:col-span-2 '>
                         <Tools />
                     </div>
                     <div className='grid col-span-2   md:col-span-1 w-full  md:order-3'>
