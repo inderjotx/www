@@ -1,17 +1,26 @@
-import { poppins } from '@/lib/fonts/poppins'
+'use client'
 import { cn } from '@/lib/utils'
+import Link from 'next/link'
 import React from 'react'
+import { MoreLarge } from './more/triggerLarge'
+import { MoreSmall } from './more/triggerSmall'
+
 
 export function Navbar() {
     return (
-        <div className='h-16 sticky bg-bl top-0 w-full flex justify-center bg-black' >
-            <div className=" flex items-center h-full w-11/12 md:w-1/2 justify-between   top-0 bg-transparent" >
-                <div className={cn('text-xl text-purple-400 font-semibold', poppins.className)} >
-                    Inderjot
-                </div>
-                <div>
-                    Hamburger menu
-                </div>
+        <div className='h-20 sticky bg-bl top-0 w-full flex justify-center bg-black' >
+            <div className={cn(' flex items-center w-full gap-6   top-0 bg-transparent')} >
+                <Link href={'/'}>
+                    <div>~</div>
+                </Link>
+                <Link href={'/about'} >
+                    <div>about</div>
+                </Link>
+                <Link href={'/writing'} >
+                    <div>writing</div>
+                </Link>
+                <div className='hidden lg:flex' ><MoreLarge /> </div>
+                <div className='flex lg:hidden' ><MoreSmall /> </div>
 
             </div>
         </div>

@@ -88,6 +88,16 @@ const config = {
           to: {
             'transform': "translate(100%)"
           }
+        },
+
+        more_navbar: {
+          from: {
+            'transform': "rotate(0)"
+          }
+          ,
+          to: {
+            'transform': "rotate(180deg)"
+          }
         }
 
       },
@@ -95,7 +105,8 @@ const config = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         "slide_left": "slide_left 10s infinite linear ",
-        "slide_right": "slide_right 10s infinite linear "
+        "slide_right": "slide_right 10s infinite linear ",
+        "more_navbar": "more_navbar  0.25s  linear forwards"
       },
     },
   },
