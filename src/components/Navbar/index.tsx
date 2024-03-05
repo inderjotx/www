@@ -8,8 +8,8 @@ import { MoreSmall } from './more/triggerSmall'
 
 export function Navbar() {
     return (
-        <div className='h-20 sticky bg-bl top-0 w-full flex justify-center bg-black' >
-            <div className={cn(' flex items-center w-full gap-6   top-0 bg-transparent')} >
+        <div className='h-20  top-0  w-full flex justify-center' >
+            <div className={cn(' flex items-center w-full gap-6  ')} >
                 <Link href={'/'}>
                     <div>~</div>
                 </Link>
@@ -21,7 +21,6 @@ export function Navbar() {
                 </Link>
                 <div className='hidden lg:flex' ><MoreLarge /> </div>
                 <div className='flex lg:hidden' ><MoreSmall /> </div>
-
             </div>
         </div>
     )

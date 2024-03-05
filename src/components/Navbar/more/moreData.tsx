@@ -2,10 +2,9 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
+import { cn } from '@/lib/utils';
 
-export function MoreData({ setHovering }: {
-    setHovering?: React.Dispatch<React.SetStateAction<boolean>>
-}) {
+export function MoreData() {
 
     const data = [
         { image_url: '/navbar/more/anime.webp', slug: 'anime' },
@@ -16,24 +15,13 @@ export function MoreData({ setHovering }: {
         { image_url: '/navbar/more/work.webp', slug: 'work' }
     ];
 
-    function handleMouseEnter() {
-        if (setHovering) {
-            setHovering(() => true)
-        }
-    }
-
-    function handleMouseExit() {
-        if (setHovering) {
-            setHovering(() => false)
-        }
-    }
 
     return (
-        <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseExit} className='grid grid-cols-2 gap-2 lg:gap-1  h-full w-full'>
+        <div className='grid grid-cols-2 gap-2 lg:gap-1  h-full w-full'>
             {
                 data.map(({ image_url, slug }) => {
                     return (
-                        <MoreElement key={slug} slug={slug} image_url={image_url} />
+                        <ImageDisplay key={slug} slug={slug} image_url={image_url} />
                     )
                 })
             }
@@ -42,11 +30,12 @@ export function MoreData({ setHovering }: {
 }
 
 
-function MoreElement({ slug, image_url }: { slug: string, image_url: string }) {
+function ImageDisplay({ slug, image_url, className }: { slug: string, image_url: string, className?: string }) {
+
 
     return (
-        <Link href={`/${slug}`} className='p-1 h-16' >
-            <div className='relative flex items-center h-full   overflow-hidden rounded-sm '  >
+        <Link href={`/${slug}`} className={cn('p-1 h-16', className)} >
+            <div className='relative flex items-center h-full  overflow-hidden rounded-sm '  >
                 <div className='z-20 flex font-semibold items-center gap-1 ml-2 lg:text-sm' >{slug} <ArrowUpRight className='size-4' /> </div>
                 <Image src={image_url} className='object-cover absolute top-0 h-full w-full' sizes='100' alt='slug' fill />
                 <div className='absolute hover:bg-black/60 transition-colors bg-black/50 top-0 z-10 h-full w-full ' >
@@ -55,3 +44,4 @@ function MoreElement({ slug, image_url }: { slug: string, image_url: string }) {
         </Link>
     )
 }
+
