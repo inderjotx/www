@@ -14,6 +14,7 @@ export function weeklyCodeTime() {
     const apiUrl: string = `https://wakatime.com/api/v1/users/${USERNAME}/all_time_since_today`;
 
     const response = fetch(apiUrl, {
+        next: { revalidate: 12 * 3600 },
         headers: {
             Authorization: `Basic ${btoa(API_KEY)}`,
         },

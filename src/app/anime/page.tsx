@@ -1,5 +1,6 @@
 import { AnimePoster } from '@/components/AnimeImage'
 import { StarRating } from '@/components/Star';
+import { getFavouriteShow } from '@/lib/favshows';
 import { poppins } from '@/lib/fonts/poppins'
 import { cn } from '@/lib/utils'
 import { Eye } from 'lucide-react';
@@ -62,7 +63,10 @@ const images = [
 
 
 
-export default function Anime() {
+export default async function Anime() {
+
+    const data = await getFavouriteShow()
+
 
 
     return (
@@ -78,7 +82,8 @@ export default function Anime() {
             <div>
                 <RecentAnime
                     published={2015}
-
+                    href='/'
+                    stars={4}
                     image_url='/anime/blackclover.jpg' date={4} title='ClassRoom of the Elite' />
             </div>
             <div className='text-sm'>
@@ -88,7 +93,7 @@ export default function Anime() {
             {/* { anime favourite } */}
             <div className='grid grid-cols-1 h-full gap-2 md:grid-cols-2  ' >
                 {
-                    images.map(({ image_url, href, slug }) => (
+                    data.map(({ image_url, href, slug }) => (
                         <div key={image_url} >
                             <AnimePoster
                                 image_url={image_url}
@@ -115,11 +120,11 @@ function RecentAnime({ image_url, date, title, stars, published, href }: {
 }) {
     return (
         <div className='w-full h-24 active:ring active:ring-purple-400 bg-muted-foreground/10  rounded-md flex'>
-            <div className='w-1/5 h-full rounded-sm overflow-hidden relative' >
+            <div className='w-1/6 h-full rounded-sm overflow-hidden relative' >
                 <Image className='object-cover' alt='image' quality={100} src={image_url} fill sizes='100' ></Image>
             </div>
-            <div className='w-4/5 p-2 justify-center pl-5 h-full flex flex-col gap-1' >
-                <div className='text-[14px]  font-sans  flex items-center  gap-2  text-[#A3E635]'>
+            <div className='w-5/6 p-2 justify-center pl-5 h-full flex flex-col gap-1' >
+                <div className='text-[12px]  font-sans  flex items-center  gap-2  text-[#A3E635]'>
                     <Eye className='size-4' /> <span >
                         {date} DAYS AGO
                     </span>
@@ -133,7 +138,7 @@ function RecentAnime({ image_url, date, title, stars, published, href }: {
                     </div>
                 </div>
                 <div>
-                    <StarRating rating={5} />
+                    <StarRating rating={stars} />
                 </div>
             </div>
         </div>
