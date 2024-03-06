@@ -1,26 +1,157 @@
+import { MyData, RecentlyPlayedResponse, TopTracks } from '@/interfaces/music/music';
+import { revalidatePath } from 'next/cache';
+import qs from 'query-string'
 
 
-export async function getFavouriteSongs() {
+export async function getTopTracks() {
 
-    const API_KEY = process.env.SPOTIFY_SECRET!
-    const url = 'https://api.spotify.com/v1/me/top/artists?time_range=short_term';
+    const url = 'https://api.spotify.com/v1/me/top/tracks?time_range=short_term';
+    const token = await getAccessToken()
     const options = {
-        // next: { revalidate: 4 * 3600 },
+        next: { revalidate: 4 * 3600 },
         method: 'GET',
         headers: {
             accept: 'application/json',
-            Authorization: `Bearer ${API_KEY}`,
+            Authorization: `Bearer ${token}`,
         }
         ,
     };
 
 
 
-    const data = await fetch(url, options)
+    const data: TopTracks = await fetch(url, options)
         .then(data => data.json())
         .then(json => json)
         .catch(err => console.log(err))
 
 
-    console.log(data)
+
+    return data.items.map((track) => ({
+        href: track.external_urls.spotify,
+        title: track.name,
+        artist: track.artists[0].name,
+        image_url: track.album.images[0].url,
+        listenOn: null
+    }))
+
 }
+
+
+
+// or recent track
+export async function getCurrentTrack() {
+
+    const url = 'https://api.spotify.com/v1/me/player/currently-playing'
+    const token = await getAccessToken()
+
+    const options = {
+        next: { revalidate: 0 },
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${token}`,
+        }
+        ,
+    };
+
+    const data: MyData = await fetch(url, options)
+        .then(data => data.json())
+        .then(json => json)
+        .catch(err => console.log(err))
+
+
+    try {
+
+        return {
+            href: data.context.external_urls.spotify,
+            title: data.item.name,
+            artist: data.item.artists[0].name,
+            image_url: data.item.album.images[0].url,
+            listenOn: null
+        }
+
+    }
+    catch (err) {
+        console.log(err)
+        revalidatePath('/music')
+    }
+
+
+
+
+}
+
+
+
+
+export const getRecentTrack = async () => {
+
+    const url = 'https://api.spotify.com/v1/me/player/recently-played?limit=1'
+    const token = await getAccessToken()
+
+    const options = {
+        next: { revalidate: 0 },
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${token}`,
+        }
+        ,
+    };
+
+    const data: RecentlyPlayedResponse = await fetch(url, options)
+        .then(data => data.json())
+        .then(json => json)
+        .catch(err => console.log(err))
+
+
+    try {
+        return {
+            image_url: data.items[0].track.album.images[0].url,
+            artist: data.items[0].track.artists[0].name,
+            title: data.items[0].track.name,
+            href: data.items[0].track.external_urls.spotify,
+            listenOn: data.items[0].played_at
+        }
+    }
+
+
+    catch (err) {
+        console.log(err)
+        revalidatePath('/music')
+    }
+
+
+
+}
+
+
+
+
+
+
+export const getAccessToken = async () => {
+
+    const client_id = process.env.SPOTIFY_KEY;
+    const client_secret = process.env.SPOTIFY_SECRET;
+    const refresh_token = process.env.SPOTIFY_REFRESH_TOKEN;
+
+    const basic = Buffer.from(`${client_id}:${client_secret}`).toString('base64');
+    const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
+
+
+    const response = await fetch(TOKEN_ENDPOINT, {
+        method: 'POST',
+        headers: {
+            Authorization: `Basic ${basic}`,
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: qs.stringify({
+            grant_type: 'refresh_token',
+            refresh_token,
+        }),
+    });
+
+    const data = await response.json();
+    return data.access_token
+};
