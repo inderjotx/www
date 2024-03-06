@@ -4,17 +4,10 @@ import { cn } from '@/lib/utils'
 import React from 'react'
 import { RecentPlay, RecentPlayProps } from './_components/RecentFramer'
 import { SingleTrack } from './_components/SingleTracks'
-import { Key } from 'lucide-react'
 
 export default async function Page() {
 
     const tracks = await getTopTracks()
-    let track: (RecentPlayProps | undefined);
-    track = await getCurrentTrack()
-
-    if (!track) {
-        track = await getRecentTrack()
-    }
 
     return (
         <div className='flex flex-col gap-4'>
@@ -26,12 +19,7 @@ export default async function Page() {
 
             {/* now playing or recent */}
             <div>
-                {
-                    track &&
-                    <RecentPlay
-                        {...track}
-                    />
-                }
+                <RecentPlay />
             </div>
             <div className='mt-10'>
                 <h1 className={cn('font-semibold text-xl', poppins.className)} >Fav Songs</h1>
