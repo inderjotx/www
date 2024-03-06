@@ -5,7 +5,7 @@ import qs from 'query-string'
 
 export async function getTopTracks() {
 
-    const url = 'https://api.spotify.com/v1/me/top/tracks?time_range=short_term';
+    const url = 'https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=50';
     const token = await getAccessToken()
     const options = {
         next: { revalidate: 4 * 3600 },
@@ -23,6 +23,7 @@ export async function getTopTracks() {
         .then(data => data.json())
         .then(json => json)
         .catch(err => console.log(err))
+
 
 
 
@@ -62,8 +63,11 @@ export async function getCurrentTrack() {
 
     try {
 
+
+        if (data == null) return null
+
         return {
-            href: data.context.external_urls.spotify,
+            href: data.item.external_urls.spotify,
             title: data.item.name,
             artist: data.item.artists[0].name,
             image_url: data.item.album.images[0].url,
