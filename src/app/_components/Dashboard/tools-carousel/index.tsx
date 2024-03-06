@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 
 import {
   IconJava, IconJenkins, IconNextJS, IconKubernetes,
@@ -42,13 +42,16 @@ export function Tools() {
 export function Carousel({ icons, direction }: { icons: any, direction: "left" | "right" }) {
 
 
+  const [isHover, setHover] = useState(false)
+
   const effect = direction == "left" ? "animate-slide_left" : "animate-slide_right"
   const styleDir = direction == "right" ? { "direction": "rtl" } : { "direction": "left" }
 
 
   return (
-    <div className={cn('overflow-hidden whitespace-nowrap group  relative ')} style={styleDir}  >
-      <div className={cn('flex gap-8 md:gap-6 group-hover:paused ', effect)} >
+    <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
+      className={cn('overflow-hidden whitespace-nowrap group   relative ')} style={styleDir}  >
+      <div className={cn('flex gap-8 md:gap-6  ', effect, isHover && "paused")} >
         {
           icons.map((Icon: any, index: number) => (
             <IconWrapper key={index} >

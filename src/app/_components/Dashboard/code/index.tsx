@@ -11,7 +11,7 @@ export async function Code() {
 
     return (
         <Link href={'https://wakatime.com/@inderjotx'} >
-            <div className={cn('flex w-full h-full text-sm font-semibold gap-1   rounded-lg flex-col items-center justify-center bg-purple-900  text-white')}>
+            <div className={cn('flex w-full h-full text-sm font-semibold gap-1   rounded-lg flex-col items-center justify-center bg-purple-400  text-white')}>
                 <div className='flex gap-1'>
                     <Code2 className='size-5' ></Code2>
                     <span >{data ?
