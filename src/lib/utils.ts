@@ -54,3 +54,8 @@ export function getTime() {
 }
 
 
+
+export function fetcher(url: string) {
+  return fetch(url, { next: { revalidate: 0 } }).then(data => data.json())
+
+}
