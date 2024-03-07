@@ -31,8 +31,6 @@ export function Tools() {
     <div className='w-full h-full flex flex-col gap-3 justify-center relative   ' >
       <Carousel icons={icons} direction='left' />
       <Carousel icons={reversedIcons} direction='right' />
-      <div className='absolute top-0 h-full w-2/5 bg-gradient-to-r from-black ' />
-      <div className='absolute top-0 w-1/3 right-0 h-full  bg-gradient-to-l from-black ' />
     </div >
   )
 }
@@ -50,7 +48,7 @@ export function Carousel({ icons, direction }: { icons: any, direction: "left" |
 
   return (
     <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
-      className={cn('overflow-hidden whitespace-nowrap group   relative ')} style={styleDir}  >
+      className={cn('overflow-hidden whitespace-nowrap group relative ')} style={styleDir}  >
       <div className={cn('flex gap-8 md:gap-6  ', effect, isHover && "paused")} >
         {
           icons.map((Icon: any, index: number) => (
@@ -61,6 +59,8 @@ export function Carousel({ icons, direction }: { icons: any, direction: "left" |
         }
 
       </div>
+      <div className='absolute top-0 h-full left-0 w-2/5  bg-gradient-to-r from-black ' />
+      <div className='absolute top-0 w-1/3 right-0 h-full  bg-gradient-to-l from-black ' />
     </div>
   )
 }

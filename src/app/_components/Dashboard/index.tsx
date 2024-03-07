@@ -4,6 +4,7 @@ import { Time } from './time'
 import { Code } from './code'
 import { Github } from './github'
 import { Tools } from './tools-carousel'
+import { Discord } from './discord'
 
 export function Dashboard() {
     return (
@@ -18,7 +19,9 @@ export function Dashboard() {
                         <div className='col-span-2  gap-2 rounded-md overflow-hidden' >
                             <Github />
                         </div>
-                        <div className='border' >Discord Activity</div>
+                        <div className='border' >
+                            <Discord />
+                        </div>
                     </div>
                 </div>
             </div>

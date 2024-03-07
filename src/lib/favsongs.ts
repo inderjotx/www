@@ -61,26 +61,17 @@ export async function getCurrentTrack() {
         .catch(err => console.log(err))
 
 
-    try {
 
 
-        if (data == null) return null
+    if (data == null) return null
 
-        return {
-            href: data.item.external_urls.spotify,
-            title: data.item.name,
-            artist: data.item.artists[0].name,
-            image_url: data.item.album.images[0].url,
-            listenOn: null
-        }
-
+    return {
+        href: data.item.external_urls.spotify,
+        title: data.item.name,
+        artist: data.item.artists[0].name,
+        image_url: data.item.album.images[0].url,
+        listenOn: null
     }
-    catch (err) {
-        console.log(err)
-        revalidatePath('/music')
-    }
-
-
 
 
 }
@@ -144,7 +135,9 @@ export const getAccessToken = async () => {
     const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
 
 
+
     const response = await fetch(TOKEN_ENDPOINT, {
+        next: { revalidate: 0 },
         method: 'POST',
         headers: {
             Authorization: `Basic ${basic}`,

@@ -8,7 +8,7 @@ metadata.title = "Inderjot Singh"
 
 export default function Home() {
   return (
-    <div className="mt-6 flex flex-col gap-4">
+    <div className="flex flex-col gap-4">
       <div>
         <h2 className={cn(poppins.className, "text-lg")} >Inderjot Singh</h2>
         <h3 className="text-sm text-muted-foreground" >20 y/o Software Engineer</h3>

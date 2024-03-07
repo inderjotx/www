@@ -1,8 +1,8 @@
 import { getTopTracks, getCurrentTrack, getRecentTrack } from '@/lib/favsongs'
 import { poppins } from '@/lib/fonts/poppins'
 import { cn } from '@/lib/utils'
-import React from 'react'
-import { RecentPlay, RecentPlayProps } from './_components/RecentFramer'
+import React, { Suspense } from 'react'
+import { LoadingRecent, RecentPlay, RecentPlayProps } from './_components/RecentFramer'
 import { SingleTrack } from './_components/SingleTracks'
 
 export default async function Page() {
