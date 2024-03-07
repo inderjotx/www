@@ -52,3 +52,5 @@ export function getTime() {
     isDay: date.getHours() < 12
   }
 }
+
+
