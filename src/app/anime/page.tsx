@@ -8,66 +8,11 @@ import Image from 'next/image';
 import React from 'react'
 
 
-const images = [
-    {
-        image_url: "/anime/blackclover.jpg",
-        slug: "Black Clover",
-        href: "/"
-    },
-    {
-        image_url: "/anime/no_game_no_life.jpg",
-        slug: "No Game No Life",
-        href: "/"
-    },
-    {
-        image_url: "/anime/parasyte.jpg",
-        slug: "Parasyte",
-        href: "/"
-    },
-    {
-        image_url: "/anime/vinland_saga.jpg",
-        slug: "Vinland Saga",
-        href: "/"
-    },
-    {
-        image_url: "/anime/deathnote.jpg",
-        slug: "Death Note",
-        href: "/"
-    },
-    {
-        image_url: "/anime/onepunchman.jpg",
-        slug: "One Punch Man",
-        href: "/"
-    },
-    {
-        image_url: "/anime/slime.jpg",
-        slug: "Reincarnated as a Slime",
-        href: "/"
-    },
-    {
-        image_url: "/anime/hunter.jpg",
-        slug: "Hunter x Hunter",
-        href: "/"
-    },
-    {
-        image_url: "/anime/overlord.jpg",
-        slug: "Overlord",
-        href: "/"
-    },
-    {
-        image_url: "/anime/tomodachi.jpg",
-        slug: "Tomodachi",
-        href: "/"
-    }
-];
-
 
 
 export default async function Anime() {
 
     const data = await getFavouriteShow()
-
-
 
     return (
 

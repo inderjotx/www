@@ -27,7 +27,9 @@ export function parseDate(dateStr: string): string {
 
   // If the provided date is today
   if (currentDate.toDateString() === dateObj.toDateString()) {
-    return "Today";
+
+    const minutes = currentDate.getMinutes() - dateObj.getMinutes()
+    return (minutes > 1) ? `${minutes} mins ago` : `${minutes} min ago`;
   }
   // If the provided date is yesterday
   else if (currentDate.getDate() - dateObj.getDate() === 1) {
