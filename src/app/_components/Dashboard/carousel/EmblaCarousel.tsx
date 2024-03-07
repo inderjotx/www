@@ -55,11 +55,11 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                 </div>
                 <div className='absolute right-5 bottom-3'>
                     <div className='flex gap-2' >
-                        <Button className=' bg-black rounded-full  p-2  m-0' variant={"ghost"} onClick={onPrevButtonClick} disabled={prevBtnDisabled}>
-                            <ArrowLeft fill='' className='size-6' />
+                        <Button className=' bg-black rounded-full  p-3  m-0' variant={"ghost"} onClick={onPrevButtonClick} disabled={prevBtnDisabled}>
+                            <ArrowLeft fill='' className='size-4' />
                         </Button>
-                        <Button className=' bg-black p-2 rounded-full m-0' variant={"ghost"} onClick={onNextButtonClick} disabled={nextBtnDisabled} >
-                            <ArrowRight className='size-6' />
+                        <Button className=' bg-black p-3 rounded-full' variant={"ghost"} onClick={onNextButtonClick} disabled={nextBtnDisabled} >
+                            <ArrowRight className='size-4' />
                         </Button>
 
                     </div>
