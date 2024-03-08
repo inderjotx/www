@@ -34,7 +34,7 @@ export function Time() {
 
 
     return (
-        <div className={cn('flex w-full h-full gap-1 pt-1 rounded-lg flex-col items-center justify-center   text-white', time.isDay ? "bg-blue-500" : "bg-blue-900")}>
+        <div className={cn('flex w-full h-full gap-1 pt-1 rounded-lg flex-col items-center justify-center   text-white', time.isDay ? "bg-blue-600/50" : "bg-blue-600/30")}>
             <div>
                 {
                     time.isDay ?
