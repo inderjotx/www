@@ -8,6 +8,7 @@ import { Software } from './_components/Software'
 import { Browser } from './_components/Browser'
 import { Coding } from './_components/Coding'
 import { Website } from './_components/Website'
+import { All } from './_components/All'
 
 
 export default function page() {
@@ -31,7 +32,7 @@ export default function page() {
             </div>
 
 
-            <Tabs defaultValue="all" className="overflow-x-auto scrollbar-hide ">
+            <Tabs defaultValue="website" className="overflow-x-auto scrollbar-hide ">
                 <TabsList className=''>
                     <TabsTrigger className='' value="all">All</TabsTrigger>
                     <TabsTrigger value="everyday">Everyday</TabsTrigger>
@@ -40,7 +41,7 @@ export default function page() {
                     <TabsTrigger value="coding">Coding</TabsTrigger>
                     <TabsTrigger value="website">Website</TabsTrigger>
                 </TabsList>
-                <TabsContent value="all">All</TabsContent>
+                <TabsContent value="all"><All /> </TabsContent>
                 <TabsContent value="everyday"><Everyday /></TabsContent>
                 <TabsContent value="software"> <Software /> </TabsContent>
                 <TabsContent value="browser"><Browser /> </TabsContent>
