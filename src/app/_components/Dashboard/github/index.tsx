@@ -7,7 +7,7 @@ export async function Github() {
     const data = await githubStats()
 
     return (
-        <Link href={"https://github.com/inderjotx"} >
+        <a target='_blank' rel='noopener norefferer' href={"https://github.com/inderjotx"} >
             <div className='relative  flex justify-center items-end py-2 px-2   h-full w-full  bg-neutral-900 '>
                 <Background />
                 <div className='flex gap-2 text-sm flex-wrap text-muted-foreground'>
@@ -22,7 +22,7 @@ export async function Github() {
                     </div>
                 </div>
             </div>
-        </Link>
+        </a>
     )
 }
 

@@ -15,9 +15,6 @@ export default function Page() {
     const { data: books, isLoading, error }: { data: Book[], error: any, isLoading: boolean } = useSWR('/api/books/top', fetcher, { refreshInterval: 24 * 3600 * 1000 })
     const { data: recentBook, isLoading: recentLoading, error: recentError }: { data: ReadingState, error: any, isLoading: boolean } = useSWR('/api/books/recent', fetcher, { refreshInterval: 24 * 3600 * 1000 })
 
-
-
-
     return (
         <div className='flex flex-col gap-4 h-full w-full'>
             <h1 className={cn('font-semibold text-xl', poppins.className)} >Books</h1>
@@ -36,6 +33,7 @@ export default function Page() {
 
             <div className='grid gap-2 grid-cols-1 md:grid-cols-2 '>
                 {
+                    !isLoading &&
                     books.map((book, index) => (
                         <BookCard {...book} key={index} />
                     ))
