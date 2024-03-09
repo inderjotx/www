@@ -1,15 +1,10 @@
 'use client'
 
-
 import React, { useEffect, useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { parseDate } from '@/lib/utils'
 import { Music } from 'lucide-react'
-
-
-
-const URL = process.env.NEXT_PUBLIC_HOST;
 
 
 export interface RecentPlayProps {
@@ -39,7 +34,7 @@ export function RecentPlay() {
         let data: RecentPlayProps = await fetch(`${URL}/api/music/current`, { next: { revalidate: 0 } }).then(data => { return (data ? data.json() : null) }).then(json => json).catch(err => { console.log('not playing anything now') })
         console.log(data)
         if (!data) {
-            data = await fetch(`${URL}/api/music/recent`, { next: { revalidate: 0 } }).then(data => data.json()).then(json => json).catch(err => console.log(err))
+            data = await fetch(`/api/music/recent`, { next: { revalidate: 0 } }).then(data => data.json()).then(json => json).catch(err => console.log(err))
         }
         setData(data)
     }
