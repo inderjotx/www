@@ -5,15 +5,14 @@ import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { poppins } from '@/lib/fonts/poppins'
 import ArticleTitle from './_components/ArticleTitle'
+import { getViews } from '@/lib/redis'
 
 type Metadata = {
     slug: string,
     title: string,
     writtenOn: string,
-    views: number
+    redisKey: string
 }
-
-
 
 
 
@@ -48,8 +47,10 @@ export default async function page() {
                     // form by time 
                     folders.map(async (folder: string) => {
                         const { metadata }: { metadata: Metadata } = await import(`./(articles)/${folder}/content.mdx`)
+                        const views = await getViews(metadata.redisKey)
+                        console.log(views)
                         return (
-                            <ArticleTitle {...metadata} key={metadata.slug} />
+                            <ArticleTitle {...metadata} views={views} redis_key={metadata.redisKey} key={metadata.redisKey} />
                         )
                     })
                 }
