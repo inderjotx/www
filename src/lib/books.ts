@@ -1,11 +1,13 @@
 import { LoginResponse, GetShelfBooksResponse, MyReadingStateResult, ReadingState } from "@/interfaces/music/books";
 
-
-
-
-export function likedBooks() {
-
+export enum REVALIDATE_TIME {
+    ONE_HOUR = 60 * 60,
+    ONE_DAY = 24 * 60 * 60,
+    ONE_MONTH = 30 * 24 * 60 * 60
 }
+
+
+
 
 
 export async function getAccessToken() {
@@ -43,18 +45,20 @@ export async function getAccessToken() {
 }
 
 
+
+
 // shevles fetch 
-async function fetcher<T>(body: string, isAccessToken = false, token?: string): Promise<T> {
+async function fetcher<T>(body: string, isAccessToken = false): Promise<T> {
 
     const url = 'https://literal.club/graphql/';
-
-    const apiToken = token || process.env.LITERAL_ACCESS_TOKEN
 
     let headers: Record<string, string> = {
         "Content-Type": "application/json",
     }
 
-    if (apiToken && !isAccessToken) {
+
+    if (!isAccessToken) {
+        const apiToken = await getAccessToken()
         headers["Authorization"] = `Bearer ${apiToken}`;
     }
 
@@ -63,7 +67,7 @@ async function fetcher<T>(body: string, isAccessToken = false, token?: string): 
             method: "POST",
             body: body,
             headers: headers,
-            next: { revalidate: 60 * 60 }
+            next: { revalidate: (isAccessToken ? 6 * REVALIDATE_TIME.ONE_MONTH : REVALIDATE_TIME.ONE_HOUR) }
 
         });
 

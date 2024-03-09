@@ -63,6 +63,13 @@ export function parseBookDate(dateStr: string): string {
   }
 
 
+  // not same hour
+  else if (currentDate.getHours() !== dateObj.getHours()) {
+    const diff = currentDate.getHours() - dateObj.getHours()
+    return ` ${diff} hour${(diff > 1) ? 's' : ""} ago`
+  }
+
+
   // same month or day 
   else {
     return parseDate(dateStr)
@@ -87,57 +94,5 @@ export function fetcher(url: string) {
 
 
 
-export async function getRecentAnime() {
-
-  const RSS_URL = 'https://letterboxd.com/inderjotx/rss/'
-  const parser = new Parser()
-
-
-  const feed = await parser.parseURL(RSS_URL)
-
-  const data = feed.items?.[0].content
-
-
-  if (data) {
-    const link = getNameFromHTML(data)
-    console.log(link)
-
-    if (link) {
-      const slug = getSlug(link)
-      console.log(slug)
-      return slug
-    }
-
-  }
-
-}
-
-
-// get first li and name inside the li and search it thougth letterbox d and get the data 
-
-function getNameFromHTML(htmlString: string) {
-
-  const firstItem = htmlString.split('</li>')[0].toString()
-  const regex = /<a\s+(?:[^>]*?\s+)?href=(["'])(.*?)\1/g;
-  const match = regex.exec(firstItem);
-
-
-  if (match) {
-    const hrefValue = match[2];
-    return hrefValue
-  } else {
-    console.log('No match found');
-  }
-
-}
-
-
-function getSlug(link: string) {
-
-  const arr = link.split('/')
-
-  return arr[arr.length - 2];
-
-}
 
 
