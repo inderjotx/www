@@ -5,6 +5,7 @@ import React, { Suspense } from 'react'
 import { RecentPlay } from './_components/MusicCard'
 import { SingleTrack } from './_components/SingleTracks'
 
+
 export default async function Page() {
 
     const tracks = await getTopTracks()
