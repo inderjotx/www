@@ -14,6 +14,17 @@ export interface RecentPlayProps {
     artist: string,
 }
 
+
+async function getData() {
+    // @ts-ignore
+    let data: RecentPlayProps = await fetch(`/api/music/current`, { cache: "no-store" }).then(data => { return (data ? data.json() : null) }).then(json => json).catch(err => { console.log('not playing anything now') })
+    if (!data) {
+        data = await fetch(`/api/music/recent`, { cache: "no-store" }).then(data => data.json()).then(json => json).catch(err => console.log(err))
+    }
+    return data
+}
+
+
 export function RecentPlay() {
 
     const [data, setData] = useState<RecentPlayProps>({
@@ -25,21 +36,19 @@ export function RecentPlay() {
     })
 
 
-    async function getData() {
-        // @ts-ignore
-        let data: RecentPlayProps = await fetch(`/api/music/current`, { cache: "no-store" }).then(data => { return (data ? data.json() : null) }).then(json => json).catch(err => { console.log('not playing anything now') })
-        if (!data) {
-            data = await fetch(`/api/music/recent`, { cache: "no-store" }).then(data => data.json()).then(json => json).catch(err => console.log(err))
-        }
-        setData(data)
+    async function updateData() {
+        const data = await getData()
+        setData(() => data)
+
     }
 
 
 
     useEffect(() => {
-        getData()
+
+        updateData()
         const interval = setInterval(async () => {
-            await getData()
+            await updateData()
         }, 1 * 60 * 1000)
 
         return () => {

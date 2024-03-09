@@ -28,23 +28,18 @@ export async function Github() {
 
 
 function Background() {
-
-    const array = Array.from({ length: 41 }, (_, index) => index)
-
+    const array = Array.from({ length: 51 }, (_, index) => index)
     return (
         <div className='absolute left-0 top-0'>
-            <div className='grid grid-cols-9 p-1 ' >
+            <div className='grid   grid-cols-9  p-1 ' >
                 {
                     array.map((val) => {
-
                         const opacity = Math.random()
-
                         return (
                             <div key={val} className='bg-green-400 m-[2px] rounded-[2px]  size-3' style={{ opacity: opacity }}  >
                             </div>
                         )
                     }
-
                     )
                 }
             </div>
