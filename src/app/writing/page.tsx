@@ -14,21 +14,21 @@ type Metadata = {
 }
 
 
-export async function curDirFolder(dirPath: string) {
-
-    const parentDir = process.cwd()
-    const fullPath = path.join(parentDir, dirPath)
-    const items = await fs.promises.readdir(fullPath)
-    const folders = items.filter(item => fs.statSync(path.join(fullPath, item)).isDirectory());
-    return folders
-
-}
-
-
 
 
 
 export default async function page() {
+
+    async function curDirFolder(dirPath: string) {
+
+        const parentDir = process.cwd()
+        const fullPath = path.join(parentDir, dirPath)
+        const items = await fs.promises.readdir(fullPath)
+        const folders = items.filter(item => fs.statSync(path.join(fullPath, item)).isDirectory());
+        return folders
+
+    }
+
 
     const folders = await curDirFolder('src/app/writing/(articles)')
 

@@ -3,7 +3,7 @@ import SyntaxHighlighter from 'react-syntax-highlighter';
 import { nightOwl } from 'react-syntax-highlighter/dist/esm/styles/hljs'
 
 
-export function Code({ code }: { code: ReactNode }) {
+export function Code({ code }: { code: string }) {
     return (
         <div>
             <div className="relative h-10" >
