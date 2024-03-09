@@ -2,7 +2,7 @@ import { AnimePoster } from '@/app/anime/_components/anime-poster'
 import { StarRating } from '@/components/Star';
 import { getFavouriteShow } from '@/lib/favshows';
 import { poppins } from '@/lib/fonts/poppins'
-import { cn } from '@/lib/utils'
+import { cn, getRecentAnime } from '@/lib/utils'
 import { Eye } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react'
@@ -13,6 +13,7 @@ import React from 'react'
 export default async function Anime() {
 
     const data = await getFavouriteShow()
+    await getRecentAnime()
 
     return (
 

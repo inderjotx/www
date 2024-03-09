@@ -1,4 +1,4 @@
-import { LoginResponse, GetShelfBooksResponse, MyReadingStateResult } from "@/interfaces/music/books";
+import { LoginResponse, GetShelfBooksResponse, MyReadingStateResult, ReadingState } from "@/interfaces/music/books";
 
 
 
@@ -62,7 +62,9 @@ async function fetcher<T>(body: string, isAccessToken = false, token?: string): 
         const response = await fetch(url, {
             method: "POST",
             body: body,
-            headers: headers
+            headers: headers,
+            next: { revalidate: 60 * 60 }
+
         });
 
         if (!response.ok) {
@@ -144,7 +146,7 @@ export async function getRecentBook() {
 
     const data = await fetcher<MyReadingStateResult>(body)
     const curStatus = data.myReadingStates.find(({ status }) => status == "IS_READING")
-    return curStatus
+    return curStatus as ReadingState
 
 }
 

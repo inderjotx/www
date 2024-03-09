@@ -1,4 +1,5 @@
 import { type ClassValue, clsx } from "clsx"
+import Parser from 'rss-parser'
 import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
@@ -44,6 +45,30 @@ export function parseDate(dateStr: string): string {
 
 
 
+export function parseBookDate(dateStr: string): string {
+  const dateObj = new Date(dateStr);
+  const currentDate = new Date();
+
+  // not same year
+  if (currentDate.getFullYear() !== dateObj.getFullYear()) {
+    const diff = currentDate.getFullYear() - dateObj.getFullYear()
+    return ` ${diff} year${(diff > 1) ? 's' : ""} ago`
+  }
+
+
+  // not same month
+  else if (currentDate.getMonth() !== dateObj.getMonth()) {
+    const diff = currentDate.getMonth() - dateObj.getMonth()
+    return ` ${diff} month${(diff > 1) ? 's' : ""} ago`
+  }
+
+
+  // same month or day 
+  else {
+    return parseDate(dateStr)
+  }
+}
+
 export function getTime() {
   const date = new Date()
   return {
@@ -59,3 +84,60 @@ export function fetcher(url: string) {
   return fetch(url, { next: { revalidate: 0 } }).then(data => data.json())
 
 }
+
+
+
+export async function getRecentAnime() {
+
+  const RSS_URL = 'https://letterboxd.com/inderjotx/rss/'
+  const parser = new Parser()
+
+
+  const feed = await parser.parseURL(RSS_URL)
+
+  const data = feed.items?.[0].content
+
+
+  if (data) {
+    const link = getNameFromHTML(data)
+    console.log(link)
+
+    if (link) {
+      const slug = getSlug(link)
+      console.log(slug)
+      return slug
+    }
+
+  }
+
+}
+
+
+// get first li and name inside the li and search it thougth letterbox d and get the data 
+
+function getNameFromHTML(htmlString: string) {
+
+  const firstItem = htmlString.split('</li>')[0].toString()
+  const regex = /<a\s+(?:[^>]*?\s+)?href=(["'])(.*?)\1/g;
+  const match = regex.exec(firstItem);
+
+
+  if (match) {
+    const hrefValue = match[2];
+    return hrefValue
+  } else {
+    console.log('No match found');
+  }
+
+}
+
+
+function getSlug(link: string) {
+
+  const arr = link.split('/')
+
+  return arr[arr.length - 2];
+
+}
+
+
