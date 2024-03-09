@@ -31,7 +31,7 @@ export function RecentPlay() {
 
     async function getData() {
         // @ts-ignore
-        let data: RecentPlayProps = await fetch(`${URL}/api/music/current`, { next: { revalidate: 0 } }).then(data => { return (data ? data.json() : null) }).then(json => json).catch(err => { console.log('not playing anything now') })
+        let data: RecentPlayProps = await fetch(`/api/music/current`, { next: { revalidate: 0 } }).then(data => { return (data ? data.json() : null) }).then(json => json).catch(err => { console.log('not playing anything now') })
         console.log(data)
         if (!data) {
             data = await fetch(`/api/music/recent`, { next: { revalidate: 0 } }).then(data => data.json()).then(json => json).catch(err => console.log(err))
