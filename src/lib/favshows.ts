@@ -1,3 +1,4 @@
+import { REVALIDATE_TIME } from "./books";
 
 interface ListItem {
     adult: boolean;
@@ -31,6 +32,10 @@ interface List {
     items: ListItem[];
 }
 
+interface RecentShowResult {
+    results: ListItem[],
+
+}
 
 
 
@@ -75,4 +80,49 @@ function getImageURL(path: string | null) {
     const POSTER_SIZE = 'w780';
     const imageUrl = `${BASE_URL}${POSTER_SIZE}${path}`;
     return imageUrl
+}
+
+
+
+
+export async function getRecentShow() {
+
+    const API_KEY = process.env.TMDB_READ_API!;
+
+    const url = 'https://api.themoviedb.org/3/account/21066513/watchlist/tv?language=en-US&page=1&sort_by=created_at.asc';
+
+    const options = {
+        next: { revalidate: 4 * REVALIDATE_TIME.ONE_HOUR },
+        method: 'GET',
+        headers: {
+            accept: 'application/json',
+            Authorization: `Bearer ${API_KEY}`,
+        }
+        ,
+    };
+
+    const data: RecentShowResult = await fetch(url, options,)
+        .then(res => res.json())
+        .then(json => json)
+        .catch(err => console.error('error:' + err));
+
+
+    console.log(data)
+
+    const show = data.results?.[0]
+
+    if (show) {
+        return {
+            image_url: getImageURL(show.backdrop_path),
+            title: show.name,
+            href: `https://www.themoviedb.org/tv/${show.id}`,
+            published: show.first_air_date?.split('-')[0] || 2024,
+            stars: show.vote_average / 2,
+        }
+    }
+    else {
+        return null
+    }
+
+
 }

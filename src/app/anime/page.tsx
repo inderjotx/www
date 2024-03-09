@@ -1,9 +1,9 @@
 import { AnimePoster } from '@/app/anime/_components/anime-poster'
 import { StarRating } from '@/components/Star';
-import { getFavouriteShow } from '@/lib/favshows';
+import { getFavouriteShow, getRecentShow } from '@/lib/favshows';
 import { poppins } from '@/lib/fonts/poppins'
-import { cn, getRecentAnime } from '@/lib/utils'
-import { Eye } from 'lucide-react';
+import { cn } from '@/lib/utils'
+import { Eye, Tv } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react'
 
@@ -13,7 +13,9 @@ import React from 'react'
 export default async function Anime() {
 
     const data = await getFavouriteShow()
-    await getRecentAnime()
+    const recent = await getRecentShow()
+
+    console.log(recent)
 
     return (
 
@@ -26,12 +28,16 @@ export default async function Anime() {
 
             {/* recent */}
             <div>
-                <RecentAnime
-                    published={2015}
-                    href='/'
-                    stars={4}
-                    image_url='/anime/blackclover.jpg' date={4} title='ClassRoom of the Elite' />
+                {
+                    (recent) ?
+                        <RecentAnime {...recent} />
+                        :
+                        <LoadingRecentAnime />
+
+                }
+
             </div>
+
             <div className='text-sm'>
                 Below are some of my all-time favorite anime.
             </div>
@@ -56,37 +62,70 @@ export default async function Anime() {
 }
 
 
-function RecentAnime({ image_url, date, title, stars, published, href }: {
+function RecentAnime({ image_url, title, stars, published, href }: {
     image_url: string,
-    date: number,
     title: string,
     stars: number,
-    published: number,
+    published: number | string,
     href: string
 }) {
     return (
-        <div className='w-full h-24 active:ring active:ring-purple-400 bg-muted-foreground/10  rounded-md flex'>
-            <div className='w-1/6 h-full rounded-sm overflow-hidden relative' >
-                <Image className='object-cover' alt='image' quality={100} src={image_url} fill sizes='100' ></Image>
-            </div>
-            <div className='w-5/6 p-2 justify-center pl-5 h-full flex flex-col gap-1' >
-                <div className='text-[12px]  font-sans  flex items-center  gap-2  text-[#A3E635]'>
-                    <Eye className='size-4' /> <span >
-                        {date} DAYS AGO
-                    </span>
+        <a href={href} target='_blank' rel='noopenner norefferer'  >
+            <div className='w-full h-24 active:ring active:ring-purple-400 bg-muted-foreground/10  rounded-md flex'>
+                <div className='w-1/6 h-full rounded-sm overflow-hidden relative' >
+                    <Image className='object-cover' alt='image' quality={100} src={image_url} fill sizes='100' ></Image>
                 </div>
-                <div className='font-semibold flex gap-1' >
-                    <span>
-                        {title}
-                    </span>
-                    <div className='text-[10px] rounded-[4px] self-end p-[3px] bg-muted-foreground/20' >
-                        {published}
+                <div className='w-5/6 p-2 justify-center pl-5 h-full flex flex-col gap-1' >
+                    <div className='text-[12px]  font-sans  flex items-center  gap-2  text-[#A3E635]'>
+                        <Eye className='size-4' /> <span >
+                            {'39'} DAYS AGO
+                        </span>
+                    </div>
+                    <div className='font-semibold flex gap-1' >
+                        <span>
+                            {title}
+                        </span>
+                        <div className='text-[10px] rounded-[4px] self-end p-[3px] bg-muted-foreground/20' >
+                            {published}
+                        </div>
+                    </div>
+                    <div>
+                        <StarRating rating={stars} />
                     </div>
                 </div>
-                <div>
-                    <StarRating rating={stars} />
+            </div>
+        </a>
+    )
+}
+
+
+function LoadingRecentAnime() {
+
+    return (
+        <a href="#" target='_blank' rel='noopener noreferrer'>
+            <div className='w-full h-24 active:ring active:ring-purple-400 bg-muted-foreground/10 rounded-md flex'>
+                <div className='w-1/6 h-full bg-muted-foreground/10 flex items-center justify-center rounded-l-sm overflow-hidden relative' >
+                    <Tv className='size-8'></Tv>
+                </div>
+                <div className='w-5/6 p-2 justify-center pl-5 h-full flex flex-col gap-1'>
+                    <div className='text-[12px] font-sans flex items-center gap-2 text-[#A3E635]'>
+                        <span>
+                            {'Fetching Data ....'}
+                        </span>
+                    </div>
+                    <div className='font-semibold flex gap-1'>
+                        <span>
+                            {'Title'}
+                        </span>
+                        <div className='text-[10px] rounded-[4px] self-end p-[3px] bg-muted-foreground/20'>
+                            {''}
+                        </div>
+                    </div>
+                    <div>
+                        {/* StarRating component */}
+                    </div>
                 </div>
             </div>
-        </div>
-    )
+        </a>
+    );
 }
