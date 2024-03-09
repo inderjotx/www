@@ -1,6 +1,7 @@
 import { MyData, RecentlyPlayedResponse, TopTracks } from '@/interfaces/music/music';
 import { revalidatePath } from 'next/cache';
 import qs from 'query-string'
+import { cache } from 'react';
 
 
 export async function getTopTracks() {
@@ -78,7 +79,6 @@ export async function getCurrentTrack() {
 
 
 
-
 export const getRecentTrack = async () => {
 
     const url = 'https://api.spotify.com/v1/me/player/recently-played?limit=1'
@@ -122,10 +122,8 @@ export const getRecentTrack = async () => {
 
 
 
-
-
-
-export const getAccessToken = async () => {
+// cache3
+export const getAccessToken = cache(async () => {
 
     const client_id = process.env.SPOTIFY_KEY;
     const client_secret = process.env.SPOTIFY_SECRET;
@@ -151,4 +149,4 @@ export const getAccessToken = async () => {
 
     const data = await response.json();
     return data.access_token
-};
+})

@@ -104,8 +104,8 @@ const config = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "slide_left": "slide_left 10s infinite linear ",
-        "slide_right": "slide_right 10s infinite linear ",
+        "slide_left": "slide_left 50s infinite linear ",
+        "slide_right": "slide_right 50s infinite linear ",
         "more_navbar": "more_navbar  0.25s  linear forwards"
       },
     },

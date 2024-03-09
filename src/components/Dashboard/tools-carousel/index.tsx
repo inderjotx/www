@@ -28,7 +28,7 @@ export function Tools() {
 
 
   return (
-    <div className='w-full h-full flex flex-col gap-3 justify-center relative   ' >
+    <div className='w-full h-full flex flex-col gap-4 justify-center relative   ' >
       <Carousel icons={icons} direction='left' />
       <Carousel icons={reversedIcons} direction='right' />
     </div >
@@ -68,7 +68,7 @@ export function Carousel({ icons, direction }: { icons: any, direction: "left" |
 
 function IconWrapper({ children }: { children: React.ReactNode }) {
   return (
-    <div className='size-10  bg-white p-1 flex items-center justify-center rounded-sm '>
+    <div className='size-12   flex items-center justify-center rounded-sm '>
       {children}
     </div>
   )
