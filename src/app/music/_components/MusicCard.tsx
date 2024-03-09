@@ -6,7 +6,6 @@ import Link from 'next/link'
 import { parseDate } from '@/lib/utils'
 import { Music } from 'lucide-react'
 
-
 export interface RecentPlayProps {
     href: string,
     image_url: string,
@@ -15,10 +14,7 @@ export interface RecentPlayProps {
     artist: string,
 }
 
-
 export function RecentPlay() {
-
-
 
     const [data, setData] = useState<RecentPlayProps>({
         href: "",
@@ -31,10 +27,9 @@ export function RecentPlay() {
 
     async function getData() {
         // @ts-ignore
-        let data: RecentPlayProps = await fetch(`/api/music/current`, { next: { revalidate: 0 } }).then(data => { return (data ? data.json() : null) }).then(json => json).catch(err => { console.log('not playing anything now') })
-        console.log(data)
+        let data: RecentPlayProps = await fetch(`/api/music/current`, { cache: "no-store" }).then(data => { return (data ? data.json() : null) }).then(json => json).catch(err => { console.log('not playing anything now') })
         if (!data) {
-            data = await fetch(`/api/music/recent`, { next: { revalidate: 0 } }).then(data => data.json()).then(json => json).catch(err => console.log(err))
+            data = await fetch(`/api/music/recent`, { cache: "no-store" }).then(data => data.json()).then(json => json).catch(err => console.log(err))
         }
         setData(data)
     }
@@ -46,7 +41,6 @@ export function RecentPlay() {
         const interval = setInterval(async () => {
             await getData()
         }, 1 * 60 * 1000)
-
 
         return () => {
             clearInterval(interval)

@@ -67,7 +67,7 @@ async function fetcher<T>(body: string, isAccessToken = false): Promise<T> {
             method: "POST",
             body: body,
             headers: headers,
-            next: { revalidate: (isAccessToken ? 6 * REVALIDATE_TIME.ONE_MONTH : REVALIDATE_TIME.ONE_HOUR) }
+            next: { revalidate: (isAccessToken ? 6 * REVALIDATE_TIME.ONE_MONTH : 10) }
         });
 
         if (!response.ok) {
