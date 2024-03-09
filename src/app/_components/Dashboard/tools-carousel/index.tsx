@@ -43,7 +43,7 @@ export function Carousel({ icons, direction }: { icons: any, direction: "left" |
   const [isHover, setHover] = useState(false)
 
   const effect = direction == "left" ? "animate-slide_left" : "animate-slide_right"
-  const styleDir = direction == "right" ? { "direction": "rtl" } : { "direction": "left" }
+  const styleDir: Record<string, string> = direction == "right" ? { "direction": "rtl" } : { "direction": "left" }
 
 
   return (

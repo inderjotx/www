@@ -1,4 +1,4 @@
-import { getCurrentTrack, getRecentTrack } from "@/lib/favsongs";
+import { getRecentTrack } from "@/lib/favsongs";
 import { NextResponse } from "next/server";
 
 
