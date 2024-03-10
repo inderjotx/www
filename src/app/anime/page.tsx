@@ -15,7 +15,6 @@ export default async function Anime() {
     const data = await getFavouriteShow()
     const recent = await getRecentShow()
 
-    console.log(recent)
 
     return (
 

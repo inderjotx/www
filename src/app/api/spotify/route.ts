@@ -6,7 +6,6 @@ import { NextRequest } from "next/server";
 
 export async function GET(req: NextRequest) {
 
-    console.log('called')
 
     const redirect_uri = 'http://localhost:3000/music'
     const CLIENT_ID = process.env.SPOTIFY_KEY!
