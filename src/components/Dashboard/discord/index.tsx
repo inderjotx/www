@@ -7,7 +7,7 @@ import { DiscordIcon } from './discordIcon'
 export function Discord() {
 
 
-    const { data, error, isLoading, mutate } = useSWR('/api/discord', fetcher, { revalidateIfStale: true })
+    const { data, error, isLoading, mutate } = useSWR<{ status: string }, any>('/api/discord', fetcher, { revalidateIfStale: true })
 
 
 

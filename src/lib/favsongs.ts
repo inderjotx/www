@@ -1,7 +1,5 @@
-import { MyData, RecentlyPlayedResponse, TopTracks } from '@/interfaces/music/music';
-import { revalidatePath } from 'next/cache';
+import { RecentlyPlayedResponse, TopTracks } from '@/interfaces/music/music';
 import qs from 'query-string'
-import { cache } from 'react';
 
 
 export async function getTopTracks() {
@@ -56,15 +54,24 @@ export async function getCurrentTrack() {
         ,
     };
 
-    const data: MyData = await fetch(url, options)
-        .then(data => data.json())
-        .then(json => json)
-        .catch(err => console.log(err))
+
+    const data = await fetch(url, options).then(response => {
+
+        if (response.ok) {
+            return response
+        }
+
+        throw new Error('Error while fetching data ')
+
+    }).then(data => data.json())
+        .catch((err) => console.log(err))
 
 
 
+    if (!data) {
+        return {}
+    }
 
-    if (data == null) return null
 
     return {
         href: data.item.external_urls.spotify,
@@ -100,30 +107,28 @@ export const getRecentTrack = async () => {
         .catch(err => console.log(err))
 
 
-    try {
-        return {
-            image_url: data.items[0].track.album.images[0].url,
-            artist: data.items[0].track.artists[0].name,
-            title: data.items[0].track.name,
-            href: data.items[0].track.external_urls.spotify,
-            listenOn: data.items[0].played_at
-        }
+    if (data == null || !('items' in data) || data.items.length == 0) {
+        return {}
     }
 
 
-    catch (err) {
-        console.log(err)
-        revalidatePath('/music')
+    return {
+        image_url: data.items[0].track.album.images[0].url,
+        artist: data.items[0].track.artists[0].name,
+        title: data.items[0].track.name,
+        href: data.items[0].track.external_urls.spotify,
+        listenOn: data.items[0].played_at
     }
-
-
 
 }
 
 
 
+
+
+
 // cache3
-export const getAccessToken = cache(async () => {
+export const getAccessToken = async () => {
 
     const client_id = process.env.SPOTIFY_KEY;
     const client_secret = process.env.SPOTIFY_SECRET;
@@ -149,4 +154,4 @@ export const getAccessToken = cache(async () => {
 
     const data = await response.json();
     return data.access_token
-})
+}

@@ -87,9 +87,12 @@ export function getTime() {
 
 
 
-export function fetcher(url: string) {
-  return fetch(url, { next: { revalidate: 0 } }).then(data => data.json())
-
+export async function fetcher<JSON = any>(
+  input: RequestInfo,
+  init?: RequestInit
+): Promise<JSON> {
+  const res = await fetch(input, init)
+  return res.json()
 }
 
 

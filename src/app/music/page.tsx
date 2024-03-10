@@ -1,7 +1,7 @@
 import { getTopTracks } from '@/lib/favsongs'
 import { poppins } from '@/lib/fonts/poppins'
 import { cn } from '@/lib/utils'
-import React, { Suspense } from 'react'
+import React from 'react'
 import { RecentPlay } from './_components/MusicCard'
 import { SingleTrack } from './_components/SingleTracks'
 
@@ -13,7 +13,6 @@ export default async function Page() {
     return (
         <div className='flex flex-col gap-4'>
             <h1 className={cn('font-semibold text-xl', poppins.className)} >Music</h1>
-
             <div className='text-sm text-muted-foreground'>
                 Music has always been something near to my heart. Whether it&apos;s a happy day or a sad one, there is a memory linked with it, and a song that accompanies the moment.
             </div>
