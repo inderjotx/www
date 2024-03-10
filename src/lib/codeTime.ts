@@ -26,12 +26,16 @@ export function weeklyCodeTime() {
             const time = data.data.digital
             return {
                 startDate,
-                time
+                time,
+                success: true
             }
 
         })
         .catch((error: Error) => {
             console.error('Error fetching data:', error);
+            return {
+                success: false
+            }
         });
 
 

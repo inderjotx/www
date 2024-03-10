@@ -1,13 +1,18 @@
 'use client'
-import { Button } from '@/components/ui/button'
 import { ChevronDown } from 'lucide-react'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
 import { NavbarDrawer } from './navbarDrawer'
 import { MoreData } from './moreData'
 
 export function MoreSmall() {
 
     const [open, onOpenChange] = useState<boolean>(false)
+    const pathname = usePathname()
+
+    useEffect(() => {
+        onOpenChange(() => false)
+    }, [pathname])
 
     function setValue(val: boolean) {
         onOpenChange(val)
