@@ -8,6 +8,11 @@ export async function GET() {
     console.log('/api/current ')
     console.log(current)
 
-    return NextResponse.json(current, { status: 200 })
+    const response = {
+        response: current,
+        success: ('href' in current)
+    }
+
+    return NextResponse.json(response, { status: 200 })
 
 }

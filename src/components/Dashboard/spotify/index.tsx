@@ -5,11 +5,17 @@ import useSWR from 'swr'
 import { MusicCard } from './MusicCard'
 import { useEffect } from 'react'
 
+interface Response {
+    response: RecentPlayProps,
+    success: boolean
+}
+
+
 export function Spotify() {
 
     // make sure no caching 
-    const { data, isLoading, error, mutate } = useSWR<RecentPlayProps, any>('/api/music/current', fetcher)
-    const { data: recent, isLoading: recentLoading, error: recentError, mutate: recentMutate } = useSWR<RecentPlayProps, any>('/api/music/recent', fetcher)
+    const { data, isLoading, error, mutate } = useSWR<Response, any>('/api/music/current', fetcher)
+    const { data: recent, isLoading: recentLoading, error: recentError, mutate: recentMutate } = useSWR<Response, any>('/api/music/recent', fetcher)
 
 
     useEffect(() => {
@@ -28,15 +34,15 @@ export function Spotify() {
 
 
 
-    if (!isLoading && !error && data) {
+    if (!isLoading && !error && data?.success) {
         console.log('rendering current')
         console.log(data)
-        return <MusicCard data={data} />
+        return <MusicCard data={data.response} />
     }
-    else if (!recentLoading && !recentError && recent) {
+    else if (!recentLoading && !recentError && recent?.success) {
         console.log('rendering recent')
         console.log(recent)
-        return <MusicCard data={recent} />
+        return <MusicCard data={recent.response} />
     }
     else {
         return <div>Fallback</div>

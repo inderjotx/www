@@ -1,4 +1,5 @@
 import { LoginResponse, GetShelfBooksResponse, MyReadingStateResult, ReadingState } from "@/interfaces/music/books";
+import { unstable_cache as cache } from "next/cache";
 
 export enum REVALIDATE_TIME {
     ONE_HOUR = 60 * 60,
@@ -9,13 +10,11 @@ export enum REVALIDATE_TIME {
 
 
 
-
-export async function getAccessToken() {
+const getAccessToken = cache(async () => {
     const email = process.env.LITERAL_EMAIL;
     const password = process.env.LITERAL_PASSWORD;
 
 
-    const url = 'https://literal.club/graphql/';
     const body = JSON.stringify({
         query: `
             mutation login($email: String!, $password: String!) {
@@ -42,12 +41,11 @@ export async function getAccessToken() {
     const data = await fetcher<LoginResponse>(body, true)
     return data.login.token
 
-}
+}, [], { revalidate: REVALIDATE_TIME.ONE_MONTH * 6 })
 
 
 
 
-// shevles fetch 
 async function fetcher<T>(body: string, isAccessToken = false): Promise<T> {
 
     const url = 'https://literal.club/graphql/';
@@ -67,7 +65,6 @@ async function fetcher<T>(body: string, isAccessToken = false): Promise<T> {
             method: "POST",
             body: body,
             headers: headers,
-            next: { revalidate: (isAccessToken ? 6 * REVALIDATE_TIME.ONE_MONTH : 10) }
         });
 
         if (!response.ok) {
@@ -84,7 +81,7 @@ async function fetcher<T>(body: string, isAccessToken = false): Promise<T> {
 }
 
 
-export async function getShelfBooks() {
+export const getShelfBooks = cache(async () => {
 
     const body = JSON.stringify({
         query: `
@@ -110,17 +107,16 @@ export async function getShelfBooks() {
     });
 
 
-
     const data = await fetcher<GetShelfBooksResponse>(body)
     return data.shelf.books
 
 
-}
+}, [], { revalidate: REVALIDATE_TIME.ONE_HOUR })
 
 
 
 
-export async function getRecentBook() {
+export const getRecentBook = cache(async () => {
 
     const body = JSON.stringify({
         query: `
@@ -151,5 +147,5 @@ export async function getRecentBook() {
     const curStatus = data.myReadingStates.find(({ status }) => status == "IS_READING")
     return curStatus as ReadingState
 
-}
+}, [], { revalidate: REVALIDATE_TIME.ONE_HOUR })
 

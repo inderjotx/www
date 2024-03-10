@@ -16,12 +16,16 @@ export interface RecentPlayProps {
 }
 
 
+interface Response {
+    response: RecentPlayProps,
+    success: boolean
+}
 
 export function RecentPlay() {
 
 
-    const { data, isLoading, error, mutate } = useSWR<RecentPlayProps, any>('/api/music/current', fetcher, { revalidateIfStale: true })
-    const { data: recent, isLoading: recentLoading, error: recentError, mutate: recentMutate } = useSWR<RecentPlayProps, any>('/api/music/recent', fetcher, { revalidateIfStale: true })
+    const { data, isLoading, error, mutate } = useSWR<Response, any>('/api/music/current', fetcher)
+    const { data: recent, isLoading: recentLoading, error: recentError, mutate: recentMutate } = useSWR<Response, any>('/api/music/recent', fetcher)
 
 
     useEffect(() => {
@@ -38,15 +42,15 @@ export function RecentPlay() {
 
 
 
-    if (!isLoading && !error && data) {
+    if (!isLoading && !error && data?.success) {
         console.log('rendering current')
         console.log(data)
-        return <TrackCard data={data} />
+        return <TrackCard data={data.response} />
     }
-    else if (!recentLoading && !recentError && recent) {
+    else if (!recentLoading && !recentError && recent?.success) {
         console.log('rendering recent')
         console.log(recent)
-        return <TrackCard data={recent} />
+        return <TrackCard data={recent.response} />
     }
     else {
         return <LoadingRecent />
