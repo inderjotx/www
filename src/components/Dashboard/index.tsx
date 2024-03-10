@@ -6,6 +6,9 @@ import { Discord } from './discord'
 import { Tools } from './tools-carousel'
 import { Post } from './LatestPost'
 import { Spotify } from './spotify'
+import { LinkedIn } from './linkedin'
+import { X } from './X'
+import { Code } from './code'
 
 export function Dashboard() {
     return (
@@ -28,10 +31,17 @@ export function Dashboard() {
                 </div>
                 <div className=' col-span-3 gap-2 grid grid-rows-2' >
                     <div className='border grid gap-2 grid-cols-2' >
-                        <div className='border'>linkedin</div>
-                        <div className='border'>x</div>
+                        <div className='border'>
+                            <LinkedIn />
+                        </div>
+                        <div className='border'>
+                            <X />
+                        </div>
                     </div>
-                    <div className='border'>code time</div>
+                    <div className='border'>
+                        <Code />
+                    </div>
+
                 </div>
             </div>
             <div className='grid gap-2 grid-cols-3 h-32  '>
@@ -42,7 +52,7 @@ export function Dashboard() {
                     <Post />
                 </div>
             </div>
-            <div className='h-36 border flex overflow-hidden'>
+            <div className='h-32 border flex overflow-hidden'>
                 <Tools />
             </div>
             <div className='h-32 border'>books</div>
