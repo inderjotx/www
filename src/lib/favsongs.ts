@@ -1,4 +1,5 @@
 import { RecentlyPlayedResponse, TopTracks } from '@/interfaces/music/music';
+import { unstable_cache as cache } from 'next/cache';
 import qs from 'query-string'
 
 
@@ -64,7 +65,7 @@ export async function getCurrentTrack() {
         throw new Error('Error while fetching data ')
 
     }).then(data => data.json())
-        .catch((err) => console.log(err))
+        .catch((err) => console.log('not playing currently'))
 
 
 
@@ -125,10 +126,8 @@ export const getRecentTrack = async () => {
 
 
 
-
-
-// cache3
-export const getAccessToken = async () => {
+// revalidate after hour
+export const getAccessToken = cache(async () => {
 
     const client_id = process.env.SPOTIFY_KEY;
     const client_secret = process.env.SPOTIFY_SECRET;
@@ -155,3 +154,7 @@ export const getAccessToken = async () => {
     const data = await response.json();
     return data.access_token
 }
+    ,
+    [],
+    { revalidate: 3600 }
+)

@@ -18,7 +18,7 @@ function formatNumber(value: number) {
 
 
 
-export function parseDate(dateStr: string): string {
+export function parseHour(dateStr: string): string {
   const dateObj = new Date(dateStr);
   const currentDate = new Date();
 
@@ -45,7 +45,7 @@ export function parseDate(dateStr: string): string {
 
 
 
-export function parseBookDate(dateStr: string): string {
+export function parseDate(dateStr: string): string {
   const dateObj = new Date(dateStr);
   const currentDate = new Date();
 
@@ -62,6 +62,14 @@ export function parseBookDate(dateStr: string): string {
     return ` ${diff} month${(diff > 1) ? 's' : ""} ago`
   }
 
+  // not same day 
+  else if (currentDate.getDate() !== dateObj.getDate()) {
+    const diff = currentDate.getDate() - dateObj.getDate()
+    return ` ${diff} month${(diff > 1) ? 's' : ""} ago`
+  }
+
+
+
 
   // not same hour
   else if (currentDate.getHours() !== dateObj.getHours()) {
@@ -70,9 +78,9 @@ export function parseBookDate(dateStr: string): string {
   }
 
 
-  // same month or day 
+  // some hours 
   else {
-    return parseDate(dateStr)
+    return parseHour(dateStr)
   }
 }
 

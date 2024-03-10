@@ -5,13 +5,14 @@ import { BookCard, LoadingBookCard } from './_components/BookCard'
 import { getRecentBook, getShelfBooks } from '@/lib/books'
 
 
-
+export const dynamic = 'force-dynamic'
 
 
 export default async function Page() {
 
     const books = await getShelfBooks()
     const recentBook = await getRecentBook()
+
 
     return (
         <div className='flex flex-col gap-4 h-full w-full'>

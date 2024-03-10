@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import Image from 'next/image'
 import { Book } from '@/interfaces/music/books'
 import { BookAudio, BookOpenText, BookText } from 'lucide-react'
-import { cn, parseBookDate, parseDate } from '@/lib/utils'
+import { cn, parseDate } from '@/lib/utils'
 
 export function BookCard({
     id,
@@ -27,7 +27,7 @@ export function BookCard({
                             startedReading &&
                             <>
                                 <BookAudio className='size-4' /> <span >
-                                    {parseBookDate(startedReading)}
+                                    {parseDate(startedReading)}
                                 </span>
                             </>
                         }

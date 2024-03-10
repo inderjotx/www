@@ -10,6 +10,11 @@ export async function GET() {
     const recent = await getRecentTrack()
     console.log('/api/recent')
 
-    return NextResponse.json(recent, { status: 200 })
+    const response = {
+        response: recent,
+        success: ('href' in recent)
+    }
+
+    return NextResponse.json(response, { status: 200 })
 
 }
