@@ -62,13 +62,12 @@ export function parseDate(dateStr: string): string {
     return ` ${diff} month${(diff > 1) ? 's' : ""} ago`
   }
 
+
   // not same day 
   else if (currentDate.getDate() !== dateObj.getDate()) {
     const diff = currentDate.getDate() - dateObj.getDate()
-    return ` ${diff} month${(diff > 1) ? 's' : ""} ago`
+    return ` ${diff} day${(diff > 1) ? 's' : ""} ago`
   }
-
-
 
 
   // not same hour

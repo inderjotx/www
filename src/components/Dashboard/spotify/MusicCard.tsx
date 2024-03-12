@@ -1,6 +1,7 @@
 'use client'
 
 import { RecentPlayProps } from '@/app/music/_components/MusicCard'
+import { parseDate } from '@/lib/utils';
 import Image from 'next/image'
 import React from 'react'
 import { useMediaQuery } from "react-responsive";
@@ -10,7 +11,6 @@ export function MusicCard({ data }: { data: RecentPlayProps }) {
 
     const isMobile = useMediaQuery({ maxWidth: 576 });
 
-    console.log(isMobile)
 
     const mobileMask = {
         maskImage:
@@ -18,15 +18,15 @@ export function MusicCard({ data }: { data: RecentPlayProps }) {
     }
     const largeMask = {
         maskImage:
-            'radial-gradient(circle at 0% 100%, transparent 40%, black 41%)',
+            'radial-gradient(circle at 0% 100%, transparent 35%, black 36%)',
     }
 
     const styleValue = isMobile ? mobileMask : largeMask
 
     return (
-        <div className='relative flex h-full w-full overflow-hidden'>
+        <div className='flex relative justify-end  items-end h-full w-full overflow-hidden'>
             <Image
-                className='object-cover '
+                className='object-cover'
                 alt='image'
                 quality={100}
                 src={data.image_url}
@@ -38,6 +38,17 @@ export function MusicCard({ data }: { data: RecentPlayProps }) {
                 className='absolute inset-0 bg-black/50 backdrop-blur-sm'
                 style={styleValue}
             />
-        </div>
+
+
+
+            <div className='z-10 py-3  self-center md:self-start md:text-sm font-bold flex flex-col font-mono  -rotate-180' style={{ 'textOrientation': 'mixed', 'writingMode': 'vertical-rl' }} >
+                <div>
+                    {parseDate(data.listenOn || "")}
+                </div>
+                <div>
+                    {data.artist.substring(0, 8) + (data.artist.length > 8 ? ".." : "")}
+                </div>
+            </div>
+        </div >
     )
 }

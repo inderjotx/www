@@ -2,8 +2,9 @@
 import { NextResponse, userAgent } from 'next/server'
 import type { NextRequest } from 'next/server'
 import { alreadyClicked, registerClick } from './lib/redis'
+import { addClickToDB } from './lib/addClicktoDb'
 
-type UserInfo = {
+export type UserInfo = {
     browser: string,
     city: string,
     country: string,
@@ -33,19 +34,16 @@ export async function middleware(request: NextRequest) {
 
             const view: (UserInfo | Partial<UserInfo>) = {
                 city: request.geo?.city,
-                country: request.geo?.country,
-                os: data.os.name,
+                country: request.geo?.country, os: data.os.name,
                 ref: request.referrer,
                 ip: request.ip,
                 device: data.device.type,
             }
 
 
-
-            // register click and not register click from same ip for one hour 
-            await registerClick(ip)
-
             // store click in the database
+            // register click and not register click from same ip for one hour 
+            await Promise.all([registerClick(ip), addClickToDB(view)])
 
         }
     }
