@@ -26,3 +26,23 @@ export async function getViews(key: string) {
 export async function incrementView(key: string) {
     await client.incr(key)
 }
+
+
+
+export async function registerClick(ip: string) {
+
+    await client.set(ip, '1', {})
+    await client.expire(ip, 3600)
+}
+
+
+
+export async function alreadyClicked(ip: string) {
+
+    // return number of keys exists
+    // https://upstash.com/docs/oss/sdks/py/redis/commands/generic/exists
+    const response = await client.exists(ip)
+
+
+    return response >= 1
+}
