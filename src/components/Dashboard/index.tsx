@@ -9,11 +9,12 @@ import { Spotify } from './spotify'
 import { LinkedIn } from './linkedin'
 import { X } from './X'
 import { Code } from './code'
+import { BookCard } from './book'
 
 export function Dashboard() {
     return (
 
-        <div className='grid gap-2 md:grid-cols-2 grid-col-1'>
+        <div className='grid gap-2 md:grid-cols-2 grid-col-1 mb-10'>
             <div className='h-32 border'>
                 <GithubRef />
             </div>
@@ -52,10 +53,17 @@ export function Dashboard() {
                     <Post />
                 </div>
             </div>
-            <div className='h-32 border flex overflow-hidden'>
+            <div className='h-36 grid gap-2 grid-cols-5 '>
+                <div className='col-span-3 md:col-span-3 border' >
+                    <Post />
+                </div>
+                <div className='col-span-2 md:col-span-2 border'>
+                    <BookCard />
+                </div>
+            </div>
+            <div className='h-36 border flex overflow-hidden'>
                 <Tools />
             </div>
-            <div className='h-32 border'>books</div>
         </div>
     )
 }
