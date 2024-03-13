@@ -10,17 +10,29 @@ import {
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { usePathname } from 'next/navigation'
+import { useClient } from '@/hooks/useClient'
 
 
 export function MoreLarge() {
 
     const [open, setOper] = useState(true)
     const pathname = usePathname()
-
+    const [isClient] = useClient()
 
     useEffect(() => {
         setOper(() => false)
     }, [pathname])
+
+    if (!isClient) {
+        return (
+            <div>
+                more
+            </div>
+        )
+    }
+
+
+
 
     return (
         <>

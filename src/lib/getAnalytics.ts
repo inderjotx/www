@@ -140,11 +140,10 @@ export function getAccumulatedData(rawData: Click[]) {
         deviceData: deviceClick,
         browserData: browserClick,
         osData: osClick,
-        refClick: refClick
+        refData: refClick
     }
 
 }
-
 
 function updateArrayClickInfo(clicks: Click, key: string | null, dataArray: DataArray) {
 
@@ -156,6 +155,7 @@ function updateArrayClickInfo(clicks: Click, key: string | null, dataArray: Data
         // if found increment the value  
         if (dataArray[i].name === key) {
             dataArray[i].value += 1
+            return
         }
 
     }

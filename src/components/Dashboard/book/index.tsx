@@ -1,4 +1,5 @@
 'use client'
+import { useClient } from '@/hooks/useClient'
 import { ReadingState } from '@/interfaces/music/books'
 import { fetcher } from '@/lib/utils'
 import Image from 'next/image'
@@ -8,7 +9,11 @@ import useSWR from 'swr'
 export function BookCard() {
 
     const { data, isLoading, error } = useSWR<ReadingState, any>('/api/book/latest', fetcher)
+    const [isClient] = useClient()
 
+    if (!isClient) {
+        return <div>Loading ...</div>
+    }
 
     if (isLoading || error) {
         if (error) {
