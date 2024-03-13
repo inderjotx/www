@@ -1,12 +1,17 @@
-import { getAnalytics } from "@/lib/graphData"
+import { getAnalytics } from "@/lib/getAnalytics"
+import { AnalyticsChart } from "./_components/AnalyticsChart"
 
 export default async function page() {
-    const data = await getAnalytics("Days")
-    console.log(data)
+
+
+    // if hour -> time in hours:minutes
+    // if day -> time in hours:min
+    // if week -> day hours:min
+    // month -> day hour : min
 
     return (
         <div>
-            Analytics
+            <AnalyticsChart />
         </div>
     )
 }
