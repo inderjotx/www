@@ -1,5 +1,6 @@
 import { Click } from "@prisma/client";
 import { prismaClient } from "./prisma";
+import { getHumanReadTime } from "./utils";
 
 
 
@@ -53,11 +54,12 @@ export async function transformData(from: TimeFrame, clickDataArray: Click[]) {
 
     const dataArray: BarGraphInput = []
 
-    for (let i = 1; i <= 6; i++) {
+    for (let i = 0; i <= 6; i++) {
 
         const dataItem = {
-            timeSlotStart: timeFromStartSeconds + delta * i,
-            clicks: 0
+            startIntervalMiliSec: timeFromStartSeconds + delta * i,
+            clicks: 0,
+            humanReadTime: getHumanReadTime(timeFromStartSeconds + delta * i)
         }
         dataArray.push(dataItem)
     }
@@ -95,12 +97,17 @@ function findColumnForDataPoint(delta: number, slotStartSecond: number, secondsC
 
 
 
-export async function getAnalytics(from: TimeFrame): Promise<BarGraphInput> {
+export async function getAnalytics(from: TimeFrame): Promise<Analytics> {
 
     const clickData = await getClickData(from)
     const totalClicks = clickData.length
-    const analytics = await transformData(from, clickData)
-    return analytics
+    const otherData = getAccumulatedData(clickData)
+    const barBarData = await transformData(from, clickData)
+    return {
+        ...otherData,
+        totalClicks: totalClicks,
+        barGraphData: barBarData
+    }
 
 }
 
@@ -147,7 +154,7 @@ function updateArrayClickInfo(clicks: Click, key: string | null, dataArray: Data
     for (let i = 0; i < dataArray.length; i++) {
 
         // if found increment the value  
-        if (dataArray[i].key === key) {
+        if (dataArray[i].name === key) {
             dataArray[i].value += 1
         }
 
@@ -156,7 +163,7 @@ function updateArrayClickInfo(clicks: Click, key: string | null, dataArray: Data
 
 
     // not found , create one
-    const dataItem: DataItem = { key: key, value: 1 }
+    const dataItem: DataItem = { name: key, value: 1 }
     dataArray.push(dataItem)
 
 }
