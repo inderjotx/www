@@ -25,8 +25,8 @@ export function BookCard() {
 
     else {
         return (
-            <div className='w-full h-full relative p-2'>
-                <Image className='object-center object-cover' alt='image' quality={100} src={data?.book.cover || ""} fill sizes='100' ></Image>
+            <div className='w-full h-full relative p-3'>
+                <Image className='object-center object-cover' alt='image' quality={99} src={data?.book.cover || ""} fill sizes='100' ></Image>
             </div>
 
         )
