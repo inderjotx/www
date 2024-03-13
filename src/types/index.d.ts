@@ -7,7 +7,7 @@ type BarGraphInput = { startIntervalMiliSec: number, humanReadTime: string, clic
 type DataItem = { name: string, value: number }
 type DataArray = DataItem[]
 
-type Analytics = {
+interface Analytics {
     barGraphData: BarGraphInput,
     totalClicks: number,
     cityData: DataArray,
@@ -15,6 +15,8 @@ type Analytics = {
     deviceData: DataArray,
     browserData: DataArray,
     osData: DataArray,
-    refClick: DataArray,
+    refData: DataArray,
 }
-// exa: { key: "chandigarh" : value : 34 },  ...
+
+type demographics = keyof Analytics & ("cityData" | "countryData" | "refData")
+type userDevice = keyof Analytics & ("browserData" | "osData" | "deviceData")

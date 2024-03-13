@@ -1,6 +1,6 @@
 'use client'
 import { cn } from '@/lib/utils'
-import { motion } from 'framer-motion'
+// import { motion } from 'framer-motion'
 import Link from 'next/link'
 import React, { useEffect, useRef, useState } from 'react'
 import { MoreLarge } from './more/triggerLarge'
@@ -20,11 +20,10 @@ export function Navbar() {
             <div className={cn(' flex relative items-center w-full gap-6  ')} >
                 <Link className='relative size-6' href={'/'}  >
                     <div >~</div>
-                    <motion.span
-                        transition={{ type: "spring" }}
+                    <span
                         className='bg-muted-foreground rounded-lg aspect-square w-full h-full absolute inset-0'
                     >
-                    </motion.span>
+                    </span>
                 </Link>
                 <Link href={'/about'} >
                     <div>about</div>
