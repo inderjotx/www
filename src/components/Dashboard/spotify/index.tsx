@@ -13,23 +13,8 @@ interface Response {
 
 export function Spotify() {
 
-    // make sure no caching 
-    const { data, isLoading, error, mutate } = useSWR<Response, any>('/api/music/current', fetcher)
-    const { data: recent, isLoading: recentLoading, error: recentError, mutate: recentMutate } = useSWR<Response, any>('/api/music/recent', fetcher)
-
-
-    useEffect(() => {
-
-        const interval = setInterval(() => {
-            mutate()
-            recentMutate()
-        }, 60 * 1000)
-
-
-        return () => {
-            clearInterval(interval)
-        }
-    }, [mutate, recentMutate])
+    const { data, isLoading, error, mutate } = useSWR<Response, any>('/api/music/current', fetcher, { refreshInterval: 1000 })
+    const { data: recent, isLoading: recentLoading, error: recentError, mutate: recentMutate } = useSWR<Response, any>('/api/music/recent', fetcher, { refreshInterval: 1000 })
 
 
 

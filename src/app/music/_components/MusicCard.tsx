@@ -24,21 +24,9 @@ interface Response {
 export function RecentPlay() {
 
 
-    const { data, isLoading, error, mutate } = useSWR<Response, any>('/api/music/current', fetcher)
-    const { data: recent, isLoading: recentLoading, error: recentError, mutate: recentMutate } = useSWR<Response, any>('/api/music/recent', fetcher)
+    const { data, isLoading, error, mutate } = useSWR<Response, any>('/api/music/current', fetcher, { refreshInterval: 1000 })
+    const { data: recent, isLoading: recentLoading, error: recentError, mutate: recentMutate } = useSWR<Response, any>('/api/music/recent', fetcher, { refreshInterval: 1000 })
 
-
-    useEffect(() => {
-
-        const interval = setInterval(async () => {
-            mutate()
-            recentMutate()
-        }, 1 * 60 * 1000)
-
-        return () => {
-            clearInterval(interval)
-        }
-    }, [mutate, recentMutate])
 
 
 

@@ -103,6 +103,31 @@ export async function fetcher<JSON = any>(
 }
 
 
+export function formatGraphTimeData(data: BarGraphInput) {
+
+  return data.map((val) => {
+
+    const formattedTime = convertSecondsToTimestamp(val.timeSlotStart)
+    val.timeSlotStart = formattedTime
+
+    return val
+  })
+
+
+}
 
 
 
+function convertSecondsToTimestamp(miliSeconds: number) {
+
+  let date = new Date(miliSeconds);
+
+  let month = date.toLocaleString('en-us', { month: 'short' });
+  let day = date.getDate();
+  let hours = date.getHours();
+  let minutes = date.getMinutes();
+
+  let formattedTimestamp = month + ' ' + (day < 10 ? '0' : '') + day + ', ' + (hours < 10 ? '0' : '') + hours + ':' + (minutes < 10 ? '0' : '') + minutes;
+
+  return formattedTimestamp;
+}

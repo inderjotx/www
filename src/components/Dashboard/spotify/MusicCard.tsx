@@ -1,6 +1,7 @@
 'use client'
 
 import { RecentPlayProps } from '@/app/music/_components/MusicCard'
+import { useClient } from '@/hooks/useClient';
 import { parseDate } from '@/lib/utils';
 import Image from 'next/image'
 import React from 'react'
@@ -9,7 +10,24 @@ import { useMediaQuery } from "react-responsive";
 
 export function MusicCard({ data }: { data: RecentPlayProps }) {
 
+
+    const [isClient] = useClient()
     const isMobile = useMediaQuery({ maxWidth: 576 });
+
+
+
+    if (!isClient) {
+        return (
+            <div>
+                Fetching data ...
+            </div>
+        )
+    }
+
+
+
+
+
 
 
     const mobileMask = {
@@ -41,12 +59,12 @@ export function MusicCard({ data }: { data: RecentPlayProps }) {
 
 
 
-            <div className='z-10 py-3  self-center md:self-start md:text-sm font-bold flex flex-col font-mono  -rotate-180' style={{ 'textOrientation': 'mixed', 'writingMode': 'vertical-rl' }} >
+            <div className='z-10 py-3  self-start md:self-start md:text-sm font-bold flex flex-col font-mono  -rotate-180' style={{ 'textOrientation': 'mixed', 'writingMode': 'vertical-rl' }} >
                 <div>
-                    {parseDate(data.listenOn || "")}
+                    {data.listenOn ? parseDate(data.listenOn) : "Playing.."}
                 </div>
                 <div>
-                    {data.artist.substring(0, 8) + (data.artist.length > 8 ? ".." : "")}
+                    {data.title.substring(0, 8) + (data.title.length > 8 ? ".." : "")}
                 </div>
             </div>
         </div >

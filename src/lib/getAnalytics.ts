@@ -1,10 +1,6 @@
 import { Click } from "@prisma/client";
 import { prismaClient } from "./prisma";
 
-type TimeFrame = "Hours" | "Days" | "Weeks" | "Months";
-
-
-type GraphInput = { timeSlotStart: number, clicks: number }[]
 
 
 
@@ -55,7 +51,7 @@ export async function transformData(from: TimeFrame, clickDataArray: Click[]) {
     // millisecons 
     const delta = (seconds * 1000) / 6
 
-    const dataArray: GraphInput = []
+    const dataArray: BarGraphInput = []
 
     for (let i = 1; i <= 6; i++) {
 
@@ -99,9 +95,73 @@ function findColumnForDataPoint(delta: number, slotStartSecond: number, secondsC
 
 
 
-export async function getAnalytics(from: TimeFrame): Promise<GraphInput> {
+export async function getAnalytics(from: TimeFrame): Promise<BarGraphInput> {
 
     const clickData = await getClickData(from)
+    const totalClicks = clickData.length
     const analytics = await transformData(from, clickData)
     return analytics
+
 }
+
+
+
+export function getAccumulatedData(rawData: Click[]) {
+
+    const cityClick: DataArray = []
+    const countryClick: DataArray = []
+    const deviceClick: DataArray = []
+    const browserClick: DataArray = []
+    const osClick: DataArray = []
+    const refClick: DataArray = []
+
+
+    rawData.forEach((click) => {
+
+        updateArrayClickInfo(click, click.country, countryClick)
+        updateArrayClickInfo(click, click.browser, browserClick)
+        updateArrayClickInfo(click, click.device, deviceClick)
+        updateArrayClickInfo(click, click.os, osClick)
+        updateArrayClickInfo(click, click.city, cityClick)
+        updateArrayClickInfo(click, click.ref, refClick)
+
+    })
+
+    return {
+        cityData: cityClick,
+        countryData: countryClick,
+        deviceData: deviceClick,
+        browserData: browserClick,
+        osData: osClick,
+        refClick: refClick
+    }
+
+}
+
+
+function updateArrayClickInfo(clicks: Click, key: string | null, dataArray: DataArray) {
+
+
+    if (key === null) return
+
+    for (let i = 0; i < dataArray.length; i++) {
+
+        // if found increment the value  
+        if (dataArray[i].key === key) {
+            dataArray[i].value += 1
+        }
+
+    }
+
+
+
+    // not found , create one
+    const dataItem: DataItem = { key: key, value: 1 }
+    dataArray.push(dataItem)
+
+}
+
+
+
+
+
