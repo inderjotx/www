@@ -3,6 +3,7 @@ import useSWR from 'swr'
 import React, { useEffect } from 'react'
 import { fetcher } from '@/lib/utils'
 import { DiscordIcon } from './discordIcon'
+import { config } from '@/config'
 
 export function Discord() {
 
@@ -25,7 +26,7 @@ export function Discord() {
 
 
     return (
-        <a href='https://discordapp.com/users/1061624989473845308' target='_blank' rel='noreferred'  >
+        <a href={config.links.discord} target='_blank' rel='noreferred'  >
             <div className='relative  overflow-hidden w-full h-full flex items-center justify-center'>
                 <div className='flex absolute top-0 left-0 h-full md:size-20 md:left-0  -rotate-45 '>
                     <DiscordIcon />

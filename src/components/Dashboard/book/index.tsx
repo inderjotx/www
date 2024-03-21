@@ -8,6 +8,7 @@ import useSWR from 'swr'
 
 export function BookCard() {
 
+
     const { data, isLoading, error } = useSWR<ReadingState, any>('/api/book/latest', fetcher)
     const [isClient] = useClient()
 
