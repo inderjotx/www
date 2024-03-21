@@ -11,7 +11,8 @@ export type UserInfo = {
     os: string,
     ref: string,
     device: string,
-    ip: string
+    ip: string,
+    clickedOn: number
 }
 
 // store in the database and in the analytics of 
@@ -23,6 +24,8 @@ export async function middleware(request: NextRequest) {
     const data = userAgent(request)
 
     const ip = request.ip
+
+
 
     if (ip) {
 
@@ -38,18 +41,15 @@ export async function middleware(request: NextRequest) {
                 ref: request.referrer,
                 ip: request.ip,
                 device: data.device.type,
+                clickedOn: new Date().getTime()
             }
-
 
             // store click in the database
             // register click and not register click from same ip for one hour 
-            await Promise.all([registerClick(ip), addClickToDB(view)])
+            await Promise.all([registerClick(view), addClickToDB(view)])
 
         }
     }
-
-
-
 }
 
 // See "Matching Paths" below to learn more

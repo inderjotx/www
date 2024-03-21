@@ -1,3 +1,4 @@
+import { UserInfo } from '@/middleware'
 import { Redis } from '@upstash/redis'
 
 
@@ -29,9 +30,10 @@ export async function incrementView(key: string) {
 
 
 
-export async function registerClick(ip: string) {
+export async function registerClick(data: UserInfo | Partial<UserInfo>) {
 
-    await client.set(ip, '1', {})
+    let ip = data.ip || "no ip"
+    await client.set(ip, data)
     await client.expire(ip, 3600)
 }
 

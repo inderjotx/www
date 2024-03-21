@@ -37,15 +37,15 @@ export function MoreLarge() {
     return (
         <>
             <DropdownMenu open={open} onOpenChange={(val) => setOper(val)}    >
-                <DropdownMenuTrigger onMouseLeave={() => setOper(false)} onMouseOver={() => setOper(true)} >
+                <DropdownMenuTrigger onClick={() => setOper(true)} >
+
                     <div
-                        className='flex cursor-pointer items-center gap-1 group relative ' > more
+                        className='flex cursor-pointer items-center gap-1 group relative p-1' > more
                         <ChevronDown className={cn('size-4 ')} />
                     </div>
 
                 </DropdownMenuTrigger>
                 <DropdownMenuContent
-                    onMouseLeave={() => setOper(false)} onMouseOver={() => setOper(true)}
                     className='w-[300px]' side='bottom' align='start'  >
                     <MoreData />
                 </DropdownMenuContent>

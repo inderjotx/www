@@ -49,7 +49,7 @@ export function Carousel({ icons, direction }: { icons: any, direction: "left" |
   return (
     <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
       className={cn('overflow-hidden whitespace-nowrap group relative ')} style={styleDir}  >
-      <div className={cn('flex gap-8 md:gap-6  ', effect, isHover && "paused")} >
+      <div className={cn('flex gap-8 md:gap-6  ', effect, isHover && "pause")} >
         {
           icons.map((Icon: any, index: number) => (
             <IconWrapper key={index} >
@@ -68,7 +68,7 @@ export function Carousel({ icons, direction }: { icons: any, direction: "left" |
 
 function IconWrapper({ children }: { children: React.ReactNode }) {
   return (
-    <div className='size-10   flex items-center justify-center rounded-sm '>
+    <div className='size-11   flex items-center justify-center rounded-sm '>
       {children}
     </div>
   )

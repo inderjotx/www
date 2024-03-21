@@ -25,13 +25,9 @@ export function Spotify() {
 
 
     if (!isLoading && !error && data?.success) {
-        console.log('rendering current')
-        console.log(data)
         return <MusicCard data={data.response} />
     }
     else if (!recentLoading && !recentError && recent?.success) {
-        console.log('rendering recent')
-        console.log(recent)
         return <MusicCard data={recent.response} />
     }
     else {

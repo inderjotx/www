@@ -64,6 +64,14 @@
   }
 }
 
+
+@layer utilities {
+  .pause { 
+    animation-play-state: paused;
+  }
+}
+
+
 .embla {
   margin: auto;
   --slide-size: 100%;
@@ -142,4 +150,9 @@
 .embla__button__svg {
   width: 35%;
   height: 35%;
+}
+
+
+.dashboard_box {
+  @apply overflow-hidden rounded-sm hover:scale-[0.98] transition-all
 }
