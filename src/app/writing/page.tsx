@@ -1,7 +1,6 @@
 import React from 'react'
 import fs from 'fs'
 import path from 'path'
-import Link from 'next/link'
 import { cn } from '@/lib/utils'
 import { poppins } from '@/lib/fonts/poppins'
 import ArticleTitle from './_components/ArticleTitle'
@@ -33,7 +32,7 @@ export default async function page() {
 
     return (
 
-        <div className='flex flex-col gap-10 w-full '>
+        <div className='flex flex-col h-screen gap-10 w-full '>
             <h1 className={cn('text-2xl', poppins.className)} >
                 Writings
             </h1>
@@ -44,13 +43,10 @@ export default async function page() {
 
             <ul className=''>
                 {
-                    // form by time 
                     folders.map(async (folder: string) => {
                         const { metadata }: { metadata: Metadata } = await import(`./(articles)/${folder}/content.mdx`)
-                        const views = await getViews(metadata.redisKey)
-                        console.log(views)
                         return (
-                            <ArticleTitle {...metadata} views={views} redis_key={metadata.redisKey} key={metadata.redisKey} />
+                            <ArticleTitle {...metadata} redis_key={metadata.redisKey} key={metadata.redisKey} />
                         )
                     })
                 }

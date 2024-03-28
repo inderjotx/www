@@ -1,10 +1,11 @@
 'use client'
-import { BarChart, BarList, Card, Color } from '@tremor/react';
+import react from 'react'
+import { BarChart, BarList, Card } from '@tremor/react';
 import { fetcher } from "@/lib/utils"
 import { useState } from "react";
 import useSWR from "swr"
-import { Signal } from 'lucide-react';
 import { GraphChangeButton } from './GraphChangeButton';
+import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from '@/components/ui/select';
 
 
 const buttonDemograph: { title: string, action: demographics }[] = [
@@ -26,7 +27,7 @@ const buttonUserData: { title: string, action: userDevice }[] = [
 export function AnalyticsChart() {
 
 
-    const [freq, setFreq] = useState<TimeFrame>("Days")
+    const [freq, setFreq] = useState<TimeFrame>("Months")
     const [demograph, setDemograph] = useState<demographics>("refData")
     const [userDevice, setUserDevice] = useState<userDevice>("deviceData")
 
@@ -40,11 +41,12 @@ export function AnalyticsChart() {
     }
     else if (data) {
 
-        console.log(data)
-
         return (
-            <div className='flex gap-10 w-full h-full flex-col'>
+            <div className='flex gap-10 w-full h-full  flex-col'>
 
+
+                <div>
+                </div>
 
                 {/* change time period */}
                 <Card className="w-full"
@@ -52,6 +54,7 @@ export function AnalyticsChart() {
                 >
                     <div className='flex items-center justify-between'>
                         <h3 className="text-tremor-title text-tremor-content-strong dark:text-dark-tremor-content-strong font-medium">Website Analytics</h3>
+                        <SelectFrequency freq={freq} setFreq={setFreq} />
                     </div>
 
                     <BarChart
@@ -80,7 +83,7 @@ export function AnalyticsChart() {
                             <span>Source</span>
                             <span>Views</span>
                         </p>
-                        <BarList data={data[demograph]} className="mt-2 h-32" showAnimation />
+                        <BarList data={data[demograph]} className="mt-2 h-32" />
                     </Card>
 
 
@@ -101,12 +104,9 @@ export function AnalyticsChart() {
                             <span>Browser</span>
                             <span>Views</span>
                         </p>
-                        <BarList data={data[userDevice]} color={'rose'} className="mt-2 h-32" showAnimation={true} />
+                        <BarList data={data[userDevice]} color={'rose'} className="mt-2 h-32" />
                     </Card>
                 </div>
-
-
-
             </div>
         )
 
@@ -115,13 +115,21 @@ export function AnalyticsChart() {
 }
 
 
+function SelectFrequency({ setFreq, freq }: { freq: TimeFrame, setFreq: (val: react.SetStateAction<TimeFrame>) => void }) {
 
-// <div className='flex flex-col h-20 w-32 items-center justify-end'>
-//     <div className='flex gap-1  items-center text-3xl font-black'>
-//         {data.totalClicks}
-//         <Signal />
-//     </div>
-//     <div className='text-sm pl-6 text-muted-foreground'>
-//         Total Clicks
-//     </div>
-// </div>
+    return (
+        <Select value={freq} onValueChange={(val) => setFreq(val as TimeFrame)} >
+            <SelectTrigger className="w-[150px]">
+                <SelectValue placeholder="Frequency" />
+            </SelectTrigger>
+            <SelectContent>
+                <SelectItem value="Hours">Hour</SelectItem>
+                <SelectItem value="Days">Day</SelectItem>
+                <SelectItem value="Weeks">Week</SelectItem>
+                <SelectItem value="Months">Month</SelectItem>
+            </SelectContent>
+        </Select>
+
+    )
+
+}

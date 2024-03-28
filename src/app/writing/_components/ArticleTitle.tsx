@@ -1,29 +1,46 @@
+'use client'
 import { cn } from '@/lib/utils'
 import { Eye } from 'lucide-react'
 import { redirect } from 'next/navigation'
-import Link from 'next/link'
-import React from 'react'
+import React, { use, useEffect, useState } from 'react'
 import { incrementView } from '@/lib/redis'
 import { Button } from '@/components/ui/button'
-import { revalidatePath } from 'next/cache'
+import { IncrementViewAction } from '@/actions/incrementView'
 
 interface ArticleTitleProps {
     title: string,
-    views: number | undefined,
     writtenOn: string,
     slug: string,
     redis_key: string
 }
 
+// add clietn component to get the clicks 
+export default function ArticleTitle({ title, redis_key, slug, writtenOn }: ArticleTitleProps) {
 
-export default function ArticleTitle({ title, redis_key, views, slug, writtenOn }: ArticleTitleProps) {
+
+    const [views, setViews] = useState(0)
+
+
+
+    useEffect(() => {
+
+        (async () => {
+
+            const response: { success: boolean, views: number } = await fetch(`/api/blog?title=${redis_key}`).then(data => data.json())
+            setViews(response.views)
+        }
+        )()
+
+    }, [redis_key])
+
+
+
+
+
     return (
         <form action={async () => {
-            "use server"
-            console.log(redis_key)
-            incrementView(redis_key)
-            revalidatePath('/writing')
-            redirect(slug)
+            await IncrementViewAction(redis_key)
+
         }} >
 
             <Button className={'flex p-0 m-0 h-full w-full'}

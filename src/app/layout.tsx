@@ -5,6 +5,7 @@ import { Gradient } from "@/components/gradient";
 import "./globals.css";
 import { ThemeProvider } from "@/components/Provider/ThemeProvider";
 import { cn } from "@/lib/utils";
+import { Footer } from "@/components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -34,7 +35,9 @@ export default function RootLayout({
               {children}
             </div>
           </div>
+          <Footer />
         </ThemeProvider>
+
       </body>
     </html>
   );

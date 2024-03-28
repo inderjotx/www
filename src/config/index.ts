@@ -12,6 +12,7 @@ export const config = {
 export const siteConfig = {
     "name": "Inderjot Singh",
     "url": "https://www.inderjot.tech",
+    "creator": "Inderjot Singh",
 }
 
 
