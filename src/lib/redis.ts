@@ -31,7 +31,6 @@ export async function incrementView(key: string) {
 
 
 export async function registerClick(data: UserInfo | Partial<UserInfo>) {
-
     let ip = data.ip || "no ip"
     await client.set(ip, data)
     await client.expire(ip, 3600)
