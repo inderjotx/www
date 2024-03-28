@@ -10,6 +10,7 @@ import { LinkedIn } from './linkedin'
 import { X } from './X'
 import { Code } from './code'
 import { BookCard } from './book'
+import { Analytics } from './analytics'
 
 export function Dashboard() {
     return (
@@ -22,7 +23,7 @@ export function Dashboard() {
                 <div className='col-span-2 border dashboard_box ' >
                     <Github />
                 </div>
-                <div className='col-span-1 border dashboard_box '>
+                <div className='col-span-1 border dashboard_box  '>
                     <Spotify />
                 </div>
             </div>
@@ -55,9 +56,7 @@ export function Dashboard() {
             </div>
             <div className='h-32 grid gap-2 grid-cols-3'>
                 <div className='col-span-2  border dashboard_box' >
-                    <div>
-                        this website is work in progress
-                    </div>
+                    <Analytics />
                 </div>
                 <div className='col-span-1  border dashboard_box '>
                     <BookCard />

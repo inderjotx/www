@@ -156,3 +156,8 @@
 .dashboard_box {
   @apply overflow-hidden rounded-sm hover:scale-[0.98] transition-all
 }
+
+
+.vertical_text
+{  writing-mode: vertical-rl; 
+ }
