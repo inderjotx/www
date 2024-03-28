@@ -9,7 +9,7 @@ export function MoreData() {
     const data = [
         { image_url: '/navbar/more/anime.webp', slug: 'anime' },
         { image_url: '/navbar/more/books.webp', slug: 'books' },
-        { image_url: '/navbar/more/faqs.webp', slug: 'faqs' },
+        { image_url: '/navbar/more/analytics.png', slug: 'analytics' },
         { image_url: '/navbar/more/music.webp', slug: 'music' },
         { image_url: '/navbar/more/uses.webp', slug: 'uses' },
         { image_url: '/navbar/more/work.webp', slug: 'work' }

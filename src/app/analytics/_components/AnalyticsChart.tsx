@@ -33,8 +33,6 @@ export function AnalyticsChart() {
     const { data, isLoading, error } = useSWR<Analytics, any>(`/api/analytics?frequency=${freq}`, fetcher, { refreshInterval: 30000 })
 
 
-
-
     if (isLoading || error) {
         return (
             <div>data</div>

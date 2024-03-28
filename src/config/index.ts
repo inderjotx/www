@@ -7,3 +7,18 @@ export const config = {
         "discord": "https://discordapp.com/users/1061624989473845308"
     }
 }
+
+
+export const siteConfig = {
+    "name": "Inderjot Singh",
+    "url": "https://www.inderjot.tech",
+}
+
+
+
+export const latestPost = {
+    "title": "Look back at 2023",
+    "writtenOn": "31 November 2023",
+    "imagePath": "/uses/next.svg",
+    "href": "/writing/text"
+}
