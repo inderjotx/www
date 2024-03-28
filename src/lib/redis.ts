@@ -41,10 +41,7 @@ export async function registerClick(data: UserInfo | Partial<UserInfo>) {
 
 export async function alreadyClicked(ip: string) {
 
-    // return number of keys exists
-    // https://upstash.com/docs/oss/sdks/py/redis/commands/generic/exists
     const response = await client.exists(ip)
-
 
     return response >= 1
 }

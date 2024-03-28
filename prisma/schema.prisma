@@ -17,4 +17,6 @@ model Click {
   device    String?
   ip        String?
   createdOn DateTime @default(now())
+
+  @@map("click_data")
 }

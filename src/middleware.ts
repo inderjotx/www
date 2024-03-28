@@ -31,28 +31,33 @@ export async function middleware(request: NextRequest) {
 
         const hasAlreadyClicked = await alreadyClicked(ip)
 
+        console.log(`${ip} has already clicked the url`)
         if (!hasAlreadyClicked) {
 
-            console.log('clicked')
+            console.log('clicked for the first time')
 
             const view: (UserInfo | Partial<UserInfo>) = {
                 city: request.geo?.city,
-                country: request.geo?.country, os: data.os.name,
+                country: request.geo?.country,
+                os: data.os.name,
                 ref: request.referrer,
                 ip: request.ip,
                 device: data.device.type,
-                clickedOn: new Date().getTime()
             }
 
-            // store click in the database
-            // register click and not register click from same ip for one hour 
+            console.log('click data of the user' + view)
+
             await Promise.all([registerClick(view), addClickToDB(view)])
 
         }
     }
+    else {
+        console.log('no ip data available')
+    }
 }
 
-// See "Matching Paths" below to learn more
+
+// mathes everyting execpt some next things that are not routes
 export const config = {
     matcher: [
         '/((?!api|_next/static|_next/image|favicon.ico).*)',

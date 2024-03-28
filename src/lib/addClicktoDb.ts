@@ -7,9 +7,16 @@ export async function addClickToDB(user: UserInfo | Partial<UserInfo>) {
 
     try {
 
+        console.log("user data")
+        console.log(user)
         await prismaClient.click.create({
             data: {
-                ...user
+                browser: user.browser,
+                city: user.city,
+                country: user.country,
+                os: user.os,
+                ref: user.ref,
+                ip: user.ip,
             }
         })
     }
