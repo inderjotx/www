@@ -18,7 +18,7 @@ export default async function Anime() {
 
     return (
 
-        <div className='flex flex-col gap-4'>
+        <div className='flex flex-col gap-4 '>
             <h1 className={cn('font-semibold text-xl', poppins.className)} >Anime</h1>
 
             <div className='text-sm text-muted-foreground'>

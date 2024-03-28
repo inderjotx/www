@@ -13,7 +13,7 @@ export function GraphChangeButton({ buttons, updateState }: GraphChangeButtonPro
         <div className='flex gap-2' >
             {
                 buttons.map((button) => (
-                    <Button className='text-[12px] text-muted-foreground py-[0px] px-[4px] ' variant={"ghost"} onClick={() => updateState(button.action)} key={button.action}  >
+                    <Button className='text-[12px] text-muted-foreground p-2 h-5 mx-0 ' variant={"ghost"} onClick={() => updateState(button.action)} key={button.action}  >
                         {button.title}
                     </Button>
                 ))
