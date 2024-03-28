@@ -14,8 +14,8 @@ interface Response {
 
 export function Spotify() {
 
-    const { data, isLoading, error, mutate } = useSWR<Response, any>('/api/music/current', fetcher, { refreshInterval: 1000 })
-    const { data: recent, isLoading: recentLoading, error: recentError, mutate: recentMutate } = useSWR<Response, any>('/api/music/recent', fetcher, { refreshInterval: 1000 })
+    const { data, isLoading, error } = useSWR<Response, any>('/api/music/current', fetcher)
+    const { data: recent, isLoading: recentLoading, error: recentError } = useSWR<Response, any>('/api/music/recent', fetcher)
     const [isClient] = useClient()
 
 
