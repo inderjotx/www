@@ -45,6 +45,7 @@ export default async function page() {
                 {
                     folders.map(async (folder: string) => {
                         const { metadata }: { metadata: Metadata } = await import(`./(articles)/${folder}/content.mdx`)
+
                         return (
                             <ArticleTitle {...metadata} redis_key={metadata.redisKey} key={metadata.redisKey} />
                         )

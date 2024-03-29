@@ -1,7 +1,7 @@
 
 import { NextResponse, userAgent } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { alreadyClicked, registerClick } from './lib/redis'
+import { alreadyClicked, incrementView, registerClick } from './lib/redis'
 import { addClickToDB } from './lib/addClicktoDb'
 
 export type UserInfo = {
@@ -15,17 +15,30 @@ export type UserInfo = {
     clickedOn: number
 }
 
-// store in the database and in the analytics of 
-
 
 
 export async function middleware(request: NextRequest) {
 
+
+    // update views  of blogs 
+    const reqPath = request.nextUrl.pathname
+    const pathArr = reqPath.split('/')
+
+    if (pathArr.length >= 2 && 'writing' == pathArr[pathArr.length - 2]) {
+
+        const redis_key = pathArr[pathArr.length - 1]
+        await incrementView(redis_key)
+
+    }
+
+
+
+
+
+
+    // for analytical data
     const data = userAgent(request)
-
     const ip = request.ip
-
-
 
     if (ip) {
 

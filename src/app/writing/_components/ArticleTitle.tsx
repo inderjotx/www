@@ -1,11 +1,12 @@
 'use client'
-import { cn } from '@/lib/utils'
+import { cn, fetcher } from '@/lib/utils'
 import { Eye } from 'lucide-react'
 import { redirect } from 'next/navigation'
 import React, { use, useEffect, useState } from 'react'
 import { incrementView } from '@/lib/redis'
 import { Button } from '@/components/ui/button'
-import { IncrementViewAction } from '@/actions/incrementView'
+import Link from 'next/link'
+import useSWR from 'swr'
 
 interface ArticleTitleProps {
     title: string,
@@ -14,47 +15,28 @@ interface ArticleTitleProps {
     redis_key: string
 }
 
-// add clietn component to get the clicks 
+
+// updating views on middleware 
 export default function ArticleTitle({ title, redis_key, slug, writtenOn }: ArticleTitleProps) {
 
 
-    const [views, setViews] = useState(0)
-
-
-
-    useEffect(() => {
-
-        (async () => {
-
-            const response: { success: boolean, views: number } = await fetch(`/api/blog?title=${redis_key}`).then(data => data.json())
-            setViews(response.views)
-        }
-        )()
-
-    }, [redis_key])
-
-
-
+    const { data, error, isLoading } = useSWR<{ success: boolean, views: number }>(`/api/blog?title=${redis_key}`, fetcher)
 
 
     return (
-        <form action={async () => {
-            await IncrementViewAction(redis_key)
-
-        }} >
-
-            <Button className={'flex p-0 m-0 h-full w-full'}
-                variant={"secondary"} type='submit'>
+        <Button className={'flex p-0 m-0 h-full w-full'}
+            variant={"secondary"} type='submit' asChild >
+            <Link href={`/writing/${redis_key}`} >
                 <div className={cn('flex   flex-col   transition-all    w-full px-4 py-3 gap-1   ')} >
                     <div className='flex justify-between '>
                         <h1> {title}</h1>
-                        <h2 className='text-muted-foreground text-sm flex items-center gap-1' > <Eye className='size-4' /> {views}</h2>
+                        <h2 className='text-muted-foreground text-sm flex items-center gap-1' > <Eye className='size-4' /> {data?.views || 0}</h2>
                     </div>
                     <div>
                         <p className='text-[11px] text-muted-foreground text-left' >{writtenOn}</p>
                     </div>
                 </div>
-            </Button>
-        </form>
+            </Link>
+        </Button>
     )
 }
