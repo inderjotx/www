@@ -5,6 +5,7 @@ import Link from 'next/link'
 import React from 'react'
 import { useMediaQuery } from 'react-responsive'
 import useSWR from 'swr'
+import { FallbackAnalytics } from './FallbackAnalytics'
 
 export function Analytics() {
 
@@ -14,10 +15,11 @@ export function Analytics() {
 
     if (isLoading || error) {
         return (
-            <div>data</div>
+            <FallbackAnalytics />
         )
     }
     else if (data) {
+
 
         let city = "Jalandhar"
         let country = "Punjab"
@@ -35,6 +37,7 @@ export function Analytics() {
                 country = val.name
             }
         })
+
 
         return (
             <Link href={'/analytics'} >

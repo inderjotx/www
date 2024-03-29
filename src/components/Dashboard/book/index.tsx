@@ -6,6 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
 import useSWR from 'swr'
+import { FallbackBook } from './FallbackBook'
 
 export function BookCard() {
 
@@ -14,14 +15,14 @@ export function BookCard() {
     const [isClient] = useClient()
 
     if (!isClient) {
-        return <div>Loading ...</div>
+        return (<FallbackBook />)
     }
 
     if (isLoading || error) {
         if (error) {
             console.log(error)
         }
-        return <div>Loading ...</div>
+        return (<FallbackBook />)
     }
 
 

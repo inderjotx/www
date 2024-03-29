@@ -31,20 +31,27 @@ export default function page() {
                 <div className='flex flex-col md:flex-row gap-1 md:gap-6 text-muted-foreground' >
                     <div className='w-full md:w-1/6' >Who am I ? </div>
                     <div className='w-full text-white md:w-5/6'>
-                        <p>
-                            Hi there 👋🏻 I&apos;m Inderjot, a 20-year-old guy, passionate about computers.
-                        </p>
+                        <div className='w-full text-white md:w-5/6'>
 
-                        <p>
-                            My journey started after I completed my 12th, since I ought to move abroad for my bachelor but i had 6 months . I started lerning about tech , and found this field exlirating . I wanted a more structured path and did some research and found CS50 by Harvard . There I learned a bunch of new things , C , SQL , DSA , React , Javascript and build my first website . I paralled opted for a course in python by Angela Yu on Udemy . After completing there course  , I get to know how web dev works in general . I build some servers in flask . On Jan 1 , 2023 I decide I should do DSA since , it an improtant part of Techinal Interview . I gone  I followed youtube video of Kunal Kushwaha and Striver , learned Java and started solving question on leetcode, I did this for about 2-3 months consistenly solved around 200-220 question , then I thought that is good enought it isn&apos; I am going to give interview now since I don&apos;t have a degree , so  I thought now its better i should improved my developments skills and learn Web Dev. I like to try new things , I started doing Web 3 because one of my friend was doing it , simulatenould i started learning about cloud and machine learning . I did this for a month and so , build i project in web3 a website to create web tokens , in machine learing i was just brushing up my maths . During this time , I tried vim and dual booted my windows to the ubuntu installed , ( best decision I made ). I took that step after wathcihng a video by Harkirat . Fast forward I learned devops , kubernetes , jenkins , terraform and anisble  . So in the first year of my programming I have touch on all domains of tech I find .  Mistakes i made was I gernetall opt for course ,or youtube videoes . Now i have decided i will go more deep in web dev and there days since next js is quite popular i am making projects in next and trying to learn all the latest tech . I am also learning golang <div className=""></div>
-                        </p>
+                            <p>
+                                Hi there 👋🏻 I &apos; m Inderjot, a 20-year-old guy, passionate about computers.
+                            </p>
 
+                            <p>
+                                My journey started after I completed my 12th, since I had to move abroad for my bachelor &apos;s degree, but I had 6 months. I started learning about tech, and found this field exhilarating. I wanted a more structured path and did some research and found CS50 by Harvard. There, I learned a bunch of new things, C, SQL, DSA, React, JavaScript, and built my first website. I parallelly opted for a course in Python by Angela Yu on Udemy. After completing these courses, I got to know how web development works in general. I built some servers in Flask. On January 1, 2023, I decided I should do DSA since it &apos;s an important part of technical interviews. I followed YouTube videos by Kunal Kushwaha and Striver, learned Java, and started solving questions on LeetCode. I did this for about 2-3 months consistently, solved around 200-220 questions, then I thought that &apos; s good enough, and I am not going to give interviews now since I don &apos; t have a degree. So, I thought it &apos; s better I should improve my development skills and learn Web Development. I like to try new things, so I started doing Web3 because one of my friends was doing it. Simultaneously, I started learning about cloud and machine learning. I did this for a month or so, built a project in web3 - a website to create web tokens, and in machine learning, I was just brushing up my math. During this time, I tried vim and dual booted my Windows to Ubuntu (the best decision I made). I took that step after watching a video by Harkirat. Fast forward, I learned DevOps, Kubernetes, Jenkins, Terraform, and Ansible. So, in the first year of my programming, I have touched on all domains of tech I find interesting. The mistake I made was that I generally opted for courses or YouTube videos. Now, I have decided I will go deeper into web development, and these days, since Next.js is quite popular, I am making projects in Next.js and trying to learn all the latest tech. I am also learning Golang.
+                            </p>
+
+                        </div>
                     </div>
                 </div>
-                <div className='flex flex-col md:flex-row gap-1 md:gap-6 text-muted-foreground' >
-                    <div className='w-full text-muted-foreground md:w-1/6' >Mistakes I have made ? </div>
+
+
+                <div className='flex flex-col md:flex-row gap-1 md:gap-6 text-muted-foreground'>
+
+                    <div className='w-full text-muted-foreground md:w-1/6'>Mistakes I have made?</div>
+
                     <div className='w-full text-white md:w-5/6'>
-                        <p>Relying on courses for learnign , i have found that the best way to learn is by doing it oureself. I have opted for a course on react did for one 1/2 month and build a todo app as show in tutorial . but when i build my own web3 token craeting app i learned bunch of new things .  </p>
+                        <p>Relying on courses for learning, I have found that the best way to learn is by doing it ourselves. I opted for a course on React, did it for one and a half months, and built a todo app as shown in the tutorial. But when I built my own web3 token-creating app, I learned a bunch of new things.</p>
                     </div>
 
                 </div>

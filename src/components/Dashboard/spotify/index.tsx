@@ -5,6 +5,7 @@ import useSWR from 'swr'
 import { MusicCard } from './MusicCard'
 import { useEffect } from 'react'
 import { useClient } from '@/hooks/useClient'
+import { FallbackMusic } from './FallbackMusic'
 
 interface Response {
     response: RecentPlayProps,
@@ -20,7 +21,7 @@ export function Spotify() {
 
 
     if (!isClient) {
-        return <div>loading ....</div>
+        return <FallbackMusic />
     }
 
 
@@ -31,7 +32,7 @@ export function Spotify() {
         return <MusicCard data={recent.response} />
     }
     else {
-        return <div>Fallback</div>
+        return <FallbackMusic />
     }
 
 }

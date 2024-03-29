@@ -6,6 +6,7 @@ import { parseDate } from '@/lib/utils';
 import Image from 'next/image'
 import Link from 'next/link';
 import React from 'react'
+import { FallbackMusic } from './FallbackMusic';
 
 
 export function MusicCard({ data }: { data: RecentPlayProps }) {
@@ -15,9 +16,7 @@ export function MusicCard({ data }: { data: RecentPlayProps }) {
 
     if (!isClient) {
         return (
-            <div>
-                Fetching data ...
-            </div>
+            <FallbackMusic />
         )
     }
 
