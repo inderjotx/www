@@ -20,21 +20,6 @@ export type UserInfo = {
 export async function middleware(request: NextRequest) {
 
 
-    // update views  of blogs 
-    const reqPath = request.nextUrl.pathname
-    const pathArr = reqPath.split('/')
-
-    if (pathArr.length >= 2 && 'writing' == pathArr[pathArr.length - 2]) {
-
-        const redis_key = pathArr[pathArr.length - 1]
-        await incrementView(redis_key)
-
-    }
-
-
-
-
-
 
     // for analytical data
     const data = userAgent(request)

@@ -4,7 +4,9 @@ import path from 'path'
 import { cn } from '@/lib/utils'
 import { poppins } from '@/lib/fonts/poppins'
 import ArticleTitle from './_components/ArticleTitle'
-import { getViews } from '@/lib/redis'
+import { getViews, incrementView } from '@/lib/redis'
+import { Button } from '@/components/ui/button'
+import { redirect } from 'next/navigation'
 
 type Metadata = {
     slug: string,
@@ -47,7 +49,17 @@ export default async function page() {
                         const { metadata }: { metadata: Metadata } = await import(`./(articles)/${folder}/content.mdx`)
 
                         return (
-                            <ArticleTitle {...metadata} redis_key={metadata.redisKey} key={metadata.redisKey} />
+                            <form key={metadata.redisKey} action={async () => {
+                                "use server"
+                                incrementView(metadata.redisKey)
+                                redirect(`/writing/${metadata.redisKey}`)
+                            }} >
+
+                                <Button className={'flex p-0 m-0 h-full w-full'}
+                                    variant={"secondary"} type='submit' >
+                                    <ArticleTitle {...metadata} redis_key={metadata.redisKey} key={metadata.redisKey} />
+                                </Button>
+                            </form>
                         )
                     })
                 }

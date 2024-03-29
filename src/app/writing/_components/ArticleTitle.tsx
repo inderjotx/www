@@ -24,19 +24,14 @@ export default function ArticleTitle({ title, redis_key, slug, writtenOn }: Arti
 
 
     return (
-        <Button className={'flex p-0 m-0 h-full w-full'}
-            variant={"secondary"} type='submit' asChild >
-            <Link href={`/writing/${redis_key}`} >
-                <div className={cn('flex   flex-col   transition-all    w-full px-4 py-3 gap-1   ')} >
-                    <div className='flex justify-between '>
-                        <h1> {title}</h1>
-                        <h2 className='text-muted-foreground text-sm flex items-center gap-1' > <Eye className='size-4' /> {data?.views || 0}</h2>
-                    </div>
-                    <div>
-                        <p className='text-[11px] text-muted-foreground text-left' >{writtenOn}</p>
-                    </div>
-                </div>
-            </Link>
-        </Button>
+        <div className={cn('flex   flex-col   transition-all    w-full px-4 py-3 gap-1   ')} >
+            <div className='flex justify-between '>
+                <h1> {title}</h1>
+                <h2 className='text-muted-foreground text-sm flex items-center gap-1' > <Eye className='size-4' /> {data?.views || 0}</h2>
+            </div>
+            <div>
+                <p className='text-[11px] text-muted-foreground text-left' >{writtenOn}</p>
+            </div>
+        </div>
     )
 }
