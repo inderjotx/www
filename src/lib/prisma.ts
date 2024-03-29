@@ -1,44 +1,18 @@
-import { PrismaClient } from '@prisma/client/edge'
-import { withAccelerate } from '@prisma/extension-accelerate'
+import { PrismaClient } from "@prisma/client/edge";
+import { withAccelerate } from "@prisma/extension-accelerate";
 
-export const prismaClient = new PrismaClient().$extends(withAccelerate())
+function makePrisma() {
+    return new PrismaClient({
+        datasources: { db: { url: process.env.DATABASE_URL } },
+    }).$extends(withAccelerate());
+}
 
+const globalForPrisma = global as unknown as {
+    prisma: ReturnType<typeof makePrisma>;
+};
 
+export const prismaClient = globalForPrisma.prisma ?? makePrisma();
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// import { PrismaClient } from '@prisma/client'
-
-
-
-// // add client to the global instance
-// declare global {
-//     var prisma: (null | PrismaClient)
-// }
-
-
-// // create client if  
-
-// if (process.env.NODE_ENV === 'production') {
-//     globalThis.prisma = new PrismaClient()
-// }
-// else {
-//     if (!globalThis.prisma) globalThis.prisma = new PrismaClient()
-// }
-
-// export const prismaClient = globalThis.prisma
+if (process.env.NODE_ENV !== "production") {
+    globalForPrisma.prisma = makePrisma();
+}
