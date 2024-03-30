@@ -13,7 +13,7 @@ export function GithubRef() {
                     <Github />
                     <div>
                         <h1 className='font-medium'>Github</h1>
-                        <h1 className='text-sm'>My experiments (aja projects)</h1>
+                        <h1 className='text-sm'>My experiments (aka projects)</h1>
                     </div>
                 </div>
             </a>

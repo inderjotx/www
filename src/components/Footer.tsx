@@ -5,7 +5,7 @@ import { Anchor } from './Anchor'
 
 export function Footer() {
     return (
-        <div className='mt-16 h-28 flex flex-col gap-2 w-full items-center justify-center'>
+        <div className='mt-10 h-28 flex flex-col gap-3 w-full items-center justify-center'>
             <h1>By
                 <a href={config.links.twitter} className='underline px-1 decoration-2 decoration-gray-600 hover:decoration-gray-400' >
                     Inderjot Singh

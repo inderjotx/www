@@ -1,28 +1,13 @@
-'use client'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
-import React, { useEffect, useRef, useState } from 'react'
+import React from 'react'
 import { MoreLarge } from './more/triggerLarge'
 import { MoreSmall } from './more/triggerSmall'
-
-import {
-    Menubar,
-    MenubarContent,
-    MenubarItem,
-    MenubarMenu,
-    MenubarSeparator,
-    MenubarShortcut,
-    MenubarTrigger,
-} from "@/components/ui/menubar"
-
 
 
 type nav = "home" | "about" | "writing" | "more"
 
 export function Navbar() {
-
-    const [activeLink, setActiveLink] = useState<nav>("home")
-
 
 
 

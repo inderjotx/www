@@ -11,6 +11,7 @@ import { X } from './X'
 import { Code } from './code'
 import { BookCard } from './book'
 import { Analytics } from './analytics'
+import { SendEmail } from './email'
 
 export function Dashboard() {
     return (
@@ -64,6 +65,10 @@ export function Dashboard() {
             </div>
             <div className='h-32 border flex overflow-hidden rounded-md' >
                 <Tools />
+            </div>
+
+            <div className=' border col-span-2 flex overflow-hidden rounded-md' >
+                <SendEmail />
             </div>
         </div>
     )

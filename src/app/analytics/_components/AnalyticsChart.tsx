@@ -27,7 +27,7 @@ const buttonUserData: { title: string, action: userDevice }[] = [
 export function AnalyticsChart() {
 
 
-    const [freq, setFreq] = useState<TimeFrame>("Months")
+    const [freq, setFreq] = useState<TimeFrame>("Hours")
     const [demograph, setDemograph] = useState<demographics>("refData")
     const [userDevice, setUserDevice] = useState<userDevice>("deviceData")
 

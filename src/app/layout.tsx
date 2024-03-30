@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { Navbar } from '@/components/Navbar/index'
 import { Gradient } from "@/components/gradient";
 import "./globals.css";
+import { Toaster } from "@/components/ui/sonner"
 import { ThemeProvider } from "@/components/Provider/ThemeProvider";
 import { cn } from "@/lib/utils";
 import { Footer } from "@/components/Footer";
@@ -32,6 +33,7 @@ export default function RootLayout({
             <div className='flex  flex-col gap-2 w-11/12 md:w-[600px] relative  ' >
               <Gradient />
               <Navbar />
+              <Toaster />
               {children}
             </div>
           </div>

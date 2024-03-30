@@ -21,5 +21,5 @@ export const latestPost = {
     "title": "Look back at 2023",
     "writtenOn": "31 November 2023",
     "imagePath": "/uses/next.svg",
-    "href": "/writing/text"
+    "href": "/writing/look-back-at-2023"
 }
