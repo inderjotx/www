@@ -30,7 +30,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <div className='h-full flex justify-center w-full ' >
-            <div className='flex  flex-col gap-2 w-11/12 md:w-[600px] relative  ' >
+            <div className='flex  flex-col gap-2 w-11/12 md:w-[650px] relative  ' >
               <Gradient />
               <Navbar />
               <Toaster />

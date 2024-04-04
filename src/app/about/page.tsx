@@ -51,7 +51,7 @@ export default function page() {
                     <div className='w-full text-muted-foreground md:w-1/6'>Mistakes I have made?</div>
 
                     <div className='w-full text-white md:w-5/6'>
-                        <p>Relying on courses for learning, I have found that the best way to learn is by doing it ourselves. I opted for a course on React, did it for one and a half months, and built a todo app as shown in the tutorial. But when I built my own web3 token-creating app, I learned a bunch of new things.</p>
+                        <p>Relying too much on courses for learning, I have found that the best way to learn is by doing and struggling . </p>
                     </div>
 
                 </div>

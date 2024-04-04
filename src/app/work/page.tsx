@@ -31,7 +31,7 @@ export default function page() {
                     As a student, I might not have the time for full-time projects, but who knows 🤭?
                 </p>
                 <p>
-                    Always happy to discuss an idea — hit me a up at@arnvgh.
+                    Always happy to discuss an idea — hit me a up.
 
                 </p>
             </div>

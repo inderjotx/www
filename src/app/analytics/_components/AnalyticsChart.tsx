@@ -1,7 +1,7 @@
 'use client'
 import react from 'react'
 import { LineChart, BarList, Card, SparkLineChart } from '@tremor/react';
-import { fetcher, getHumanReadTime } from "@/lib/utils"
+import { addIcon, fetcher, getHumanReadTime } from "@/lib/utils"
 import { useState } from "react";
 import useSWR from "swr"
 import { GraphChangeButton } from './GraphChangeButton';
@@ -42,11 +42,21 @@ export function AnalyticsChart() {
     }
 
     else if (data) {
+        console.log(data)
 
         // doing this here so that user will be data as per his time zone , since this code runs in browser 
         data.barGraphData.forEach((item, index) => {
             data.barGraphData[index].time = getHumanReadTime(item.time)
         })
+
+
+        addIcon(data.browserData)
+        addIcon(data.cityData)
+        addIcon(data.countryData)
+        addIcon(data.deviceData)
+        addIcon(data.osData)
+        addIcon(data.refData)
+
 
 
         return (
@@ -87,7 +97,7 @@ export function AnalyticsChart() {
                             <span>Source</span>
                             <span>Views</span>
                         </p>
-                        <BarList color={"cyan"} data={data[demograph].slice(0, Math.min(3, data[demograph].length))} className="mt-2 h-32 " />
+                        <BarList color={"cyan"} data={data[demograph].slice(0, Math.min(3, data[demograph].length - 1))} className="mt-2 h-32 " />
                     </Card>
 
 

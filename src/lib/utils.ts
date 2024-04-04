@@ -1,3 +1,4 @@
+import { Icon } from "@/components/Icon"
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 import { array } from "zod"
@@ -121,3 +122,13 @@ export function getHumanReadTime(miliSeconds: number) {
   return formattedTimestamp;
 }
 
+
+
+
+export function addIcon(data: DataArray<DataItem>) {
+
+  data.forEach((elm, index) => {
+    elm.icon = Icon({ code: elm.iconKey })
+  })
+
+}

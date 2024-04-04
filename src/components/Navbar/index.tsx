@@ -1,7 +1,7 @@
 'use client'
 import { cn } from '@/lib/utils'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { MoreLarge } from './more/triggerLarge'
 import { MoreSmall } from './more/triggerSmall'
 import { usePathname } from 'next/navigation'
@@ -33,6 +33,15 @@ export function Navbar() {
 
     let pathname = usePathname()
 
+    const [curLink, setLink] = useState("")
+
+
+    useEffect(() => {
+        setLink(pathname)
+    }, [pathname])
+
+
+
     if (pathname.includes('/writing')) {
         pathname = '/writing'
     }
@@ -46,22 +55,16 @@ export function Navbar() {
                     navLinks.map((link) => {
 
                         return (
-                            <Link key={link.text} className={cn(pathname === link.href && "bg-muted", "px-2 relative h-7 flex items-center rounded-full")} href={link.href} >
+                            <Link key={link.text} className={cn("px-2 relative h-7 flex items-center rounded-full")} href={link.href} >
                                 <h1>{link.text} </h1>
                                 {
                                     (pathname === link.href) &&
                                     <motion.div
+                                        layout
+                                        layoutId='blob'
                                         className='absolute left-0 top-0 h-full w-full bg-muted -z-10 rounded-full'
-                                        transition={{
-                                            type: "spring",
-                                            bounce: 0.25,
-                                            stiffness: 130,
-                                            damping: 9,
-                                            duration: 0.3,
-                                        }}
                                     />
                                 }
-
                             </Link>
                         )
                     })

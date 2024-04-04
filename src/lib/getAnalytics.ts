@@ -1,6 +1,7 @@
 import { Click } from "@prisma/client";
 import { prismaClient } from "./prisma";
 import { getHumanReadTime } from "./utils";
+import { Icon } from "@/components/Icon";
 
 
 enum TIME {
@@ -100,6 +101,9 @@ export async function getAnalytics(from: TimeFrame): Promise<Analytics> {
     const totalClicks = clickData.length
     const otherData = getAccumulatedData(clickData)
     const barBarData = await transformData(from, clickData)
+
+    console.log("other")
+    console.log(otherData)
     return {
         ...otherData,
         totalClicks: totalClicks,
@@ -122,12 +126,12 @@ export function getAccumulatedData(rawData: Click[]) {
 
     rawData.forEach((click) => {
 
-        updateArrayClickInfo(click, click.country, countryClick)
-        updateArrayClickInfo(click, click.browser, browserClick)
-        updateArrayClickInfo(click, click.device, deviceClick)
-        updateArrayClickInfo(click, click.os, osClick)
-        updateArrayClickInfo<boolean>(click, click.city, cityClick, true)
-        updateArrayClickInfo(click, click.ref, refClick)
+        updateArrayClickInfo(click, click.country, countryClick, "country")
+        updateArrayClickInfo(click, click.browser, browserClick, "browser")
+        updateArrayClickInfo(click, click.device, deviceClick, "device")
+        updateArrayClickInfo(click, click.os, osClick, "os")
+        updateArrayClickInfo(click, click.city, cityClick, "city")
+        updateArrayClickInfo(click, click.ref, refClick, "ref")
 
     })
 
@@ -148,9 +152,8 @@ export function getAccumulatedData(rawData: Click[]) {
 
 }
 
-type DataArrayInput<T extends boolean> = T extends true ? DataArray<DataItem & { country: null | string | undefined }> : DataArray<DataItem>
 
-function updateArrayClickInfo<T extends boolean>(clicks: Click, key: string | null, dataArray: DataArrayInput<T>, isClickData?: T) {
+function updateArrayClickInfo<T extends boolean>(clicks: Click, key: string | null, dataArray: DataArray<DataItem>, type: "city" | "country" | "ref" | "browser" | "os" | "device") {
 
 
     if (key === null) return
@@ -165,17 +168,20 @@ function updateArrayClickInfo<T extends boolean>(clicks: Click, key: string | nu
 
     }
 
-
-
     // not found , create one
-    // have to add country name initally only
+    if (type === 'city') {
+        const dataItem = { name: key, value: 1, iconKey: clicks.country || "" }
+        dataArray.push(dataItem)
+        return
 
-    const dataItem = isClickData ? { name: key, value: 1, country: clicks.country || null } : { name: key, value: 1 }
+    }
 
-    // @ts-ignore
+    const dataItem = { name: key, value: 1, iconKey: key.toLowerCase() }
     dataArray.push(dataItem)
 
 }
+
+
 
 
 
@@ -184,7 +190,5 @@ function sortArrays(...arrays: DataItem[][]) {
     arrays.forEach(arr => {
         arr.sort((a, b) => b.value - a.value)
     })
-
-    console.log(arrays)
 
 }
