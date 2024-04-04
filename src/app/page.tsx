@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { Dashboard } from "../components/Dashboard";
 import { metadata } from "./layout";
+import { Anchor } from "@/components/Anchor";
 
 metadata.title = "Inderjot Singh"
 
@@ -28,7 +29,7 @@ export default function Home() {
       </div>
       <div>
         <p className="text-sm text-muted-foreground">
-          That&apos;s it. Feel free to reach me out at <Link className="underline-offset-auto text-white underline  " href={'https://twitter.com/__Inderjot'} >@__Inderjot</Link>  or <Link className=" underline underline-offset-auto text-white " href={'mailto:inderjotsingh141@gmail.com'} >inderjotsingh141@gmail.com</Link>
+          That&apos;s it. Feel free to reach me out at <Anchor href={'https://twitter.com/__Inderjot'} text="@__Inderjot" ></Anchor>  or <Anchor href={'mailto:inderjotsingh141@gmail.com'} text="inderjotsingh141@gmail.com" ></Anchor>
         </p>
       </div>
       <div>

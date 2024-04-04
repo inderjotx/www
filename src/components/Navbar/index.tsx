@@ -13,7 +13,7 @@ type nav = "home" | "about" | "writing" | "more"
 
 const navLinks = [
     {
-        text: "~",
+        text: "α",
         href: "/"
     },
     {
