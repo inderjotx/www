@@ -16,6 +16,8 @@ import { FaApple as Apple } from 'react-icons/fa';
 import { FaFacebook as Facebook } from 'react-icons/fa';
 import { FaTwitter as Twitter } from 'react-icons/fa';
 import { FaInstagram as Instagram } from 'react-icons/fa';
+import { MdOutlineLink as Self } from "react-icons/md";
+
 
 const icons = {
     'google': Google,
@@ -37,7 +39,9 @@ const icons = {
     'fedora': Linux,
     'facebook': Facebook,
     'twitter': Twitter,
-    'instagram': Instagram
+    'instagram': Instagram,
+    'self': Self,
+    'mobile safari': Safari
 };
 
 export function Icon({ code }: { code: string | undefined | null }) {
@@ -56,10 +60,6 @@ export function Icon({ code }: { code: string | undefined | null }) {
     else {
         return icons[code as keyof typeof icons]
     }
-
-
-
-
 
 
 }

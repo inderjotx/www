@@ -29,8 +29,8 @@ export function AnalyticsChart() {
 
 
     const [freq, setFreq] = useState<TimeFrame>("Hours")
-    const [demograph, setDemograph] = useState<demographics>("refData")
-    const [userDevice, setUserDevice] = useState<userDevice>("deviceData")
+    const [demograph, setDemograph] = useState<demographics>("cityData")
+    const [userDevice, setUserDevice] = useState<userDevice>("osData")
 
     const { data, isLoading, error } = useSWR<Analytics, any>(`/api/analytics?frequency=${freq}`, fetcher, { refreshInterval: 30000 })
 
@@ -49,14 +49,12 @@ export function AnalyticsChart() {
             data.barGraphData[index].time = getHumanReadTime(item.time)
         })
 
-
         addIcon(data.browserData)
         addIcon(data.cityData)
         addIcon(data.countryData)
         addIcon(data.deviceData)
         addIcon(data.osData)
         addIcon(data.refData)
-
 
 
         return (
@@ -91,13 +89,13 @@ export function AnalyticsChart() {
                     <Card className="w-full" decorationColor={"cyan"} decoration={"top"}  >
                         <div className='flex items-center justify-between'>
                             <h3 className="text-tremor-title text-tremor-content-strong dark:text-dark-tremor-content-strong font-medium">City</h3>
-                            <GraphChangeButton buttons={buttonDemograph} updateState={setDemograph} />
+                            <GraphChangeButton type="demograph" curData={demograph} buttons={buttonDemograph} updateState={setDemograph} />
                         </div>
                         <p className="mt-4 text-tremor-default flex items-center justify-between text-tremor-content dark:text-dark-tremor-content">
-                            <span>Source</span>
+                            <span>{buttonDemograph.find((e) => e.action === demograph)?.title}</span>
                             <span>Views</span>
                         </p>
-                        <BarList color={"cyan"} data={data[demograph].slice(0, Math.min(3, data[demograph].length - 1))} className="mt-2 h-32 " />
+                        <BarList color={"cyan"} data={data[demograph].slice(0, Math.min(3, data[demograph].length))} className="mt-2 h-32 " />
                     </Card>
 
 
@@ -111,10 +109,10 @@ export function AnalyticsChart() {
                     >
                         <div className='flex items-center justify-between'>
                             <h3 className="text-tremor-title text-tremor-content-strong dark:text-dark-tremor-content-strong font-medium">Browser</h3>
-                            <GraphChangeButton buttons={buttonUserData} updateState={setUserDevice} />
+                            <GraphChangeButton type='userdevice' curData={userDevice} buttons={buttonUserData} updateState={setUserDevice} />
                         </div>
                         <p className="mt-4 text-tremor-default flex items-center justify-between text-tremor-content dark:text-dark-tremor-content">
-                            <span>Browser</span>
+                            <span>{buttonUserData.find((e) => e.action === userDevice)?.title}</span>
                             <span>Views</span>
                         </p>
                         <BarList data={data[userDevice].slice(0, Math.min(3, data[userDevice].length))} color={'cyan'} className="mt-2 h-32" />
@@ -132,14 +130,14 @@ function SelectFrequency({ setFreq, freq }: { freq: TimeFrame, setFreq: (val: re
 
     return (
         <Select value={freq} onValueChange={(val) => setFreq(val as TimeFrame)} >
-            <SelectTrigger className="w-[150px]">
+            <SelectTrigger className="w-[150px] bg-[#0c1116] ">
                 <SelectValue placeholder="Frequency" />
             </SelectTrigger>
-            <SelectContent>
-                <SelectItem value="Hours">Hour</SelectItem>
-                <SelectItem value="Days">Day</SelectItem>
-                <SelectItem value="Weeks">Week</SelectItem>
-                <SelectItem value="Months">Month</SelectItem>
+            <SelectContent className='bg-[#0c1116]' >
+                <SelectItem value="Hours">Last 60 Mins</SelectItem>
+                <SelectItem value="Days">Last 24 Hours</SelectItem>
+                <SelectItem value="Weeks">Last 7 Days</SelectItem>
+                <SelectItem value="Months">Last Month</SelectItem>
             </SelectContent>
         </Select>
 
