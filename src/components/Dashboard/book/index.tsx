@@ -11,20 +11,12 @@ import { FallbackBook } from './FallbackBook'
 export function BookCard() {
 
 
-    const { data, isLoading, error } = useSWR<ReadingState, any>('/api/book/latest', fetcher)
+    const { data, isLoading, error } = useSWR<ReadingState, any>('/api/book/latest', fetcher, { revalidateOnMount: true })
     const [isClient] = useClient()
 
-    if (!isClient) {
-        return (<FallbackBook />)
+    if (!isClient || error || isLoading) {
+        return <FallbackBook />
     }
-
-    if (isLoading || error) {
-        if (error) {
-            console.log(error)
-        }
-        return (<FallbackBook />)
-    }
-
 
     else {
         return (

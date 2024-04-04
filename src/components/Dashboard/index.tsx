@@ -67,7 +67,7 @@ export function Dashboard() {
                 <Tools />
             </div>
 
-            <div className=' border col-span-2 flex overflow-hidden rounded-md' >
+            <div className=' border md:col-span-2 flex overflow-hidden rounded-md' >
                 <SendEmail />
             </div>
         </div>

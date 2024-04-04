@@ -9,7 +9,7 @@ import { FallbackAnalytics } from './FallbackAnalytics'
 
 export function Analytics() {
 
-    const { data, isLoading, error } = useSWR<Analytics, any>(`/api/analytics?frequency=Hours`, fetcher)
+    const { data, isLoading, error } = useSWR<Analytics, any>(`/api/analytics?frequency=Hours`, fetcher, { revalidateOnMount: true })
     const isMobile = useMediaQuery({ maxWidth: 640 })
 
 
@@ -26,13 +26,13 @@ export function Analytics() {
         let cityMaxClicks = 0
         let countryMaxClicks = 0
 
-        data.cityData.forEach((val) => {
+        data.cityData.forEach((val: DataItem) => {
             if (cityMaxClicks < val.value) {
                 city = val.name
             }
         })
 
-        data.countryData.forEach((val) => {
+        data.countryData.forEach((val: DataItem) => {
             if (countryMaxClicks < val.value) {
                 country = val.name
             }
@@ -45,7 +45,7 @@ export function Analytics() {
 
                     {
                         isMobile ?
-                            <div className='absolute -rotate-6 font-mono right-3 h-full  text-sm text-center z-10 bg-black/50 font-medium  backdrop-blur-sm vertical_text '   >Since Last Hour</div>
+                            <div className='absolute  -rotate-6 font-mono right-3 h-full text-sm text-center z-10 bg-black/50 font-medium  backdrop-blur-sm vertical_text '   >Since Last Hour</div>
                             :
                             <div className='absolute  rotate-6 font-mono w-full bottom-2  text-sm text-center z-10 bg-black/50 font-medium  backdrop-blur-sm  '   >Since Last Hour</div>
 

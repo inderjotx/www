@@ -56,7 +56,7 @@ export async function transformData(from: TimeFrame, clickDataArray: Click[]) {
         const dataItem = {
             startIntervalMiliSec: timeFromStartSeconds + delta * i,
             clicks: 0,
-            humanReadTime: getHumanReadTime(timeFromStartSeconds + delta * i)
+            time: timeFromStartSeconds + delta * i
         }
         dataArray.push(dataItem)
     }
@@ -112,12 +112,12 @@ export async function getAnalytics(from: TimeFrame): Promise<Analytics> {
 
 export function getAccumulatedData(rawData: Click[]) {
 
-    const cityClick: DataArray = []
-    const countryClick: DataArray = []
-    const deviceClick: DataArray = []
-    const browserClick: DataArray = []
-    const osClick: DataArray = []
-    const refClick: DataArray = []
+    const cityClick: DataArray<DataItem & { country: string }> = []
+    const countryClick: DataArray<DataItem> = []
+    const deviceClick: DataArray<DataItem> = []
+    const browserClick: DataArray<DataItem> = []
+    const osClick: DataArray<DataItem> = []
+    const refClick: DataArray<DataItem> = []
 
 
     rawData.forEach((click) => {
@@ -126,10 +126,16 @@ export function getAccumulatedData(rawData: Click[]) {
         updateArrayClickInfo(click, click.browser, browserClick)
         updateArrayClickInfo(click, click.device, deviceClick)
         updateArrayClickInfo(click, click.os, osClick)
-        updateArrayClickInfo(click, click.city, cityClick)
+        updateArrayClickInfo<boolean>(click, click.city, cityClick, true)
         updateArrayClickInfo(click, click.ref, refClick)
 
     })
+
+
+    sortArrays(cityClick, countryClick, deviceClick, browserClick, osClick, refClick)
+
+
+
 
     return {
         cityData: cityClick,
@@ -142,7 +148,9 @@ export function getAccumulatedData(rawData: Click[]) {
 
 }
 
-function updateArrayClickInfo(clicks: Click, key: string | null, dataArray: DataArray) {
+type DataArrayInput<T extends boolean> = T extends true ? DataArray<DataItem & { country: null | string | undefined }> : DataArray<DataItem>
+
+function updateArrayClickInfo<T extends boolean>(clicks: Click, key: string | null, dataArray: DataArrayInput<T>, isClickData?: T) {
 
 
     if (key === null) return
@@ -160,12 +168,23 @@ function updateArrayClickInfo(clicks: Click, key: string | null, dataArray: Data
 
 
     // not found , create one
-    const dataItem: DataItem = { name: key, value: 1 }
+    // have to add country name initally only
+
+    const dataItem = isClickData ? { name: key, value: 1, country: clicks.country || null } : { name: key, value: 1 }
+
+    // @ts-ignore
     dataArray.push(dataItem)
 
 }
 
 
 
+function sortArrays(...arrays: DataItem[][]) {
 
+    arrays.forEach(arr => {
+        arr.sort((a, b) => b.value - a.value)
+    })
 
+    console.log(arrays)
+
+}

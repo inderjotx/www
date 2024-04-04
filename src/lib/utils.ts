@@ -1,6 +1,6 @@
 import { type ClassValue, clsx } from "clsx"
-import Parser from 'rss-parser'
 import { twMerge } from "tailwind-merge"
+import { array } from "zod"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
@@ -103,7 +103,6 @@ export async function fetcher<JSON = any>(
 }
 
 
-
 export function getHumanReadTime(miliSeconds: number) {
 
   let date = new Date(miliSeconds);
@@ -121,3 +120,4 @@ export function getHumanReadTime(miliSeconds: number) {
 
   return formattedTimestamp;
 }
+

@@ -3,7 +3,6 @@ import { RecentPlayProps } from '@/app/music/_components/MusicCard'
 import { fetcher } from '@/lib/utils'
 import useSWR from 'swr'
 import { MusicCard } from './MusicCard'
-import { useEffect } from 'react'
 import { useClient } from '@/hooks/useClient'
 import { FallbackMusic } from './FallbackMusic'
 
@@ -15,8 +14,8 @@ interface Response {
 
 export function Spotify() {
 
-    const { data, isLoading, error } = useSWR<Response, any>('/api/music/current', fetcher)
-    const { data: recent, isLoading: recentLoading, error: recentError } = useSWR<Response, any>('/api/music/recent', fetcher)
+    const { data, isLoading, error } = useSWR<Response, any>('/api/music/current', fetcher, { revalidateOnMount: true })
+    const { data: recent, isLoading: recentLoading, error: recentError } = useSWR<Response, any>('/api/music/recent', fetcher, { revalidateOnMount: true })
     const [isClient] = useClient()
 
 

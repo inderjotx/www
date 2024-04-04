@@ -1,11 +1,12 @@
 'use client'
 import react from 'react'
-import { BarChart, BarList, Card } from '@tremor/react';
-import { fetcher } from "@/lib/utils"
+import { LineChart, BarList, Card, SparkLineChart } from '@tremor/react';
+import { fetcher, getHumanReadTime } from "@/lib/utils"
 import { useState } from "react";
 import useSWR from "swr"
 import { GraphChangeButton } from './GraphChangeButton';
 import { Select, SelectContent, SelectTrigger, SelectValue, SelectItem } from '@/components/ui/select';
+import { Loading } from './Loading';
 
 
 const buttonDemograph: { title: string, action: demographics }[] = [
@@ -36,37 +37,39 @@ export function AnalyticsChart() {
 
     if (isLoading || error) {
         return (
-            <div>data</div>
+            <Loading />
         )
     }
+
     else if (data) {
+
+        // doing this here so that user will be data as per his time zone , since this code runs in browser 
+        data.barGraphData.forEach((item, index) => {
+            data.barGraphData[index].time = getHumanReadTime(item.time)
+        })
+
 
         return (
             <div className='flex gap-10 w-full h-full  flex-col'>
 
-
-                <div>
-                </div>
-
-                {/* change time period */}
                 <Card className="w-full"
-                    decorationColor={"emerald"} decoration={"top"}
+                    decorationColor={"cyan"}
+                    decoration={"top"}
                 >
                     <div className='flex items-center justify-between'>
                         <h3 className="text-tremor-title text-tremor-content-strong dark:text-dark-tremor-content-strong font-medium">Website Analytics</h3>
                         <SelectFrequency freq={freq} setFreq={setFreq} />
                     </div>
 
-                    <BarChart
+                    <LineChart
                         data={data.barGraphData}
-                        index='humanReadTime'
+                        index='time'
                         categories={['clicks']}
-                        colors={['emerald']}
+                        colors={['cyan']}
                         yAxisWidth={40}
                         showAnimation={true}
                     />
                 </Card>
-
 
                 <div className='grid h-40 gap-6 md:gap-2 grid-cols-1 md:grid-cols-2 '>
 
@@ -74,7 +77,8 @@ export function AnalyticsChart() {
                     {/* TODO : { display country flag along }  */}
                     {/* TODO : { display city flag along }  */}
                     {/* TODO : { display referre flag along }  */}
-                    <Card className="w-full" decorationColor={"indigo"} decoration={"top"}  >
+                    {/* showing top three */}
+                    <Card className="w-full" decorationColor={"cyan"} decoration={"top"}  >
                         <div className='flex items-center justify-between'>
                             <h3 className="text-tremor-title text-tremor-content-strong dark:text-dark-tremor-content-strong font-medium">City</h3>
                             <GraphChangeButton buttons={buttonDemograph} updateState={setDemograph} />
@@ -83,7 +87,7 @@ export function AnalyticsChart() {
                             <span>Source</span>
                             <span>Views</span>
                         </p>
-                        <BarList data={data[demograph]} className="mt-2 h-32" />
+                        <BarList color={"cyan"} data={data[demograph].slice(0, Math.min(3, data[demograph].length))} className="mt-2 h-32 " />
                     </Card>
 
 
@@ -92,9 +96,8 @@ export function AnalyticsChart() {
                     {/* browers*/}
                     {/*os */}
                     {/*device */}
-
                     <Card className="w-full"
-                        decorationColor={"rose"} decoration={"top"}
+                        decorationColor={"cyan"} decoration={"top"}
                     >
                         <div className='flex items-center justify-between'>
                             <h3 className="text-tremor-title text-tremor-content-strong dark:text-dark-tremor-content-strong font-medium">Browser</h3>
@@ -104,7 +107,7 @@ export function AnalyticsChart() {
                             <span>Browser</span>
                             <span>Views</span>
                         </p>
-                        <BarList data={data[userDevice]} color={'rose'} className="mt-2 h-32" />
+                        <BarList data={data[userDevice].slice(0, Math.min(3, data[userDevice].length))} color={'cyan'} className="mt-2 h-32" />
                     </Card>
                 </div>
             </div>

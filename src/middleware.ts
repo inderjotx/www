@@ -38,9 +38,10 @@ export async function middleware(request: NextRequest) {
                 city: request.geo?.city,
                 country: request.geo?.country,
                 os: data.os.name,
-                ref: request.referrer,
+                ref: request.referrer || "self",
                 ip: request.ip,
-                device: data.device.type,
+                device: data.device.type === 'mobile' ? 'Mobile' : 'Desktop',
+                browser: data.browser.name
             }
 
             console.log('click data of the user' + view)

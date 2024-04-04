@@ -17,6 +17,7 @@ export async function addClickToDB(user: UserInfo | Partial<UserInfo>) {
                 os: user.os,
                 ref: user.ref,
                 ip: user.ip,
+                device: user.device
             }
         })
     }
