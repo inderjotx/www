@@ -8,7 +8,7 @@ import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
 
 
-type nav = "home" | "about" | "writing" | "more"
+type nav = "home" | "about" | "project" | "more"
 
 
 const navLinks = [
@@ -17,12 +17,12 @@ const navLinks = [
         href: "/"
     },
     {
-        text: "about",
-        href: "/about"
+        text: "projects",
+        href: "/projects"
     },
     {
-        text: "writing",
-        href: "/writing"
+        text: "about",
+        href: "/about"
     },
 ];
 
@@ -42,9 +42,6 @@ export function Navbar() {
 
 
 
-    if (pathname.includes('/writing')) {
-        pathname = '/writing'
-    }
 
 
     return (

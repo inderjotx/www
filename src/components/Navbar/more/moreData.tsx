@@ -12,7 +12,7 @@ export function MoreData() {
         { image_url: '/navbar/more/analytics.png', slug: 'analytics' },
         { image_url: '/navbar/more/music.webp', slug: 'music' },
         { image_url: '/navbar/more/uses.webp', slug: 'uses' },
-        { image_url: '/navbar/more/work.webp', slug: 'work' }
+        { image_url: '/navbar/more/work.webp', slug: 'writing' }
     ];
 
 

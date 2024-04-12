@@ -29,7 +29,7 @@ export default function Home() {
       </div>
       <div>
         <p className="text-sm text-muted-foreground">
-          That&apos;s it. Feel free to reach me out at <Anchor href={'https://twitter.com/__Inderjot'} text="@__Inderjot" ></Anchor>  or <Anchor href={'mailto:inderjotsingh141@gmail.com'} text="inderjotsingh141@gmail.com" ></Anchor>
+          That&apos;s it. Feel free to reach me out at <Anchor newTab href={'https://twitter.com/__Inderjot'} text="@__Inderjot" ></Anchor>  or <Anchor href={'mailto:inderjotsingh141@gmail.com'} text="inderjotsingh141@gmail.com" ></Anchor>
         </p>
       </div>
       <div>

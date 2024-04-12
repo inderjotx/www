@@ -1,6 +1,8 @@
 import React from 'react'
 import { Title } from '../uses/_components/title'
 import { Table } from './_component/Table'
+import { Anchor } from '@/components/Anchor'
+import { config } from '@/config'
 
 
 export type TableData = {
@@ -9,7 +11,7 @@ export type TableData = {
     tags: string[],
     year: number,
     githubUrl: string,
-    liveUrl: string | null
+    liveUrl: string
 }
 
 
@@ -25,14 +27,14 @@ export default function page() {
 
             <div className='space-y-3'>
                 <p>
-                    I love building side projects that solve either my own or someone else&apos;s problems. Here is an extensive list of all the stuff I have built over the years.
+                    I love building side projects that solve either my own or someone else&apos;s problems.
                 </p>
-                <p>
-                    As a student, I might not have the time for full-time projects, but who knows 🤭?
-                </p>
-                <p>
-                    Always happy to discuss an idea — hit me a up.
 
+                <p>
+                    I have more projects to share to they are currently not deployed , that includes my own google drive using AWS S3 , my udemy clone , and dribble alternative.
+                </p>
+                <p>
+                    Always happy to discuss an idea — hit me a up. <Anchor text='@inderjotx' href={config.links.twitter} newTab />
                 </p>
             </div>
 

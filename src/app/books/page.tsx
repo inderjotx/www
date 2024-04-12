@@ -3,6 +3,7 @@ import { cn } from '@/lib/utils'
 import React from 'react'
 import { BookCard, LoadingBookCard } from './_components/BookCard'
 import { getRecentBook, getShelfBooks } from '@/lib/books'
+import { Anchor } from '@/components/Anchor'
 
 
 export const dynamic = 'force-dynamic'
@@ -19,7 +20,8 @@ export default async function Page() {
             <h1 className={cn('font-semibold text-xl', poppins.className)} >Books</h1>
 
             <div className='text-sm text-muted-foreground'>
-                I have loved watching anime since childhood. My first anime was Death Note, which is one of the most popular ones. It was suggested to me by a friend. Since then, I have watched many anime of different genres, but Isekai, Mecha, and Slice of Life are some of my favorites.
+                I am trying to develop habbit of reading books . This is the latest list of books I am reading or completed reading  .
+                Featching this directly from <Anchor text='Literal.club' href='https://literal.club/' newTab />
             </div>
 
             <div className='h-full w-full' >
