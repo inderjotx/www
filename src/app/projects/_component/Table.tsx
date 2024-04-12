@@ -1,7 +1,5 @@
-import { Separator } from "@/components/ui/separator";
 import { TableData } from "../page";
 import { Anchor } from "@/components/Anchor";
-import { it } from "node:test";
 const dataArray: TableData[] = [
     {
         projectName: "www",
