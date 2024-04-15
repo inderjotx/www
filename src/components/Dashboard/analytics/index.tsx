@@ -55,7 +55,7 @@ export function Analytics() {
                             <div className="text-[80px] leading-[60px] mr-1 ">C</div>
                             <div className="flex -space-y-1 flex-col">
                                 <div>licks : {data.totalClicks}</div>
-                                <div>ity : {city}</div>
+                                <div>ity : {city.split(' ')[0]}</div>
                                 <div>ountry : {country}</div>
                             </div>
                         </div>
