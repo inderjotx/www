@@ -16,7 +16,17 @@ const dataArray: TableData[] = [
         year: 2024,
         githubUrl: "https://github.com/inderjotx/striver-frontend",
         liveUrl: "https://code.inderjot.tech"
+    },
+
+    {
+        projectName: "DesignFly",
+        Description: "Your Destination for Inspiring Visual Creavitity",
+        tags: ["AWS", "NextJs", "Tailwind", "React", "TS"],
+        year: 2024,
+        githubUrl: "https://github.com/inderjotx/designFly",
+        liveUrl: "https://designfly.inderjot.tech"
     }
+
 ];
 
 
