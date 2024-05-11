@@ -1,6 +1,16 @@
 import { TableData } from "../page";
 import { Anchor } from "@/components/Anchor";
 const dataArray: TableData[] = [
+
+    {
+        projectName: "Web3 Jobs",
+        Description: "Latest web3 jobs",
+        tags: ["TS", "React", "NextJS", "Tailwind", "Redis"],
+        year: 2024,
+        githubUrl: "https://github.com/inderjotx/www",
+        liveUrl: "https://jobs.inderjot.tech"
+    },
+
     {
         projectName: "www",
         Description: "Personal website",
