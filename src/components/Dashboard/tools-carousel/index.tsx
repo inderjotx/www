@@ -14,7 +14,7 @@ const icons = [
   IconJava, IconJenkins, IconNextJS, IconKubernetes,
   IconLambda, IconPrisma, IconPostgres, IconPython, IconReactJS,
   IconTailwindcss, IconTerraform, IconTypescript, IconVite,
-  IconAWS, IconGit, IconMySQL
+  IconAWS, IconGit, IconMySQL, IconDocker
 ];
 
 
@@ -49,6 +49,16 @@ export function Carousel({ icons, direction }: { icons: any, direction: "left" |
   return (
     <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
       className={cn('overflow-hidden whitespace-nowrap group relative ')} style={styleDir}  >
+      <div className={cn('flex gap-8 md:gap-6  ', effect, isHover && "pause")} >
+        {
+          icons.map((Icon: any, index: number) => (
+            <IconWrapper key={index} >
+              <Icon />
+            </IconWrapper>
+          ))
+        }
+
+      </div>
       <div className={cn('flex gap-8 md:gap-6  ', effect, isHover && "pause")} >
         {
           icons.map((Icon: any, index: number) => (

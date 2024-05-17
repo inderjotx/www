@@ -23,9 +23,9 @@ export default function page() {
         <div className='flex flex-col gap-6'>
 
             {/* title */}
-            <Title title='Work' />
+            <Title title='Projects' />
 
-            <div className='space-y-3'>
+            <div className='space-y-3 text-sm'>
                 <p>
                     I love building side projects that solve either my own or someone else&apos;s problems.
                 </p>

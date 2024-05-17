@@ -27,11 +27,11 @@ export function Discord() {
 
     return (
         <a href={config.links.discord} target='_blank' rel='noreferred'   >
-            <div className=' w-full   h-full relative overflow-hidden flex items-center justify-center'>
+            <div className=' w-full bg-zinc-900  h-full relative overflow-hidden flex items-center justify-center'>
                 <div className='flex absolute top-0 left-0 h-full md:size-20 md:left-0  -rotate-45 '>
                     <DiscordIcon />
                 </div>
-                <div className='text-xl z-10 -rotate-6 font-bold'>
+                <div className='text-xl z-10 -rotate-12 font-bold'>
                     {
                         (typeof data == 'object' && data.hasOwnProperty('status') && data.status != "" ? data.status : "Offline")
                     }

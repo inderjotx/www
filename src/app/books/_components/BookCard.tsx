@@ -17,11 +17,11 @@ export function BookCard({
 ) {
     return (
         <a target='_blank' href={`https://literal.club/book/${slug}`} >
-            <div className={cn('w-full  active:ring active:ring-purple-400 bg-muted-foreground/10  rounded-sm flex', startedReading ? "h-20" : "h-16")}>
-                <div className='w-1/6 h-full rounded-l-sm overflow-hidden relative' >
+            <div className={cn('w-full hover:opacity-100 opacity-90 transition-all rounded-sm  active:ring active:ring-purple-400 bg-muted-foreground/10   flex', startedReading ? "h-28" : "h-24")}>
+                <div className='w-1/5  h-full  overflow-hidden rounded-sm  relative' >
                     <Image className='object-cover' alt='image' quality={100} src={cover} fill sizes='100' ></Image>
                 </div>
-                <div className='w-5/6 p-2 justify-center pl-5 h-full flex flex-col gap-1' >
+                <div className='w-4/5 p-2 justify-center pl-5 h-full flex flex-col gap-1' >
                     <div className='text-[12px]  font-sans  flex items-center  gap-2 text-purple-400 '>
                         {
                             startedReading &&

@@ -22,7 +22,7 @@ export async function Code() {
 
         return (
             <a target='_blank' rel='noopener norefferer' href={'https://wakatime.com/@inderjotx'} >
-                <div className='relative overflow-hidden flex justify-center items-center'>
+                <div className='relative h-full bg-zinc-900 overflow-hidden flex justify-center items-center'>
                     <div className='-rotate-3 z-10 flex text-center  flex-col'>
                         <h1 className='text-lg font-bold'>{hours}h</h1>
                         <h2 className='text-[10px]'>coding stats</h2>

@@ -1,7 +1,7 @@
 
-import { NextResponse, userAgent } from 'next/server'
+import { userAgent } from 'next/server'
 import type { NextRequest } from 'next/server'
-import { alreadyClicked, incrementView, registerClick } from './lib/redis'
+import { alreadyClicked, registerClick } from './lib/redis'
 import { addClickToDB } from './lib/addClicktoDb'
 
 export type UserInfo = {

@@ -132,3 +132,26 @@ export function addIcon(data: DataArray<DataItem>) {
   })
 
 }
+
+
+export function getAge(): number {
+
+  const dateOfBirth = new Date(2004, 0, 14);
+
+  const currentDate = new Date();
+  const currentYear = currentDate.getFullYear();
+  const currentMonth = currentDate.getMonth();
+  const currentDay = currentDate.getDate();
+
+  const birthYear = dateOfBirth.getFullYear();
+  const birthMonth = dateOfBirth.getMonth();
+  const birthDay = dateOfBirth.getDate();
+
+  let age = currentYear - birthYear;
+
+  if (currentMonth < birthMonth || (currentMonth === birthMonth && currentDay < birthDay)) {
+    age--;
+  }
+
+  return age;
+}

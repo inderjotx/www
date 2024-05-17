@@ -6,6 +6,7 @@ import { MoreLarge } from './more/triggerLarge'
 import { MoreSmall } from './more/triggerSmall'
 import { usePathname } from 'next/navigation'
 import { motion } from 'framer-motion'
+import { useTheme } from 'next-themes'
 
 
 type nav = "home" | "about" | "project" | "more"
@@ -34,25 +35,32 @@ export function Navbar() {
     let pathname = usePathname()
 
     const [curLink, setLink] = useState("")
+    const { setTheme, theme } = useTheme()
 
 
     useEffect(() => {
         setLink(pathname)
     }, [pathname])
 
+    useEffect(() => {
+        setTheme("dark")
+        console.log(theme)
+    }, [theme, setTheme])
+
 
 
 
 
     return (
-        <div className='h-20  top-0  w-full flex justify-center' >
-            <div className={cn(' flex relative items-center w-full gap-6  ')} >
+        <div className='h-20 mb-2 top-0  w-full flex justify-center' >
+            <div className={cn(' flex relative items-center w-full md:gap-6 gap-4  md:text-base text-sm')} >
                 {
+
 
                     navLinks.map((link) => {
 
                         return (
-                            <Link key={link.text} className={cn("px-2 relative h-7 flex items-center rounded-full")} href={link.href} >
+                            <Link key={link.text} className={cn("px-3  relative h-9 flex items-center rounded-full")} href={link.href} >
                                 <h1>{link.text} </h1>
                                 {
                                     (pathname === link.href) &&

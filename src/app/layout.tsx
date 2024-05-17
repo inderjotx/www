@@ -29,22 +29,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="antialiased" >
+    <html lang="en" className="antialiased dark" style={{ colorScheme: "dark" }} >
       <body className={cn(inter.className)}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
-          enableSystem
+          themes={["dark"]}
           disableTransitionOnChange
         >
-          <div className='h-full flex justify-center w-full ' >
-            <div className='flex  flex-col gap-2 w-11/12 md:w-[650px] relative  ' >
-              <Gradient />
-              <Navbar />
-              <Toaster />
-              {children}
-            </div>
+          {/* <div className='h-full flex justify-center w-full ' > */}
+          <div className='flex  flex-col gap-2 max-w-3xl mx-8 md:mx-auto relative  ' >
+            <Gradient />
+            <Navbar />
+            <Toaster />
+            {children}
           </div>
+          {/* </div> */}
           <Footer />
         </ThemeProvider>
 

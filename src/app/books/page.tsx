@@ -16,10 +16,10 @@ export default async function Page() {
 
 
     return (
-        <div className='flex flex-col gap-4 h-full w-full'>
+        <div className='flex flex-col gap-6 h-full w-full'>
             <h1 className={cn('font-semibold text-xl', poppins.className)} >Books</h1>
 
-            <div className='text-sm text-muted-foreground'>
+            <div className=' text-muted-foreground'>
                 I am trying to develop habbit of reading books . This is the latest list of books I am reading or completed reading  .
                 Featching this directly from <Anchor text='Literal.club' href='https://literal.club/' newTab />
             </div>
@@ -34,7 +34,7 @@ export default async function Page() {
                 }
             </div>
 
-            <p className='text-sm '>
+            <p className=''>
                 Some of my all time favourite books
             </p>
             <div className='grid gap-3 md:gap-4 grid-cols-1 md:grid-cols-2 '>
