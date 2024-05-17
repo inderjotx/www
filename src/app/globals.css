@@ -6,6 +6,11 @@
   display: none;
 }
 
+@layer utilities {
+   .pause {
+     animation-play-state: paused;
+   }
+}
 
 @layer base {
   :root {
@@ -161,3 +166,17 @@
 .vertical_text
 {  writing-mode: vertical-rl; 
  }
+
+
+ 
+.st0 {
+  fill: #fff;
+}
+
+.st1 {
+  fill: #fff;
+}
+
+.st2 {
+   fill: #fff;
+}

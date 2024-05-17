@@ -132,18 +132,18 @@ module.exports = {
         },
         "slide_left": {
           from: {
-            'transform': "translate(0)"
+            'transform': "translateX(-100%)"
           },
           to: {
-            'transform': "translate(-100%)"
+            'transform': "translateX(0%)"
           }
         },
         "slide_right": {
           from: {
-            'transform': "translate(0)"
+            'transform': "translateX(0%)"
           },
           to: {
-            'transform': "translate(100%)"
+            'transform': "translateX(-100%)"
           }
         },
         "more_navbar": {
@@ -158,8 +158,8 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "slide_left": "slide_left 4s infinite linear ",
-        "slide_right": "slide_right 4s infinite linear ",
+        "slide_left": "slide_left 40s infinite linear ",
+        "slide_right": "slide_right 40s infinite linear ",
         "more_navbar": "more_navbar  0.25s  linear forwards"
       },
       boxShadow: {

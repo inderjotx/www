@@ -5,7 +5,7 @@ import {
   IconJava, IconJenkins, IconNextJS, IconKubernetes,
   IconLambda, IconPrisma, IconPostgres, IconPython, IconReactJS,
   IconTailwindcss, IconTerraform, IconTypescript, IconVite,
-  IconAWS, IconDocker, IconGit, IconMySQL
+  IconAWS, IconGit, IconMySQL
 } from '@/components/Icons'
 import { cn } from '@/lib/utils';
 
@@ -14,7 +14,7 @@ const icons = [
   IconJava, IconJenkins, IconNextJS, IconKubernetes,
   IconLambda, IconPrisma, IconPostgres, IconPython, IconReactJS,
   IconTailwindcss, IconTerraform, IconTypescript, IconVite,
-  IconAWS, IconGit, IconMySQL, IconDocker
+  IconAWS, IconGit, IconMySQL,
 ];
 
 
@@ -40,40 +40,43 @@ export function Tools() {
 export function Carousel({ icons, direction }: { icons: any, direction: "left" | "right" }) {
 
 
-  const [isHover, setHover] = useState(false)
-
   const effect = direction == "left" ? "animate-slide_left" : "animate-slide_right"
-  const styleDir: Record<string, string> = direction == "right" ? { "direction": "rtl" } : { "direction": "left" }
-
 
   return (
-    <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}
-      className={cn('overflow-hidden whitespace-nowrap group relative ')} style={styleDir}  >
-      <div className={cn('flex gap-8 md:gap-6  ', effect, isHover && "pause")} >
+    <div className="w-full group inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]">
+      <ul className={cn("flex items-center justify-center group-hover:pause md:justify-start ", effect)} aria-hidden="true"  >
+
         {
           icons.map((Icon: any, index: number) => (
-            <IconWrapper key={index} >
-              <Icon />
-            </IconWrapper>
+            <li className='mx-4' key={'icon' + index} >
+              <div className='max-w-none' >
+                <IconWrapper key={index} >
+                  <Icon />
+                </IconWrapper>
+              </div>
+            </li>
           ))
         }
+      </ul>
 
-      </div>
-      <div className={cn('flex gap-8 md:gap-6  ', effect, isHover && "pause")} >
+      <ul className={cn("flex items-center justify-center group-hover:pause md:justify-start ", effect)} aria-hidden="true"  >
+
         {
           icons.map((Icon: any, index: number) => (
-            <IconWrapper key={index} >
-              <Icon />
-            </IconWrapper>
+            <li className='mx-4' key={'icon' + index} >
+              <div className='max-w-none' >
+                <IconWrapper key={index} >
+                  <Icon />
+                </IconWrapper>
+              </div>
+            </li>
           ))
         }
-
-      </div>
-      <div className='absolute top-0 h-full left-0 w-2/5  bg-gradient-to-r from-black ' />
-      <div className='absolute top-0 w-1/3 right-0 h-full  bg-gradient-to-l from-black ' />
+      </ul>
     </div>
   )
 }
+
 
 
 function IconWrapper({ children }: { children: React.ReactNode }) {
