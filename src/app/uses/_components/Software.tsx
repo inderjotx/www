@@ -2,18 +2,16 @@ import React from 'react'
 import { Title } from './title'
 
 const data: { [key: string]: string } = {
-    "OS": "Arch Linux",
+    "OS": "Dual Boot ( Windows 11 + Ubuntu ) ",
     "Init System": "systemd",
-    "DNS": "Cloudflare",
+    "DNS": "Route53",
     "Window Manager": "bspwm",
-    "Terminal": "Kitty",
-    "Text Editor": "Neovim",
+    "Terminal": "oh_my_zsh",
+    "Text Editor": "vscode with vim plugin",
     "Status Bars": "Polybar",
-    "Video Streaming": "MPV + Jellyfin",
-    "Music": "MPD + NCMPCPP (and occasionally Spotify or YT Music)",
-    "Notes": "Neovim + Vimwiki",
-    "Password Manager": "GnuPG + pass",
-    "Sync": "Syncthing (Local), Mega, or Google Drive (Cloud)"
+    "Video Streaming": "obs",
+    "Music": "spotify",
+    "Notes": "notion",
 }
 
 export function Software() {

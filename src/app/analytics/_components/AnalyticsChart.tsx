@@ -1,6 +1,6 @@
 'use client'
 import react from 'react'
-import { LineChart, BarList, Card, SparkLineChart } from '@tremor/react';
+import { LineChart, BarList, Card } from '@tremor/react';
 import { addIcon, fetcher, getHumanReadTime } from "@/lib/utils"
 import { useState } from "react";
 import useSWR from "swr"
@@ -77,6 +77,7 @@ export function AnalyticsChart() {
                         yAxisWidth={40}
                         showAnimation={true}
                     />
+
                 </Card>
 
                 <div className='grid h-40 gap-6 md:gap-2 grid-cols-1 md:grid-cols-2 '>

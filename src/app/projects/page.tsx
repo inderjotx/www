@@ -14,6 +14,10 @@ export type TableData = {
     liveUrl: string
 }
 
+export const metadata = {
+    title: "Inderjot // Projects",
+    description: "Projects page of Inderjot Singh",
+};
 
 
 
@@ -25,7 +29,7 @@ export default function page() {
             {/* title */}
             <Title title='Projects' />
 
-            <div className='space-y-3 text-sm'>
+            <div className='space-y-3 '>
                 <p>
                     I love building side projects that solve either my own or someone else&apos;s problems.
                 </p>

@@ -4,13 +4,12 @@ import { Title } from './title'
 export function Browser() {
 
     const browserExtensions = [
-        "OneTab",
-        "Dark Reader",
+        "vimium",
         "uBlock Origin",
-        "Video Playback Speed Controller",
         "React Developer Tools",
-        "Sponsor Block",
-        "Unhook"
+        "color-picker",
+        "web-vitals",
+        "what-font"
     ];
 
 

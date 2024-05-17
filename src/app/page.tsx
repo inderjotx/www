@@ -5,6 +5,10 @@ import { Anchor, AnchorArrow } from "@/components/Anchor";
 import { config } from "@/config";
 
 
+export const metadata = {
+  title: "Inderjot Singh",
+  description: "Personal website of Inderjot Singh",
+};
 
 
 export default function Home() {

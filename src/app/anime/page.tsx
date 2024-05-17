@@ -9,6 +9,11 @@ import React from 'react'
 
 export const dynamic = 'force-dynamic'
 
+export const metadata = {
+    title: "Inderjot // Anime",
+    description: "Anime page of Inderjot Singh",
+};
+
 
 export default async function Anime() {
 
@@ -25,7 +30,6 @@ export default async function Anime() {
                 I have loved watching anime since childhood. My first anime was Death Note, which is one of the most popular ones. It was suggested to me by a friend. Since then, I have watched many anime of different genres, but Isekai, Mecha, and Slice of Life are some of my favorites.
             </div>
 
-            {/* recent */}
             <div>
                 {
                     (recent) ?
@@ -77,7 +81,7 @@ function RecentAnime({ image_url, title, stars, published, href }: {
                 <div className='w-5/6 p-2 justify-center pl-5 h-full flex flex-col gap-1' >
                     <div className='text-[12px]  font-sans  flex items-center  gap-2  text-[#A3E635]'>
                         <Eye className='size-4' /> <span >
-                            {'39'} DAYS AGO
+                            Watching Recently
                         </span>
                     </div>
                     <div className='font-semibold flex gap-1' >

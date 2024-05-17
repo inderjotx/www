@@ -11,6 +11,11 @@ import { Website } from './_components/Website'
 import { All } from './_components/All'
 
 
+export const metadata = {
+    title: "Inderjot // Uses",
+    description: "Uses page of Inderjot Singh",
+};
+
 export default function page() {
     return (
         <div className='flex flex-col gap-10 w-full '>
@@ -27,9 +32,6 @@ export default function page() {
                 </p>
             </div>
 
-            <div>
-                bar
-            </div>
 
 
             <Tabs defaultValue="website" className="overflow-x-auto scrollbar-hide ">

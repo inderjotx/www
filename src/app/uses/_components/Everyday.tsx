@@ -2,12 +2,9 @@ import React from 'react'
 import { Title } from './title'
 
 const data: { [key: string]: string } = {
-    "Laptop": "Lenovo Legion 5 Pro running Arch Linux",
-    "Old Laptop": "HP Laptop 15s running Ubuntu Server",
-    "Secondary Monitor": "BenQ GW2283 (22 inch)",
-    "Phone": "OnePlus Nord CE 3 5G",
-    "Earphones": "OnePlus Nord Buds 2",
-    "Smartwatch": "Nope, analog (Fossil, specific model unknown)",
+    "Laptop": "Dell Inspiron 3453",
+    "Phone": "Oppo A51",
+    "Earphones": "Oppo Enco buds 2",
     "Backpack": "Generic"
 }
 

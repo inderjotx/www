@@ -89,7 +89,7 @@ export async function getRecentShow() {
 
     const API_KEY = process.env.TMDB_READ_API!;
 
-    const url = 'https://api.themoviedb.org/3/account/21066513/watchlist/tv?language=en-US&page=1&sort_by=created_at.asc';
+    const url = 'https://api.themoviedb.org/3/account/21066513/watchlist/tv?language=en-US&page=1&sort_by=created_at.desc';
 
     const options = {
         next: { revalidate: 4 * REVALIDATE_TIME.ONE_HOUR },

@@ -8,11 +8,17 @@ import { Anchor } from '@/components/Anchor'
 
 export const dynamic = 'force-dynamic'
 
+export const metadata = {
+    title: "Inderjot // Books",
+    description: "Books page of Inderjot Singh",
+};
+
 
 export default async function Page() {
 
     const books = await getShelfBooks()
     const recentBook = await getRecentBook()
+
 
 
     return (

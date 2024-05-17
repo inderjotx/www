@@ -4,7 +4,7 @@ import { Title } from './title'
 const data:
     { [key: string]: string }
     = {
-    'Font': 'JetBrains Mono',
+    'Editor': 'VSCODE wit VIM keybindings',
     'Theme': 'Monokai Pro'
 }
 
