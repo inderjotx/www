@@ -81,7 +81,7 @@ export function Carousel({ icons, direction }: { icons: any, direction: "left" |
 
 function IconWrapper({ children }: { children: React.ReactNode }) {
   return (
-    <div className='size-11   flex items-center justify-center rounded-sm '>
+    <div className='size-12 p-1 bg-zinc-900 flex items-center justify-center rounded-sm '>
       {children}
     </div>
   )

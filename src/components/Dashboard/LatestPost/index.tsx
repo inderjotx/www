@@ -13,12 +13,11 @@ export function Post() {
 
     return (
         <Link href={latestPost.href} className='relative h-full w-full flex '>
-
             {
                 isMobile ?
-                    <div className='absolute -rotate-6 font-mono left-3 h-full  text-sm text-center z-10 bg-white/30 font-medium  backdrop-blur-sm vertical_text '   >Latest Blog </div>
+                    <div className='absolute -rotate-6 font-mono left-3 -inset-y-5  text-sm text-center z-10 bg-white/30 font-medium  backdrop-blur-sm vertical_text '   >Latest Blog </div>
                     :
-                    <div className='absolute  -rotate-6 font-mono w-full bottom-2  text-sm text-center z-10 bg-white/30 font-medium  backdrop-blur-sm  '   >Latest Blog </div>
+                    <div className='absolute  -rotate-6 font-mono -inset-x-5 bottom-2  text-sm text-center z-10 bg-white/30 font-medium  backdrop-blur-sm  '   >Latest Blog </div>
 
             }
 

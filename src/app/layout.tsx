@@ -30,21 +30,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="antialiased dark" style={{ colorScheme: "dark" }} >
-      <body className={cn(inter.className)}>
+      <body className={cn(inter.className, "md:px-4")}>
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           themes={["dark"]}
           disableTransitionOnChange
         >
-          {/* <div className='h-full flex justify-center w-full ' > */}
-          <div className='flex  flex-col gap-2 max-w-3xl mx-8 md:mx-auto relative  ' >
+          <div className='flex   flex-col gap-2 max-w-3xl mx-8 md:mx-auto relative  ' >
             <Gradient />
             <Navbar />
             <Toaster />
             {children}
           </div>
-          {/* </div> */}
+
           <Footer />
         </ThemeProvider>
 

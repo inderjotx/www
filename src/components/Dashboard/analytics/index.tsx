@@ -45,9 +45,9 @@ export function Analytics() {
 
                     {
                         isMobile ?
-                            <div className='absolute  -rotate-6 font-mono right-3 h-full text-sm text-center z-10 bg-black/50 font-medium  backdrop-blur-sm vertical_text '   >Since Last Hour</div>
+                            <div className='absolute  -rotate-6 font-mono right-3 -inset-y-5 text-sm text-center z-10 bg-black/50 font-medium  backdrop-blur-sm vertical_text '   >Since Last Hour</div>
                             :
-                            <div className='absolute  rotate-6 font-mono w-full bottom-2  text-sm text-center z-10 bg-black/50 font-medium  backdrop-blur-sm  '   >Since Last Hour</div>
+                            <div className='absolute  rotate-6 font-mono -inset-x-5 bottom-2  text-sm text-center z-10 bg-black/50 font-medium  backdrop-blur-sm  '   >Since Last Hour</div>
 
                     }
                     <div className='flex pl-2 md:-mt-5 mt-0 md:text-[15px] items-start  justify-center flex-col'>

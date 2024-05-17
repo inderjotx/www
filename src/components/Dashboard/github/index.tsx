@@ -8,7 +8,7 @@ export async function Github() {
 
     return (
         <a target='_blank' rel='noopener norefferer' href={"https://github.com/inderjotx"} >
-            <div className='flex h-full w-full flex-col '>
+            <div className='flex bg-zinc-900 h-full w-full flex-col '>
                 <div className='h-5/6 md:h-4/6 w-full'>
                     <Background />
                 </div>
