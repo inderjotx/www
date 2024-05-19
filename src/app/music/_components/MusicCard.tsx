@@ -24,7 +24,7 @@ interface Response {
 export function RecentPlay() {
 
 
-    const { data, isLoading, error } = useSWR<Response, any>('/api/music/current', fetcher, { refreshInterval: 10000 })
+    const { data, isLoading, error } = useSWR<Response, any>('/api/music/recent', fetcher, { refreshInterval: 10000 })
 
 
 
