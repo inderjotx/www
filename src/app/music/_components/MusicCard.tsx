@@ -24,21 +24,13 @@ interface Response {
 export function RecentPlay() {
 
 
-    const { data, isLoading, error, mutate } = useSWR<Response, any>('/api/music/current', fetcher, { refreshInterval: 1000 })
-    const { data: recent, isLoading: recentLoading, error: recentError, mutate: recentMutate } = useSWR<Response, any>('/api/music/recent', fetcher, { refreshInterval: 1000 })
+    const { data, isLoading, error } = useSWR<Response, any>('/api/music/current', fetcher, { refreshInterval: 10000 })
 
 
 
 
     if (!isLoading && !error && data?.success) {
-        console.log('rendering current')
-        console.log(data)
         return <TrackCard data={data.response} />
-    }
-    else if (!recentLoading && !recentError && recent?.success) {
-        console.log('rendering recent')
-        console.log(recent)
-        return <TrackCard data={recent.response} />
     }
     else {
         return <LoadingRecent />

@@ -14,8 +14,7 @@ interface Response {
 
 export function Spotify() {
 
-    const { data, isLoading, error } = useSWR<Response, any>('/api/music/current', fetcher, { revalidateOnMount: true })
-    const { data: recent, isLoading: recentLoading, error: recentError } = useSWR<Response, any>('/api/music/recent', fetcher, { revalidateOnMount: true })
+    const { data, isLoading, error } = useSWR<Response, any>('/api/music/recent', fetcher, { refreshInterval: 10000 })
     const [isClient] = useClient()
 
 
@@ -26,9 +25,6 @@ export function Spotify() {
 
     if (!isLoading && !error && data?.success) {
         return <MusicCard data={data.response} />
-    }
-    else if (!recentLoading && !recentError && recent?.success) {
-        return <MusicCard data={recent.response} />
     }
     else {
         return <FallbackMusic />

@@ -37,7 +37,7 @@ export default function RootLayout({
           themes={["dark"]}
           disableTransitionOnChange
         >
-          <div className='flex   flex-col gap-2 max-w-3xl mx-8 md:mx-auto relative  ' >
+          <div className='flex   flex-col gap-2 max-w-3xl mx-2   md:mx-auto relative  ' >
             <Gradient />
             <Navbar />
             <Toaster />
