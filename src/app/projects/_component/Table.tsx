@@ -22,7 +22,7 @@ const dataArray: TableData[] = [
 
     {
         projectName: "LinkTree",
-        Description: "Personal website",
+        Description: "Inderjot's link tree",
         tags: ["TS", "React", "NextJS", "Tailwind", "Redis"],
         year: 2024,
         githubUrl: "https://github.com/inderjotx/linkTree",
