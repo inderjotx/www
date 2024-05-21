@@ -8,7 +8,7 @@ const dataArray: TableData[] = [
         tags: ["TS", "React", "NextJS", "Tailwind", "Redis"],
         year: 2024,
         githubUrl: "https://github.com/inderjotx/www",
-        liveUrl: "https://jobs.inderjot.tech"
+        liveUrl: "https://tokenjobs.co"
     },
 
     {
@@ -25,7 +25,7 @@ const dataArray: TableData[] = [
         tags: ["NodeJS", "NextJs", "Tailwind", "React"],
         year: 2024,
         githubUrl: "https://github.com/inderjotx/striver-frontend",
-        liveUrl: "https://code.inderjot.tech"
+        liveUrl: "https://code.inderjot.tech/create"
     },
 
     {
