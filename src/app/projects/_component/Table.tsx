@@ -7,7 +7,7 @@ const dataArray: TableData[] = [
         Description: "Latest web3 jobs",
         tags: ["TS", "React", "NextJS", "Tailwind", "Redis"],
         year: 2024,
-        githubUrl: "https://github.com/inderjotx/www",
+        githubUrl: "https://github.com/inderjotx/jobs",
         liveUrl: "https://tokenjobs.co"
     },
 
@@ -19,6 +19,17 @@ const dataArray: TableData[] = [
         githubUrl: "https://github.com/inderjotx/www",
         liveUrl: "https://www.inderjot.tech"
     },
+
+    {
+        projectName: "LinkTree",
+        Description: "Personal website",
+        tags: ["TS", "React", "NextJS", "Tailwind", "Redis"],
+        year: 2024,
+        githubUrl: "https://github.com/inderjotx/linkTree",
+        liveUrl: "https://hi.inderjot.tech"
+    },
+
+
     {
         projectName: "Snippet Space",
         Description: "Communicate with code",
