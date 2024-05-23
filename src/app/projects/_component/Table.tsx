@@ -66,8 +66,8 @@ export function Table() {
             {
                 dataArray.map((item: TableData, index) => (
                     <div key={index} className="grid text-sm hover:bg-muted-foreground/10 px-3 py-3 border-b grid-cols-10 ">
-                        <div className="col-span-3 "><Anchor href={item.liveUrl} text={item.projectName} /> </div>
-                        <div className="col-span-2 "><Anchor href={item.githubUrl} text={"Github"} /> </div>
+                        <div className="col-span-3 "><Anchor newTab href={item.liveUrl} text={item.projectName} /> </div>
+                        <div className="col-span-2 "><Anchor newTab href={item.githubUrl} text={"Github"} /> </div>
                         <div className="col-span-4 text-right pr-7">{item.Description} </div>
                         <div className="col-span-1 text-right">{item.year}</div>
                     </div>

@@ -43,7 +43,7 @@ export function Carousel({ icons, direction }: { icons: any, direction: "left" |
   const effect = direction == "left" ? "animate-slide_left" : "animate-slide_right"
 
   return (
-    <div className="w-full group inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]">
+    <div className="w-full group inline-flex  flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-200px),transparent_100%)]">
       <ul className={cn("flex items-center justify-center group-hover:pause md:justify-start ", effect)} aria-hidden="true"  >
 
         {

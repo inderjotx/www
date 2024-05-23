@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import { GithubRef } from './GithubRef'
 import { Github } from './github'
 import { Anime } from './anime'
@@ -10,8 +10,10 @@ import { LinkedIn } from './linkedin'
 import { X } from './X'
 import { Code } from './code'
 import { BookCard } from './book'
+import { FallbackBook } from './book/FallbackBook'
 import { Analytics } from './analytics'
 import { SendEmail } from './email'
+import { FallbackMusic } from './spotify/FallbackMusic'
 
 export function Dashboard() {
     return (
@@ -25,7 +27,9 @@ export function Dashboard() {
                     <Github />
                 </div>
                 <div className='col-span-1  dashboard_box  '>
-                    <Spotify />
+                    <Suspense fallback={<FallbackMusic />} >
+                        <Spotify />
+                    </Suspense>
                 </div>
             </div>
             <div className='h-36  grid gap-3 grid-cols-4'>
@@ -42,6 +46,7 @@ export function Dashboard() {
                         </div>
                     </div>
                     <div className=' dashboard_box '>
+                        {/* todo */}
                         <Code />
                     </div>
 
@@ -52,6 +57,7 @@ export function Dashboard() {
                     <Discord />
                 </div>
                 <div className='col-span-2  dashboard_box ' >
+                    {/* todo */}
                     <Post />
                 </div>
             </div>
@@ -60,10 +66,12 @@ export function Dashboard() {
                     <Analytics />
                 </div>
                 <div className='col-span-1   dashboard_box '>
-                    <BookCard />
+                    <Suspense fallback={<FallbackBook />} >
+                        <BookCard />
+                    </Suspense>
                 </div>
             </div>
-            <div className='h-36  flex overflow-hidden rounded-md' >
+            <div className='h-36  bg-background flex overflow-hidden rounded-md' >
                 <Tools />
             </div>
 

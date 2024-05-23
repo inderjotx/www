@@ -20,7 +20,7 @@ export default function Home() {
         <h3 className=" text-muted-foreground" >{age} y/o Software Developer</h3>
       </div>
       <div>
-        <p className=" text-muted-foreground">
+        <p className=" text-muted-foreground  md:text-base">
           I design, craft and publish products of quality and reliability, specializing in building full-stack application using NextJS and React .
         </p>
       </div>

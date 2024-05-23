@@ -1,9 +1,5 @@
 import { weeklyCodeTime } from '@/lib/codeTime'
-import { poppins } from '@/lib/fonts/poppins'
-import { cn } from '@/lib/utils'
-import { Code2 } from 'lucide-react'
 import Image from 'next/image'
-import Link from 'next/link'
 import React from 'react'
 
 export async function Code() {

@@ -20,6 +20,7 @@ export default async function Anime() {
     const data = await getFavouriteShow()
     const recent = await getRecentShow()
 
+    console.log(data)
 
     return (
 
@@ -48,11 +49,12 @@ export default async function Anime() {
             {/* { anime favourite } */}
             <div className='grid grid-cols-1 h-full gap-2 md:grid-cols-2  ' >
                 {
-                    data.map(({ image_url, href, slug }) => (
+                    data.map(({ image_url, href, slug, rating }) => (
                         <div key={image_url} >
                             <AnimePoster
                                 image_url={image_url}
                                 href={href}
+                                rating={rating}
                                 slug={slug}
                                 className='h-36' />
                         </div>

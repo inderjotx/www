@@ -17,13 +17,15 @@ const navLinks = [
         text: "α",
         href: "/"
     },
-    {
-        text: "projects",
-        href: "/projects"
-    },
+
     {
         text: "about",
         href: "/about"
+    },
+
+    {
+        text: "projects",
+        href: "/projects"
     },
 ];
 
@@ -53,7 +55,7 @@ export function Navbar() {
 
     return (
         <div className='h-20 mb-2 top-0  w-full flex justify-center' >
-            <div className={cn(' flex relative items-center w-full md:gap-6 gap-4  md:text-base text-sm')} >
+            <div className={cn(' flex relative items-center w-full md:gap-6 gap-4 ')} >
                 {
 
 

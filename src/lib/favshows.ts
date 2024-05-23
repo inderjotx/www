@@ -66,7 +66,8 @@ export async function getFavouriteShow() {
     return data.items.map((show) => ({
         image_url: getImageURL(show.backdrop_path),
         slug: show.name,
-        href: `https://www.themoviedb.org/tv/${show.id}`
+        href: `https://www.themoviedb.org/tv/${show.id}`,
+        rating: show.vote_average / 2
     }))
 
 }

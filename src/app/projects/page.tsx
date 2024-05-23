@@ -29,7 +29,7 @@ export default function page() {
             {/* title */}
             <Title title='Projects' />
 
-            <div className='space-y-3 '>
+            <div className='space-y-3 text-muted-foreground'>
                 <p>
                     I love building side projects that solve either my own or someone else&apos;s problems.
                 </p>

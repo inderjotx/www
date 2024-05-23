@@ -1,5 +1,4 @@
 import { githubStats } from '@/lib/github'
-import Link from 'next/link'
 import React from 'react'
 
 export async function Github() {

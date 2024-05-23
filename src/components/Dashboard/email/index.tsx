@@ -57,13 +57,13 @@ export function SendEmail() {
             }} >
 
 
-            <div className="flex flex-col bg-zinc-900 gap-4 w-full px-3 py-6">
+            <div className="flex flex-col bg-gradient-to-bl from-zinc-800 to-zinc-950  gap-4 w-full px-3 py-6">
 
 
                 <h1 className={cn(poppins.className, "pl-1 text-sm")} >Drop a Message</h1>
 
-                <Input className="bg-black" name="from" type="email" placeholder="youremail@gmail.com" />
-                <Textarea name="html" placeholder="Hey wassup!" />
+                <Input className="focus-visible:ring-0  " name="from" type="email" placeholder="youremail@gmail.com" />
+                <Textarea className="focus-visible:ring-0" name="html" placeholder="Hey wassup!" />
 
                 <div className="flex justify-end ">
                     <Button type="submit" >Send</Button>
