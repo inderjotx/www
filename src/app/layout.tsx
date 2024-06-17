@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { Navbar } from '@/components/Navbar/index'
+import { Navbar } from "@/components/Navbar/index";
 import { Gradient } from "@/components/gradient";
 import "./globals.css";
-import { Toaster } from "@/components/ui/sonner"
+import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/Provider/ThemeProvider";
 import { cn } from "@/lib/utils";
 import { Footer } from "@/components/Footer";
@@ -12,25 +12,28 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Inderjot Singh",
-  metadataBase: new URL('https://www.inderjot.tech'),
+  metadataBase: new URL("https://www.inderjot.tech"),
   description: "Personal website of Inderjot Singh",
   openGraph: {
-    images: '/opengraph-image.png',
+    images: "/opengraph-image.png",
     type: "website",
     url: "https://www.inderjot.tech",
     title: "Inderjot Singh",
-    description: "Personal website of Inderjot Singh"
-  }
+    description: "Personal website of Inderjot Singh",
+  },
 };
 
 export default function RootLayout({
-
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="antialiased dark" style={{ colorScheme: "dark" }} >
+    <html
+      lang="en"
+      className="antialiased dark"
+      style={{ colorScheme: "dark" }}
+    >
       <body className={cn(inter.className, " relative   overflow-x-hidden")}>
         <ThemeProvider
           attribute="class"
@@ -38,11 +41,10 @@ export default function RootLayout({
           themes={["dark"]}
           disableTransitionOnChange
         >
-
-          <div className="fixed inset-0 overflow-hidden" >
+          {/* <div className="fixed inset-0 overflow-hidden" >
             <Gradient />
-          </div>
-          <div className='flex   flex-col gap-2 max-w-3xl px-2 md:px-0  md:mx-auto relative  ' >
+          </div> */}
+          <div className="flex   flex-col gap-2 max-w-3xl px-2 md:px-0  md:mx-auto relative  ">
             <Navbar />
             <Toaster />
             {children}
@@ -50,7 +52,6 @@ export default function RootLayout({
 
           <Footer />
         </ThemeProvider>
-
       </body>
     </html>
   );
