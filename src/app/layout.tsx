@@ -44,7 +44,7 @@ export default function RootLayout({
           {/* <div className="fixed inset-0 overflow-hidden" >
             <Gradient />
           </div> */}
-          <div className="flex   flex-col gap-2 max-w-3xl px-2 md:px-0  md:mx-auto relative  ">
+          <div className="flex   flex-col gap-2 max-w-3xl px-4 md:px-0  md:mx-auto relative  ">
             <Navbar />
             <Toaster />
             {children}
