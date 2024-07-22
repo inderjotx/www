@@ -1,4 +1,5 @@
-import { RecentlyPlayedResponse, TopTracks } from '@/interfaces/music/music';
+"use server"
+import { RecentlyPlayedResponse, TopTracks, MusicCardTrack } from '@/interfaces/music/music';
 import { unstable_cache as cache } from 'next/cache';
 import qs from 'query-string'
 
@@ -8,7 +9,6 @@ export async function getTopTracks() {
     const url = 'https://api.spotify.com/v1/me/top/tracks?time_range=short_term&limit=50';
     const token = await getAccessToken()
     const options = {
-        next: { revalidate: 4 * 3600 },
         method: 'GET',
         headers: {
             accept: 'application/json',
@@ -37,16 +37,12 @@ export async function getTopTracks() {
 
 }
 
-
-
-// or recent track
-export async function getCurrentTrack() {
+export async function getCurrentTrack(): Promise<MusicCardTrack | null> {
 
     const url = 'https://api.spotify.com/v1/me/player/currently-playing'
     const token = await getAccessToken()
 
     const options = {
-        next: { revalidate: 0 },
         method: 'GET',
         headers: {
             accept: 'application/json',
@@ -65,12 +61,15 @@ export async function getCurrentTrack() {
         throw new Error('Error while fetching data ')
 
     }).then(data => data.json())
-        .catch((err) => console.log('not playing currently'))
+        .catch((err) => {
+            console.log('not playing currently')
+            return null
+        })
 
 
 
     if (!data) {
-        return {}
+        return null
     }
 
 
@@ -87,13 +86,12 @@ export async function getCurrentTrack() {
 
 
 
-export const getRecentTrack = async () => {
+export const getRecentTrack = async (): Promise<MusicCardTrack | null> => {
 
     const url = 'https://api.spotify.com/v1/me/player/recently-played?limit=1'
     const token = await getAccessToken()
 
     const options = {
-        next: { revalidate: 0 },
         method: 'GET',
         headers: {
             accept: 'application/json',
@@ -105,11 +103,14 @@ export const getRecentTrack = async () => {
     const data: RecentlyPlayedResponse = await fetch(url, options)
         .then(data => data.json())
         .then(json => json)
-        .catch(err => console.log(err))
+        .catch(err => {
+            console.log(err)
+            return null
+        })
 
 
     if (data == null || !('items' in data) || data.items.length == 0) {
-        return {}
+        return null
     }
 
 
@@ -139,7 +140,6 @@ export const getAccessToken = cache(async () => {
 
 
     const response = await fetch(TOKEN_ENDPOINT, {
-        next: { revalidate: 0 },
         method: 'POST',
         headers: {
             Authorization: `Basic ${basic}`,

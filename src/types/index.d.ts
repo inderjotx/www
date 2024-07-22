@@ -21,3 +21,5 @@ interface Analytics {
 
 type demographics = keyof Analytics & ("cityData" | "countryData" | "refData")
 type userDevice = keyof Analytics & ("browserData" | "osData" | "deviceData")
+
+

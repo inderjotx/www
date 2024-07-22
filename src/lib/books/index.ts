@@ -1,11 +1,16 @@
+'use server'
+
+
+enum REVALIDATE_TIME {
+    ONE_HOUR = 60 * 60,
+    ONE_DAY = 24 * 60 * 60,
+    ONE_MONTH = 30 * 24 * 60 * 60,
+    ONE_MINUTE = 60
+}
+
 import { LoginResponse, GetShelfBooksResponse, MyReadingStateResult, ReadingState } from "@/interfaces/music/books";
 import { unstable_cache as cache } from "next/cache";
 
-export enum REVALIDATE_TIME {
-    ONE_HOUR = 60 * 60,
-    ONE_DAY = 24 * 60 * 60,
-    ONE_MONTH = 30 * 24 * 60 * 60
-}
 
 
 

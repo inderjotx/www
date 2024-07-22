@@ -1,4 +1,4 @@
-import { getAnalytics } from "@/lib/getAnalytics";
+import { getAnalytics } from "@/lib/analytics";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {

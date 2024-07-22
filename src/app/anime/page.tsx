@@ -1,24 +1,23 @@
 import { AnimePoster } from "@/app/anime/_components/anime-poster";
 import { StarRating } from "@/components/Star";
-import { getFavouriteShow, getRecentShow } from "@/lib/favshows";
+import { getFavouriteShow, getRecentShow } from "@/lib/anime";
 import { poppins } from "@/lib/fonts/poppins";
 import { cn } from "@/lib/utils";
 import { Eye, Tv } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 
-export const dynamic = "force-dynamic";
-
 export const metadata = {
   title: "Inderjot // Anime",
   description: "Anime page of Inderjot Singh",
 };
 
+// revalidate after 24 hours
+export const revalidate = 24 * 60 * 60;
+
 export default async function Anime() {
   const data = await getFavouriteShow();
   const recent = await getRecentShow();
-
-  console.log(data);
 
   return (
     <div className="flex flex-col gap-8 ">

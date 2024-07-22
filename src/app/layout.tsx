@@ -7,6 +7,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/Provider/ThemeProvider";
 import { cn } from "@/lib/utils";
 import { Footer } from "@/components/Footer";
+import { QueryProvider } from "@/components/Provider/QueryProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -44,11 +45,13 @@ export default function RootLayout({
           {/* <div className="fixed inset-0 overflow-hidden" >
             <Gradient />
           </div> */}
-          <div className="flex   flex-col gap-2 max-w-3xl px-4 md:px-0  md:mx-auto relative  ">
-            <Navbar />
-            <Toaster />
-            {children}
-          </div>
+          <QueryProvider>
+            <div className="flex   flex-col gap-2 max-w-3xl px-4 md:px-0  md:mx-auto relative  ">
+              <Navbar />
+              <Toaster />
+              {children}
+            </div>
+          </QueryProvider>
 
           <Footer />
         </ThemeProvider>

@@ -5,7 +5,9 @@ import { BookCard, LoadingBookCard } from "./_components/BookCard";
 import { getRecentBook, getShelfBooks } from "@/lib/books";
 import { Anchor } from "@/components/Anchor";
 
-export const dynamic = "force-dynamic";
+// min is second
+// revalidate after 24 hours
+export const revalidate = 24 * 60 * 60;
 
 export const metadata = {
   title: "Inderjot // Books",

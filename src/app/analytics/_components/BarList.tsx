@@ -8,13 +8,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   ChartConfig,
   ChartContainer,
@@ -23,19 +17,32 @@ import {
 } from "@/components/ui/chart";
 import { Icon } from "@/components/Icon";
 
-const chartConfig: ChartConfig = {
-  value: {
-    label: "Users",
-    color: "hsl(var(--chart-1))",
+const chartConfig = {
+  desktop: {
+    label: "Desktop",
+    color: "hsl(var(--chart-1)/50%)",
   },
-};
+  label: {
+    color: "hsl(var(--background))",
+  },
+} satisfies ChartConfig;
 
-export function BarList({ data }: { data: DataItem[] }) {
+export function BarList({
+  data,
+  title,
+  children,
+}: {
+  data: DataItem[];
+  title: string;
+  children?: React.ReactNode;
+}) {
   return (
     <Card>
+      <CardHeader className="gap-6 border-b">
+        <CardTitle>{title}</CardTitle>
+      </CardHeader>
       <CardHeader>
-        <CardTitle>Browser Usage</CardTitle>
-        <CardDescription>Top browsers by usage</CardDescription>
+        <div className="ml-auto">{children}</div>
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
@@ -43,32 +50,44 @@ export function BarList({ data }: { data: DataItem[] }) {
             accessibilityLayer
             data={data}
             layout="vertical"
-            margin={{ left: 50 }}
+            margin={{
+              right: 16,
+            }}
           >
             <CartesianGrid horizontal={false} />
             <YAxis
-              dataKey="iconKey"
+              dataKey="month"
               type="category"
               tickLine={false}
+              tickMargin={10}
               axisLine={false}
-              tick={<CustomYAxisTick />}
-              width={50}
+              tickFormatter={(value) => value.slice(0, 3)}
+              hide
             />
-            <XAxis type="number" hide />
-            <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
-            <Bar dataKey="value" fill="var(--color-value)" radius={4}>
+            <XAxis dataKey="value" type="number" hide />
+            <ChartTooltip
+              cursor={false}
+              content={<ChartTooltipContent indicator="line" />}
+            />
+            <Bar
+              dataKey="value"
+              layout="vertical"
+              fill="var(--color-desktop)"
+              radius={4}
+            >
               <LabelList
                 dataKey="name"
                 position="insideLeft"
                 offset={8}
-                fill="var(--color-label)"
+                className="fill-foreground"
                 fontSize={12}
+                // content={(props) => <CustomLabel {...props} data={data} />}
               />
               <LabelList
                 dataKey="value"
                 position="right"
                 offset={8}
-                fill="var(--color-foreground)"
+                className="fill-foreground"
                 fontSize={12}
               />
             </Bar>
@@ -79,12 +98,27 @@ export function BarList({ data }: { data: DataItem[] }) {
   );
 }
 
-const CustomYAxisTick = (props: any) => {
-  const { x, y, payload } = props;
+// const CustomLabel = (props: any) => {
+//   const { x, y, width, height, value, name, data } = props;
+//   const iconKey = data?.find((item: DataItem) => item.name === name)?.iconKey;
+//   // const Icon = data.find((item) => item.name === name)?.icon;
 
-  return (
-    <g transform={`translate(${x - 30},${y - 12})`}>
-      {JSON.stringify(payload)}
-    </g>
-  );
-};
+//   console.log(props);
+
+//   const formattedValue = new Intl.NumberFormat("en-US", {
+//     style: "currency",
+//     currency: "USD",
+//   }).format(value);
+
+//   return (
+//     <g
+//       x={x}
+//       y={y}
+//       width={width}
+//       height={height}
+//       transform={`translate(${x},${y})`}
+//     >
+//       <Icon code={iconKey} />
+//     </g>
+//   );
+// };

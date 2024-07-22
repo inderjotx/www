@@ -1,3 +1,5 @@
+'use server'
+
 import { UserInfo } from "@/middleware";
 import { prismaClient } from "./prisma";
 

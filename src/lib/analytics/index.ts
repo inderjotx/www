@@ -1,7 +1,8 @@
+'use server'
+
+
 import { Click } from "@prisma/client";
-import { prismaClient } from "./prisma";
-import { getHumanReadTime } from "./utils";
-import { Icon } from "@/components/Icon";
+import { prismaClient } from "../prisma";
 
 
 enum TIME {
@@ -112,16 +113,18 @@ export async function getAnalytics(from: TimeFrame): Promise<Analytics> {
 
 }
 
+interface CityClick extends DataItem {
+    country: string
+}
 
+function getAccumulatedData(rawData: Click[]) {
 
-export function getAccumulatedData(rawData: Click[]) {
-
-    const cityClick: DataArray<DataItem & { country: string }> = []
-    const countryClick: DataArray<DataItem> = []
-    const deviceClick: DataArray<DataItem> = []
-    const browserClick: DataArray<DataItem> = []
-    const osClick: DataArray<DataItem> = []
-    const refClick: DataArray<DataItem> = []
+    const cityClick: CityClick[] = []
+    const countryClick: DataArray = []
+    const deviceClick: DataArray = []
+    const browserClick: DataArray = []
+    const osClick: DataArray = []
+    const refClick: DataArray = []
 
 
     rawData.forEach((click) => {
@@ -153,7 +156,7 @@ export function getAccumulatedData(rawData: Click[]) {
 }
 
 
-function updateArrayClickInfo<T extends boolean>(clicks: Click, key: string | null, dataArray: DataArray<DataItem>, type: "city" | "country" | "ref" | "browser" | "os" | "device") {
+function updateArrayClickInfo<T extends boolean>(clicks: Click, key: string | null, dataArray: DataArray, type: "city" | "country" | "ref" | "browser" | "os" | "device") {
 
 
     if (key === null) return

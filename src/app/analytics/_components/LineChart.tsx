@@ -1,12 +1,20 @@
 "use client";
 
 import * as React from "react";
-import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
+import {
+  Area,
+  AreaChart,
+  BarChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+} from "recharts";
 
 import {
   Card,
   CardContent,
   CardDescription,
+  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -25,6 +33,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { TrendingUp } from "lucide-react";
 
 type BarGraphInput = {
   startIntervalMiliSec: number;
@@ -122,12 +131,6 @@ export function ShadcnLineChart({
                 });
               }}
             />
-            <YAxis
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-              minTickGap={1}
-            />
             <ChartTooltip
               cursor={false}
               content={
@@ -146,7 +149,7 @@ export function ShadcnLineChart({
             />
             <Area
               dataKey="clicks"
-              type="natural"
+              type="linear"
               fill="url(#fillClicks)"
               stroke="var(--color-clicks)"
             />

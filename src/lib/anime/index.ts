@@ -1,4 +1,4 @@
-import { REVALIDATE_TIME } from "./books";
+import "server-only"
 
 interface ListItem {
     adult: boolean;
@@ -19,6 +19,8 @@ interface ListItem {
     origin_country: string[];
 
 }
+
+
 
 
 
@@ -46,7 +48,6 @@ export async function getFavouriteShow() {
 
     const url = `https://api.themoviedb.org/3/list/${FAVLIST_ID}?language=en-US&page=1`;
     const options = {
-        next: { revalidate: 4 * 3600 },
         method: 'GET',
         headers: {
             accept: 'application/json',
@@ -93,7 +94,6 @@ export async function getRecentShow() {
     const url = 'https://api.themoviedb.org/3/account/21066513/watchlist/tv?language=en-US&page=1&sort_by=created_at.desc';
 
     const options = {
-        next: { revalidate: 4 * REVALIDATE_TIME.ONE_HOUR },
         method: 'GET',
         headers: {
             accept: 'application/json',

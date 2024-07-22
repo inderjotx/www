@@ -1,3 +1,4 @@
+"use server"
 interface DiscordStatusResponse {
     data: {
         kv: { [key: string]: string };
@@ -17,13 +18,11 @@ export async function getDiscordStatus() {
 
     const url = 'https://api.lanyard.rest/v1/users/1061624989473845308'
 
-
-    const response: DiscordStatusResponse = await fetch(url, { next: { revalidate: 0 } }).then(data => data.json()).catch(err => console.log(err))
-
+    const response: DiscordStatusResponse = await fetch(url).then(data => data.json()).catch(err => console.log(err))
 
     try {
 
-        return response.data.discord_status
+        return response.data.discord_status ?? "offline"
     }
 
     catch (err) {

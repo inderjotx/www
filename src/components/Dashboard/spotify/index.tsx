@@ -1,32 +1,29 @@
 "use client";
 import { RecentPlayProps } from "@/app/music/_components/MusicCard";
-import { fetcher } from "@/lib/utils";
-import useSWR from "swr";
 import { MusicCard } from "./MusicCard";
-import { useClient } from "@/hooks/useClient";
 import { FallbackMusic } from "./FallbackMusic";
-
-interface Response {
-  response: RecentPlayProps;
-  success: boolean;
-}
+import { useQueries, useQuery } from "@tanstack/react-query";
+import { getCurrentTrack, getRecentTrack } from "@/lib/music";
 
 export function Spotify() {
-  const { data, isLoading, error } = useSWR<Response, any>(
-    "/api/music/recent",
-    fetcher,
-    { refreshInterval: 10000 }
-  );
+  const [currentTrack, recentTrack] = useQueries({
+    queries: [
+      {
+        queryKey: ["current-track"],
+        queryFn: async () => await getCurrentTrack(),
+        refetchInterval: 1000 * 10, // every 10 seconds
+      },
+      {
+        queryKey: ["recent-track"],
+        queryFn: async () => await getRecentTrack(),
+        refetchInterval: 1000 * 100, // every 100 seconds
+      },
+    ],
+  });
 
-  // const [isClient] = useClient()
-
-  // if (!isClient) {
-  //     return <FallbackMusic />
-  // }
-
-  if (!isLoading && !error && data?.success) {
-    return <MusicCard data={data.response} />;
-  } else {
+  if (!currentTrack.data && !recentTrack.data) {
     return <FallbackMusic />;
+  } else {
+    return <MusicCard data={currentTrack.data ?? recentTrack.data} />;
   }
 }

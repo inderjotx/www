@@ -38,6 +38,8 @@ export interface RecentlyPlayedResponse {
     href: string;
 }
 
+
+
 interface ExternalUrls {
     spotify: string;
 }
@@ -117,4 +119,14 @@ interface Actions {
 
 export interface TopTracks {
     items: Item[]
+}
+
+
+
+export type MusicCardTrack = {
+    href: string,
+    title: string,
+    artist: string,
+    image_url: string,
+    listenOn: string | null
 }

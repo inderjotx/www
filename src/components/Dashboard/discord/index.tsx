@@ -1,44 +1,25 @@
-'use client'
-import useSWR from 'swr'
-import React, { useEffect } from 'react'
-import { fetcher } from '@/lib/utils'
-import { DiscordIcon } from './discordIcon'
-import { config } from '@/config'
+"use client";
+import { DiscordIcon } from "./discordIcon";
+import { config } from "@/config";
+import { useQuery } from "@tanstack/react-query";
+import { getDiscordStatus } from "@/lib/discord";
 
 export function Discord() {
+  const { data } = useQuery({
+    queryKey: ["discord-status"],
+    queryFn: async () => getDiscordStatus(),
+    refetchInterval: 1000 * 30,
+  });
 
-
-    const { data, error, isLoading, mutate } = useSWR<{ status: string }, any>('/api/discord', fetcher, { revalidateIfStale: true })
-
-
-
-    useEffect(() => {
-
-        const interval = setInterval(() => {
-            mutate()
-        }, 60 * 1000)
-
-        return () => {
-            clearInterval(interval)
-        }
-    }, [mutate])
-
-
-
-    return (
-        <a href={config.links.discord} target='_blank' rel='noreferred'   >
-            <div className=' w-full bg-zinc-900  h-full relative overflow-hidden flex items-center justify-center'>
-                <div className='flex absolute top-0 left-0 h-full md:size-20 md:left-0  -rotate-45 '>
-                    <DiscordIcon />
-                </div>
-                <div className='text-xl z-10 -rotate-12 font-bold'>
-                    {
-                        (typeof data == 'object' && data.hasOwnProperty('status') && data.status != "" ? data.status : "Offline")
-                    }
-                </div>
-                <div className='w-full h-full absolute top-0  backdrop-blur-sm bg-black/20  backdrop-filter '>
-                </div>
-            </div>
-        </a>
-    )
+  return (
+    <a href={config.links.discord} target="_blank" rel="noreferred">
+      <div className=" w-full bg-zinc-900  h-full relative overflow-hidden flex items-center justify-center">
+        <div className="flex absolute top-0 left-0 h-full md:size-20 md:left-0  -rotate-45 ">
+          <DiscordIcon />
+        </div>
+        <div className="text-xl z-10 -rotate-12 font-bold">{data}</div>
+        <div className="w-full h-full absolute top-0  backdrop-blur-sm bg-black/20  backdrop-filter "></div>
+      </div>
+    </a>
+  );
 }
