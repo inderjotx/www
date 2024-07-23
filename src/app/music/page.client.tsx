@@ -1,5 +1,5 @@
 "use client";
-import { getRecentTrack, getTopTracks } from "@/lib/music";
+import { getCurrentTrack, getRecentTrack, getTopTracks } from "@/lib/music";
 import { poppins } from "@/lib/fonts/poppins";
 import { cn } from "@/lib/utils";
 import React from "react";
@@ -8,16 +8,21 @@ import { SingleTrack } from "./_components/SingleTracks";
 import { useQueries, useQuery } from "@tanstack/react-query";
 
 export default function ClientPage() {
-  const [top, recent] = useQueries({
+  const [top, recent, current] = useQueries({
     queries: [
       {
-        queryKey: ["music-top"],
+        queryKey: ["top-tracks"],
         queryFn: async () => getTopTracks(),
         refetchInterval: 1000 * 60 * 60, // every 1 hours
       },
       {
-        queryKey: ["music-recent"],
+        queryKey: ["recent-track"],
         queryFn: async () => getRecentTrack(),
+        refetchInterval: 1000 * 60, // every 60 second
+      },
+      {
+        queryKey: ["current-track"],
+        queryFn: async () => getCurrentTrack(),
         refetchInterval: 1000 * 10, // every 10 second
       },
     ],
@@ -33,7 +38,7 @@ export default function ClientPage() {
       </div>
 
       <div>
-        <RecentPlay data={recent.data} />
+        <RecentPlay data={current.data ?? recent.data} />
       </div>
       <div className="mt-10">
         <h1 className={cn("font-semibold text-xl", poppins.className)}>

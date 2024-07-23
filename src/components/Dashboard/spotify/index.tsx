@@ -1,5 +1,4 @@
 "use client";
-import { RecentPlayProps } from "@/app/music/_components/MusicCard";
 import { MusicCard } from "./MusicCard";
 import { FallbackMusic } from "./FallbackMusic";
 import { useQueries, useQuery } from "@tanstack/react-query";
@@ -16,7 +15,7 @@ export function Spotify() {
       {
         queryKey: ["recent-track"],
         queryFn: async () => await getRecentTrack(),
-        refetchInterval: 1000 * 100, // every 100 seconds
+        refetchInterval: 1000 * 60, // every 100 seconds
       },
     ],
   });
