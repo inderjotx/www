@@ -95,10 +95,10 @@ export function getTime() {
 
 
 
-export async function fetcher<JSON = any>(
+export async function fetcher<T extends any>(
   input: RequestInfo,
   init?: RequestInit
-): Promise<JSON> {
+): Promise<T> {
   const res = await fetch(input, init)
   return res.json()
 }
@@ -125,7 +125,7 @@ export function getHumanReadTime(miliSeconds: number) {
 
 
 
-export function addIcon(data: DataArray<DataItem>) {
+export function addIcon(data: DataArray) {
 
   data.forEach((elm, index) => {
     elm.icon = Icon({ code: elm.iconKey })

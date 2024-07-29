@@ -1,10 +1,10 @@
 import { getAnalytics } from "@/lib/analytics";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextRequest) {
-    const url = new URL(req.url)
-    const frequency = url.searchParams.get('frequency')
+export async function GET(req: NextRequest, { params }: { params: { frequency: string } }) {
 
+
+    const frequency = params?.frequency
 
     if (frequency && isValid(frequency)) {
 

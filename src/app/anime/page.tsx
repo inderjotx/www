@@ -85,7 +85,7 @@ function RecentAnime({
             <Eye className="size-4" /> <span>Watching Recently</span>
           </div>
           <div className="font-semibold flex gap-1">
-            <span>{title}</span>
+            <span className="truncate">{title}</span>
             <div className="text-[10px] rounded-[4px] self-end p-[3px] bg-muted-foreground/20">
               {published}
             </div>

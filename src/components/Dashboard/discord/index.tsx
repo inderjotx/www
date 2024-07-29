@@ -2,12 +2,12 @@
 import { DiscordIcon } from "./discordIcon";
 import { config } from "@/config";
 import { useQuery } from "@tanstack/react-query";
-import { getDiscordStatus } from "@/lib/discord";
+import { fetcher } from "@/lib/utils";
 
 export function Discord() {
   const { data } = useQuery({
     queryKey: ["discord-status"],
-    queryFn: async () => getDiscordStatus(),
+    queryFn: async () => await fetcher<string | undefined>("/api/discord"),
     refetchInterval: 1000 * 30,
   });
 

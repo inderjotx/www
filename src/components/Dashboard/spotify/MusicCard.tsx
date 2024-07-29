@@ -7,7 +7,11 @@ import React from "react";
 import { Spotify } from "@/components/Icons/spotify";
 import { MusicCardTrack } from "@/interfaces/music/music";
 
-export function MusicCard({ data }: { data: MusicCardTrack }) {
+export function MusicCard({
+  data,
+}: {
+  data: MusicCardTrack & { type: "current" | "recent" };
+}) {
   return (
     <Link href={"/music"}>
       <div className="flex relative justify-end   items-end h-full w-full overflow-hidden">
@@ -17,7 +21,7 @@ export function MusicCard({ data }: { data: MusicCardTrack }) {
           style={{ animationDuration: "10s" }}
           className={cn(
             "h-[100px] w-[100px] aspect-square  top-1/2 right-1/2 rounded-full  absolute z-10  origin-center ",
-            !data.listenOn && "animate-spin"
+            data.type === "current" && "animate-spin"
           )}
           alt="image"
           quality={100}
@@ -41,8 +45,13 @@ export function MusicCard({ data }: { data: MusicCardTrack }) {
           className="z-10  h-full px-2 pt-3 lg:px-1  self-start md:self-start text-sm  font-bold flex flex-col font-mono  -rotate-180"
           style={{ textOrientation: "mixed", writingMode: "vertical-rl" }}
         >
-          <h1 className="bg-gradient-to-l from-zinc-300 from-10% to-white text-transparent bg-clip-text">
-            {data.listenOn ? parseDate(data.listenOn) : "Playing..."}
+          <h1
+            className={cn(
+              "bg-gradient-to-l from-zinc-300 from-10% to-white text-transparent bg-clip-text",
+              data.type === "current" && "text-orange-400"
+            )}
+          >
+            {data.type === "recent" ? parseDate(data.listenOn!) : "Playing..."}
           </h1>
           <h1 className="bg-gradient-to-l from-zinc-300 from-10% to-white text-transparent bg-clip-text truncate text-nowrap">
             {data.title}

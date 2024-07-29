@@ -28,6 +28,15 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 'assets.literal.club',
             },
+            {
+                protocol: 'https',
+                hostname: 'images.chesscomfiles.com',
+            }
+            ,
+            {
+                protocol: 'https',
+                hostname: 'www.chess.com',
+            }
         ],
     },
 }

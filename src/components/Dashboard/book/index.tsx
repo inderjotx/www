@@ -4,12 +4,13 @@ import Link from "next/link";
 import React from "react";
 import { FallbackBook } from "./FallbackBook";
 import { useQuery } from "@tanstack/react-query";
-import { getRecentBook } from "@/lib/books";
+import { fetcher } from "@/lib/utils";
+import { ReadingState } from "@/interfaces/music/books";
 
 export function BookCard() {
   const { data } = useQuery({
     queryKey: ["recent-book"],
-    queryFn: async () => await getRecentBook(),
+    queryFn: async () => await fetcher<ReadingState>("/api/book"),
     refetchInterval: 1000 * 60 * 60, // 1 hour
   });
 

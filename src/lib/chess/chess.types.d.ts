@@ -162,3 +162,33 @@ interface UserProfile {
     isTopBlogger: boolean;
     allowFriendRequests: boolean;
 }
+
+interface FormatedChessGame {
+    href: string;
+    result: string;
+    moves: number;
+    formattedTime: string;
+    me: {
+        id: number;
+        title: string | null;
+        username: string;
+        countryId: number;
+        countryName: string;
+        membershipLevel: number;
+        flairCode: string;
+        avatarUrl: string;
+        rating: number;
+    };
+    opponent: {
+        id: number;
+        title: string | null;
+        username: string;
+        countryId: number;
+        countryName: string;
+        membershipLevel: number;
+        flairCode: string;
+        avatarUrl: string;
+        rating: number;
+    };
+
+}

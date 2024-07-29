@@ -6,20 +6,19 @@ import React from "react";
 import { useMediaQuery } from "react-responsive";
 import { useQuery } from "@tanstack/react-query";
 import { FallbackAnalytics } from "./FallbackAnalytics";
-import { getAnalytics } from "@/lib/analytics";
 
 export function Analytics() {
   const { data } = useQuery({
     queryKey: ["analytics-Hours"],
-    queryFn: async () => getAnalytics("Hours"),
+    queryFn: async () => fetcher<Analytics>("/api/analytics/Days"),
     refetchInterval: 1000 * 60, // every 1 minute
   });
 
   const isMobile = useMediaQuery({ maxWidth: 640 });
 
   if (data) {
-    let city: string | null = null;
-    let country: string | null = null;
+    let city: string | undefined;
+    let country: string | undefined;
 
     data.cityData.forEach((val: DataItem) => {
       city = val.name;
@@ -34,11 +33,11 @@ export function Analytics() {
         <div className="relative w-full  h-full flex ">
           {isMobile ? (
             <div className="absolute  -rotate-6 font-mono right-3 -inset-y-5 text-sm text-center z-10 bg-black/50 font-medium  backdrop-blur-sm vertical_text ">
-              Since Last Hour
+              In Last 24 Hours
             </div>
           ) : (
             <div className="absolute  rotate-6 font-mono -inset-x-5 bottom-2  text-sm text-center z-10 bg-black/50 font-medium  backdrop-blur-sm  ">
-              Since Last Hour
+              In Last 24 Hours
             </div>
           )}
           <div className="flex pl-2 md:-mt-5 mt-0 md:text-[15px] items-start  justify-center flex-col">

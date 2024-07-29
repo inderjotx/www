@@ -6,24 +6,29 @@ import React from "react";
 import { RecentPlay } from "./_components/MusicCard";
 import { SingleTrack } from "./_components/SingleTracks";
 import { useQueries, useQuery } from "@tanstack/react-query";
+import { fetcher } from "@/lib/utils";
+import { MusicCardTrack } from "@/interfaces/music/music";
 
 export default function ClientPage() {
-  const [top, recent, current] = useQueries({
+  const [top, recent] = useQueries({
     queries: [
       {
         queryKey: ["top-tracks"],
-        queryFn: async () => getTopTracks(),
+        queryFn: async () =>
+          await fetcher<{ success: boolean; data: MusicCardTrack[] }>(
+            "/api/music/top"
+          ),
         refetchInterval: 1000 * 60 * 60, // every 1 hours
       },
       {
         queryKey: ["recent-track"],
-        queryFn: async () => getRecentTrack(),
-        refetchInterval: 1000 * 60, // every 60 second
-      },
-      {
-        queryKey: ["current-track"],
-        queryFn: async () => getCurrentTrack(),
-        refetchInterval: 1000 * 10, // every 10 second
+        queryFn: async () =>
+          await fetcher<{
+            success: boolean;
+            data: MusicCardTrack & { type: "current" | "recent" };
+          }>("/api/music/recent"),
+
+        refetchInterval: 1000 * 10, // every 10 seconds
       },
     ],
   });
@@ -38,7 +43,7 @@ export default function ClientPage() {
       </div>
 
       <div>
-        <RecentPlay data={current.data ?? recent.data} />
+        <RecentPlay data={recent.data?.data} />
       </div>
       <div className="mt-10">
         <h1 className={cn("font-semibold text-xl", poppins.className)}>
@@ -52,7 +57,7 @@ export default function ClientPage() {
       </div>
 
       <div className="h-40 gap-2 w-full whitespace-nowrap scrollbar-hide  flex overflow-x-auto  ">
-        {top.data?.map((track, index) => (
+        {top.data?.data?.map((track, index) => (
           <SingleTrack {...track} key={index} />
         ))}
       </div>

@@ -12,6 +12,7 @@ import { Code } from "./code";
 import { BookCard } from "./book";
 import { Analytics } from "./analytics";
 import { SendEmail } from "./email";
+import { ChessRating, LastChessGame, ChessPiece } from "./chess";
 
 export function Dashboard() {
   return (
@@ -63,6 +64,23 @@ export function Dashboard() {
       </div>
       <div className="h-36  bg-background flex overflow-hidden rounded-md">
         <Tools />
+      </div>
+
+      <div className="h-52  bg-background flex overflow-hidden rounded-md">
+        {/* we show rating graph */}
+        <ChessRating />
+      </div>
+
+      <div className="h-52 grid gap-3 grid-cols-3">
+        <div className="col-span-1   dashboard_box ">
+          {/* chess a chess piece  */}
+          <ChessPiece />
+        </div>
+
+        <div className="col-span-2   dashboard_box">
+          {/* information about last chess game  */}
+          <LastChessGame />
+        </div>
       </div>
 
       <div className="  md:col-span-2 flex overflow-hidden rounded-md">
