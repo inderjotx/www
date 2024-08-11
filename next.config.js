@@ -1,4 +1,7 @@
 const withMDX = require('@next/mdx')()
+const { codeInspectorPlugin } = require('code-inspector-plugin');
+
+
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -7,6 +10,12 @@ const nextConfig = {
     // Optionally, add any other Next.js config below
     typescript : {
         ignoreBuildErrors: true
+    }
+    ,
+
+    webpack: (config , {dev , isServer }) => {
+     config.plugins.push(codeInspectorPlugin({ bundler : "webpack"}))
+     return config
     }
     ,
 

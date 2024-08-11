@@ -13,24 +13,25 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { time } from "console";
 import { cn } from "@/lib/utils";
-
-const chartConfig = {
-  timestamp: {
-    label: "timestamp",
-  },
-  rating: {
-    label: "Rating",
-    color: "hsl(var(--chart-1))",
-  },
-} satisfies ChartConfig;
 
 export function RatingChart({
   rapidStats,
+  color = "hsl(var(--chart-1))",
 }: {
   rapidStats: { timestamp: number; rating: number }[];
+  color?: string;
 }) {
+  const chartConfig = {
+    timestamp: {
+      label: "timestamp",
+    },
+    rating: {
+      label: "Rating",
+      color: color,
+    },
+  } satisfies ChartConfig;
+
   return (
     <Card className="w-full h-full border-none relative overflow-hidden rounded-md">
       <h1

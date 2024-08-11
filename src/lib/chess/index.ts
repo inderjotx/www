@@ -318,16 +318,15 @@ export async function getAllAnalytics() {
 
     if (!response.ok) {
         console.log('error')
-        return {
-            success: false,
-            data: []
-        }
-
+        throw new Error('Error while fetching data ')
     }
 
     const data = await response.json() as ChessStats
 
-    return data
+    return {
+        success: true,
+        data: data
+    }
 }
 
 
@@ -339,7 +338,7 @@ async function formatChessGame(game: ChessGame): Promise<FormatedChessGame> {
     const opponentKey = game.user1.username === USER_NAME ? 'user2' : 'user1'
     const myRating = game[`${myUserKey}Rating`]
     const opponentRating = game[`${opponentKey}Rating`]
-    const result = game[`${myUserKey}Result`] === 0 ? "Lose" : "Win"
+    const result = game[`${myUserKey}Result`] === 0 ? "Lose" : game[`${myUserKey}Result`] === 0.5 ? "Draw" : "Win"
 
     const [myAbout, opponentAbout] = await Promise.all([
         about(game[`${myUserKey}`].username),

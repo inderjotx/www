@@ -72,12 +72,12 @@ export function Dashboard() {
       </div>
 
       <div className="h-52 grid gap-3 grid-cols-3">
-        <div className="col-span-1   dashboard_box ">
-          {/* chess a chess piece  */}
-          <ChessPiece />
-        </div>
+        {/* <div className="col-span-1   dashboard_box  "> */}
+        {/* chess a chess piece  */}
+        {/* <ChessPiece /> */}
+        {/* </div> */}
 
-        <div className="col-span-2   dashboard_box">
+        <div className="col-span-3   dashboard_box">
           {/* information about last chess game  */}
           <LastChessGame />
         </div>
