@@ -9,12 +9,7 @@ const luckGuy = Luckiest_Guy({ subsets: ["latin"], weight: ["400"] });
 
 export function ChessMatchCard({ data }: { data: FormatedChessGame }) {
   return (
-    <Link
-      rel="noopener noreferrer"
-      target="_blank"
-      href={"/chess"}
-      className="w-full h-full "
-    >
+    <Link href={"/chess"} className="w-full h-full ">
       <div className="w-full h-full flex  gap-0.5 ">
         <div
           style={{ textOrientation: "mixed", writingMode: "vertical-lr" }}
