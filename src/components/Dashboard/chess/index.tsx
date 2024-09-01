@@ -3,7 +3,6 @@ import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { RatingChart } from "./RatingChart.client";
 import { fetcher } from "@/lib/utils";
-import { ChessPiece as King } from "./chess.piece.client";
 import { ChessMatchCard } from "@/components/ui/ChessMatchCard";
 
 interface FormatedChessGame {
@@ -36,7 +35,6 @@ interface FormatedChessGame {
 }
 
 import { Luckiest_Guy } from "next/font/google";
-import { Crown } from "lucide-react";
 
 const luckGuy = Luckiest_Guy({ subsets: ["latin"], weight: ["400"] });
 
@@ -74,8 +72,4 @@ export function LastChessGame() {
   }
 
   return <ChessMatchCard data={data} />;
-}
-
-export function ChessPiece() {
-  return <King />;
 }

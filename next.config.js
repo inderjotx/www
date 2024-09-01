@@ -12,6 +12,7 @@ const nextConfig = {
         ignoreBuildErrors: true
     }
     ,
+    output : env.NEXT_PUBLIC_PROVIDER === 'self-host' ? "standalone" : "export"
 
     webpack: (config , {dev , isServer }) => {
      config.plugins.push(codeInspectorPlugin({ bundler : "webpack"}))
@@ -48,6 +49,8 @@ const nextConfig = {
             }
         ],
     },
+    
+
 }
 
 module.exports = withMDX(nextConfig)

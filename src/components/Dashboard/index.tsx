@@ -1,4 +1,6 @@
-import React, { Suspense } from "react";
+import { createSwapy } from "swapy";
+
+import React, { useEffect } from "react";
 import { GithubRef } from "./GithubRef";
 import { Github } from "./github";
 import { Anime } from "./anime";
@@ -12,11 +14,11 @@ import { Code } from "./code";
 import { BookCard } from "./book";
 import { Analytics } from "./analytics";
 import { SendEmail } from "./email";
-import { ChessRating, LastChessGame, ChessPiece } from "./chess";
+import { ChessRating, LastChessGame } from "./chess";
 
 export function Dashboard() {
   return (
-    <div className="grid gap-3 md:grid-cols-2 grid-col-1 mb-10">
+    <div className="grid  swapy-container gap-3 md:grid-cols-2 grid-col-1 mb-10">
       <div className="h-36  dashboard_box">
         <GithubRef />
       </div>
@@ -72,11 +74,6 @@ export function Dashboard() {
       </div>
 
       <div className="h-52 grid gap-3 grid-cols-3">
-        {/* <div className="col-span-1   dashboard_box  "> */}
-        {/* chess a chess piece  */}
-        {/* <ChessPiece /> */}
-        {/* </div> */}
-
         <div className="col-span-3   dashboard_box">
           {/* information about last chess game  */}
           <LastChessGame />
