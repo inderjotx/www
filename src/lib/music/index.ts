@@ -1,7 +1,6 @@
 "use server"
 import { RecentlyPlayedResponse, TopTracks, MusicCardTrack } from '@/interfaces/music/music';
 import { unstable_cache as cache } from 'next/cache';
-import qs from 'query-string'
 
 
 export async function getTopTracks() {
@@ -145,10 +144,7 @@ export const getAccessToken = cache(async () => {
             Authorization: `Basic ${basic}`,
             'Content-Type': 'application/x-www-form-urlencoded',
         },
-        body: qs.stringify({
-            grant_type: 'refresh_token',
-            refresh_token,
-        }),
+        body: new URLSearchParams({ grant_type: 'refresh_token', refresh_token: refresh_token as string, }).toString()
     });
 
     const data = await response.json();

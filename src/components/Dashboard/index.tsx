@@ -1,5 +1,3 @@
-import { createSwapy } from "swapy";
-
 import React, { useEffect } from "react";
 import { GithubRef } from "./GithubRef";
 import { Github } from "./github";
@@ -18,7 +16,7 @@ import { ChessRating, LastChessGame } from "./chess";
 
 export function Dashboard() {
   return (
-    <div className="grid  swapy-container gap-3 md:grid-cols-2 grid-col-1 mb-10">
+    <div className="grid   gap-3 md:grid-cols-2 grid-col-1 mb-10">
       <div className="h-36  dashboard_box">
         <GithubRef />
       </div>

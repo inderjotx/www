@@ -1,7 +1,7 @@
 "use client";
 import { ShadcnLineChart } from "./LineChart";
 import { BarList } from "./BarList";
-import { addIcon, getHumanReadTime } from "@/lib/utils";
+import { getHumanReadTime } from "@/lib/utils";
 import { useState } from "react";
 import { GraphChangeButton } from "./GraphChangeButton";
 import { Loading } from "./Loading";
@@ -38,12 +38,12 @@ export function AnalyticsChart() {
       data.barGraphData[index].time = getHumanReadTime(item.time);
     });
 
-    addIcon(data.browserData);
-    addIcon(data.cityData);
-    addIcon(data.countryData);
-    addIcon(data.deviceData);
-    addIcon(data.osData);
-    addIcon(data.refData);
+    // addIcon(data.browserData);
+    // addIcon(data.cityData);
+    // addIcon(data.countryData);
+    // addIcon(data.deviceData);
+    // addIcon(data.osData);
+    // addIcon(data.refData);
 
     return (
       <div className="flex gap-10 w-full h-full  flex-col">

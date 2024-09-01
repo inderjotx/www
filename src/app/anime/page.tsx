@@ -16,8 +16,10 @@ export const metadata = {
 export const revalidate = 24 * 60 * 60;
 
 export default async function Anime() {
-  const data = await getFavouriteShow();
-  const recent = await getRecentShow();
+  const [data, recent] = await Promise.all([
+    getFavouriteShow(),
+    getRecentShow(),
+  ]);
 
   return (
     <div className="flex flex-col gap-8 ">

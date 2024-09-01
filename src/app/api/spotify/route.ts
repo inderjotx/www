@@ -1,5 +1,4 @@
 import { redirect } from "next/navigation";
-import qs from 'query-string'
 import { NextRequest } from "next/server";
 
 
@@ -13,14 +12,19 @@ export async function GET(req: NextRequest) {
 
 
     const BASE_URL = 'https://accounts.spotify.com/authorize'
-    const PARAMS = qs.stringify(
-        {
-            response_type: 'code',
-            client_id: CLIENT_ID,
-            scope: scope,
-            redirect_uri: redirect_uri,
-        }
-    )
 
-    redirect(`${BASE_URL}?${PARAMS}`)
+
+    const searchParams = new URLSearchParams({
+        response_type: 'code',
+        client_id: CLIENT_ID,
+        scope: scope,
+        redirect_uri: redirect_uri,
+    }).toString()
+
+
+
+
+
+
+    redirect(`${BASE_URL}?${searchParams}`)
 }

@@ -1,10 +1,33 @@
-https://www.chess.com/callback/user/games?locale=en_US&all=1&userId=349027177
+Unused dependencies
 
-to get information about recent games played my me
+Removed
 
-infomation about me => https://www.chess.com/callback/user/popup/x_index
-
-chart to show changes in my rapid rating => https://www.chess.com/callback/live/stats/x_index/chart?daysAgo=90&type=rapid
-
-to get information like how many game i have play
-https://www.chess.com/callback/member/stats/x_index
+"@headlessui/react": "^0.7.18",
+"@headlessui/tailwindcss": "^-1.2.0",
+"@hookform/resolvers": "^3.3.4",
+"i": "^0.3.7",
+"@radix-ui/react-dialog": "^1.0.5",
+"@tailwindcss/typography": "^0.5.10",
+"@react-three/drei": "^9.109.2",
+"@react-three/fiber": "^8.16.8",
+"@tailwindcss/typography": "^0.5.10",
+"npm": "^10.5.0",
+"sharp": "^0.33.2",
+"swapy": "^0.1.1",
+"embla-carousel-autoplay": "^8.0.0",
+"swr": "^2.2.5",
+"embla-carousel-react": "^8.0.0",
+"query-string": "^9.0.0",
+"querystring": "^0.2.1",
+"react-hook-form": "^7.51.2",
+"redis": "^4.6.13",
+"@tailwindcss/forms": "^0.5.7",
+"three": "^0.167.0",
+"three-stdlib": "^2.30.5",
+"tailwindcss-animate": "^1.0.7",
+"rss": "^1.2.2",
+"react-icons": "^5.0.1",
+"country-flag-icons": "^1.5.10",
+"next-themes": "^0.2.1",
+"react-resizable-panels": "^2.0.12",
+"@types/rss": "^0.0.32",

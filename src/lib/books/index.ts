@@ -1,4 +1,3 @@
-'use server'
 
 
 enum REVALIDATE_TIME {
@@ -9,6 +8,7 @@ enum REVALIDATE_TIME {
 }
 
 import { LoginResponse, GetShelfBooksResponse, MyReadingStateResult, ReadingState } from "@/interfaces/music/books";
+import { resolveNaptr } from "dns";
 import { unstable_cache as cache } from "next/cache";
 
 
@@ -18,7 +18,6 @@ import { unstable_cache as cache } from "next/cache";
 const getAccessToken = cache(async () => {
     const email = process.env.LITERAL_EMAIL;
     const password = process.env.LITERAL_PASSWORD;
-
 
     const body = JSON.stringify({
         query: `
@@ -43,7 +42,10 @@ const getAccessToken = cache(async () => {
         }
     });
 
+    console.log('body', body)
+
     const data = await fetcher<LoginResponse>(body, true)
+    console.log('data from the access toekn', data)
     return data.login.token
 
 }, [], { revalidate: REVALIDATE_TIME.ONE_MONTH * 6 })
@@ -60,8 +62,14 @@ async function fetcher<T>(body: string, isAccessToken = false): Promise<T> {
     }
 
 
+
+
+
     if (!isAccessToken) {
+        console.log('before having access token ...............................')
         const apiToken = await getAccessToken()
+        console.log('after access token ...............................')
+        console.log('api token', apiToken)
         headers["Authorization"] = `Bearer ${apiToken}`;
     }
 
@@ -76,11 +84,13 @@ async function fetcher<T>(body: string, isAccessToken = false): Promise<T> {
             throw new Error(`HTTP error! Status: ${response.status}`);
         }
 
+
         const data = await response.json();
         return data.data
+
     } catch (error) {
         console.error('Error:', error);
-        throw new Error('Failed to fetch access token');
+        // throw new Error('Failed to fetch access token');
     }
 
 }

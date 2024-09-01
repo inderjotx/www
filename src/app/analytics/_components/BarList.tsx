@@ -15,7 +15,7 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-import { Icon } from "@/components/Icon";
+// import { Icon } from "@/components/Icon";
 
 const chartConfig = {
   desktop: {

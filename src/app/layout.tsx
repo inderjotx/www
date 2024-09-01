@@ -4,7 +4,7 @@ import { Navbar } from "@/components/Navbar/index";
 import { Gradient } from "@/components/gradient";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
-import { ThemeProvider } from "@/components/Provider/ThemeProvider";
+// import { ThemeProvider } from "@/components/Provider/ThemeProvider";
 import { cn } from "@/lib/utils";
 import { Footer } from "@/components/Footer";
 import { QueryProvider } from "@/components/Provider/QueryProvider";
@@ -35,26 +35,28 @@ export default function RootLayout({
       className="antialiased dark"
       style={{ colorScheme: "dark" }}
     >
-      <body className={cn(inter.className, " relative   overflow-x-hidden")}>
-        <ThemeProvider
+      <body
+        className={cn(inter.className, " relative   overflow-x-hidden dark")}
+      >
+        {/* <ThemeProvider
           attribute="class"
           defaultTheme="dark"
           themes={["dark"]}
           disableTransitionOnChange
-        >
-          {/* <div className="fixed inset-0 overflow-hidden" >
+        > */}
+        {/* <div className="fixed inset-0 overflow-hidden" >
             <Gradient />
           </div> */}
-          <QueryProvider>
-            <div className="flex   flex-col gap-2 max-w-3xl px-4 md:px-0  md:mx-auto relative  ">
-              <Navbar />
-              <Toaster />
-              {children}
-            </div>
-          </QueryProvider>
+        <QueryProvider>
+          <div className="flex   flex-col gap-2 max-w-3xl px-4 md:px-0  md:mx-auto relative  ">
+            <Navbar />
+            <Toaster />
+            {children}
+          </div>
+        </QueryProvider>
 
-          <Footer />
-        </ThemeProvider>
+        <Footer />
+        {/* </ThemeProvider> */}
       </body>
     </html>
   );

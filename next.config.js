@@ -12,7 +12,7 @@ const nextConfig = {
         ignoreBuildErrors: true
     }
     ,
-    output : env.NEXT_PUBLIC_PROVIDER === 'self-host' ? "standalone" : "export"
+    output : process.env.NEXT_PUBLIC_PROVIDER === 'self-host' ? "standalone" : "export" ,
 
     webpack: (config , {dev , isServer }) => {
      config.plugins.push(codeInspectorPlugin({ bundler : "webpack"}))

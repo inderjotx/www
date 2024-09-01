@@ -15,8 +15,10 @@ export const metadata = {
 };
 
 export default async function Page() {
-  const books = await getShelfBooks();
-  const recentBook = await getRecentBook();
+  const [recentBook] = await Promise.all([
+    // getShelfBooks(),
+    getRecentBook(),
+  ]);
 
   return (
     <div className="flex flex-col gap-8 h-full w-full">
@@ -42,11 +44,11 @@ export default async function Page() {
       <p className="text-muted-foreground">
         Some of my all time favourite books
       </p>
-      <div className="grid gap-3 md:gap-4 grid-cols-1 md:grid-cols-2 ">
+      {/* <div className="grid gap-3 md:gap-4 grid-cols-1 md:grid-cols-2 ">
         {books.map((book, index) => (
           <BookCard {...book} key={index} />
         ))}
-      </div>
+      </div> */}
     </div>
   );
 }
