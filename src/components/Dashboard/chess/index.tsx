@@ -46,8 +46,6 @@ export function ChessRating() {
     refetchInterval: 1000 * 60 * 60 * 24,
   });
 
-  console.log("chess rating", data);
-
   if (!data?.data) {
     return <Skeleton className="h-full w-full" />;
   } else {
@@ -62,7 +60,6 @@ export function LastChessGame() {
       await fetcher<FormatedChessGame>("/api/chess/last-match"),
     refetchInterval: 1000 * 60 * 60 * 24,
   });
-  console.log("last chess game", data);
 
   if (!data) {
     return <Skeleton className="h-full w-full" />;

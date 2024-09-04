@@ -61,7 +61,6 @@ export async function getCurrentTrack(): Promise<MusicCardTrack | null> {
 
     }).then(data => data.json())
         .catch((err) => {
-            console.log('not playing currently')
             return null
         })
 
@@ -103,7 +102,6 @@ export const getRecentTrack = async (): Promise<MusicCardTrack | null> => {
         .then(data => data.json())
         .then(json => json)
         .catch(err => {
-            console.log(err)
             return null
         })
 

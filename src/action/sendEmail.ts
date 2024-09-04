@@ -24,12 +24,10 @@ export async function sendEmail(data: sendEmailType) {
     });
 
     if (error) {
-        console.log(error)
         return { success: false }
     }
     else {
 
-        console.log(response)
         return { success: true }
     }
 }

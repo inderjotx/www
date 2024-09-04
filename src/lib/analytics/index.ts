@@ -103,8 +103,6 @@ export async function getAnalytics(from: TimeFrame): Promise<Analytics> {
     const otherData = getAccumulatedData(clickData)
     const barBarData = await transformData(from, clickData)
 
-    console.log("other")
-    console.log(otherData)
     return {
         ...otherData,
         totalClicks: totalClicks,

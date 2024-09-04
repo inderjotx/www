@@ -28,10 +28,8 @@ export async function POST(request: NextRequest) {
 
             const hasAlreadyClicked = await alreadyClicked(ip)
 
-            console.log(`${ip} has already clicked the url`)
             if (!hasAlreadyClicked) {
 
-                console.log('clicked for the first time')
 
                 const view: (UserInfo | Partial<UserInfo>) = {
                     city: request.geo?.city,
@@ -44,14 +42,12 @@ export async function POST(request: NextRequest) {
                     browser: data.browser.name
                 }
 
-                console.log('click data of the user' + view)
 
                 await Promise.all([registerClick(view), addClickToDB(view)])
 
             }
         }
         else {
-            console.log('no ip data available')
         }
 
         return NextResponse.json({ success: true })
@@ -59,7 +55,6 @@ export async function POST(request: NextRequest) {
 
     catch (error) {
 
-        console.log('error while registering click')
         return NextResponse.json({ success: false })
     }
 

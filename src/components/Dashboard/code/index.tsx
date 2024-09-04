@@ -4,7 +4,6 @@ import React from "react";
 
 export async function Code() {
   const data = await weeklyCodeTime();
-  console.log(data);
 
   const hours = data.time.split(":")[0];
 

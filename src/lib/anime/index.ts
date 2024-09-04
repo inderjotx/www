@@ -108,7 +108,6 @@ export async function getRecentShow() {
         .catch(err => console.error('error:' + err));
 
 
-    console.log(data)
 
     const show = data.results?.[0]
 

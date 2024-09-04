@@ -216,7 +216,6 @@ async function rapidRatingAnalytics() {
     const response = await fetch(url)
 
     if (!response.ok) {
-        console.log('error')
         return {
             success: false,
             data: []
@@ -245,7 +244,6 @@ export async function about(userName = 'x_index') {
     const response = await fetch(url)
 
     if (!response.ok) {
-        console.log('error')
         return {
             success: false,
             data: {
@@ -276,7 +274,6 @@ async function recentMatches() {
     const response = await fetch(url)
 
     if (!response.ok) {
-        console.log('error')
         return {
             status: false,
             data: [] as FormatedChessGame[]
@@ -301,7 +298,6 @@ export const cachedRecentMatches = cache(recentMatches, ['recent-matches'], {
 
 export const getLastMatch = async () => {
     const { data } = await cachedRecentMatches()
-    console.log(data)
     return data[0]
 }
 
@@ -317,7 +313,6 @@ export async function getAllAnalytics() {
     const response = await fetch(url)
 
     if (!response.ok) {
-        console.log('error')
         throw new Error('Error while fetching data ')
     }
 

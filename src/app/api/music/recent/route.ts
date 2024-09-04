@@ -13,7 +13,6 @@ export async function GET() {
 
 
     if (currentTrack) {
-        console.log("Playing song on spotify....")
         return NextResponse.json({
             success: true,
             data: {
@@ -26,7 +25,6 @@ export async function GET() {
 
     if (recentTrack) {
 
-        console.log("Not playing anything on spotify....")
         return NextResponse.json({
             success: true,
             data: {
