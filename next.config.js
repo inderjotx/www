@@ -1,24 +1,31 @@
 const withMDX = require('@next/mdx')()
 const { codeInspectorPlugin } = require('code-inspector-plugin');
 
-
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+})
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    // Configure `pageExtensions` to include MDX files
     pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
-    // Optionally, add any other Next.js config below
+
     typescript : {
         ignoreBuildErrors: true
     }
     ,
-    output : process.env.NEXT_PUBLIC_PROVIDER === 'self-host' ? "standalone" : "export" ,
+    // output : process.env.NEXT_PUBLIC_PROVIDER === 'self-host' ? "standalone" : "export" ,
 
     webpack: (config , {dev , isServer }) => {
      config.plugins.push(codeInspectorPlugin({ bundler : "webpack"}))
      return config
     }
     ,
+
+
+    experimental : {
+        optimizePackageImports  :['framer-motion', 'lucide-react' , 'recharts'] , 
+    }
+,
 
     images: {
         remotePatterns: [
@@ -53,4 +60,4 @@ const nextConfig = {
 
 }
 
-module.exports = withMDX(nextConfig)
+module.exports = withBundleAnalyzer(withMDX(nextConfig))

@@ -3,7 +3,7 @@ import { fetcher } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { useMediaQuery } from "react-responsive";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 import { useQuery } from "@tanstack/react-query";
 import { FallbackAnalytics } from "./FallbackAnalytics";
 
@@ -11,7 +11,7 @@ export function Analytics() {
   const { data } = useQuery({
     queryKey: ["analytics-Hours"],
     queryFn: async () => fetcher<Analytics>("/api/analytics/Days"),
-    refetchInterval: 1000 * 60, // every 1 minute
+    refetchInterval: 1000 * 60 * 60,
   });
 
   const isMobile = useMediaQuery({ maxWidth: 640 });
@@ -52,7 +52,7 @@ export function Analytics() {
           </div>
           <Image
             quality={100}
-            src={"/dashboard/analytics.png"}
+            src={"/dashboard/analytics.webp"}
             alt="cat girl showing analytics "
             fill
             className="object-cover absolute inset-0 -z-20 "

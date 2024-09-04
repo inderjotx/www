@@ -1,11 +1,9 @@
 "use client";
-import { getCurrentTrack, getRecentTrack, getTopTracks } from "@/lib/music";
-import { poppins } from "@/lib/fonts/poppins";
 import { cn } from "@/lib/utils";
 import React from "react";
 import { RecentPlay } from "./_components/MusicCard";
 import { SingleTrack } from "./_components/SingleTracks";
-import { useQueries, useQuery } from "@tanstack/react-query";
+import { useQueries } from "@tanstack/react-query";
 import { fetcher } from "@/lib/utils";
 import { MusicCardTrack } from "@/interfaces/music/music";
 
@@ -35,7 +33,7 @@ export default function ClientPage() {
 
   return (
     <div className="flex flex-col gap-4">
-      <h1 className={cn("font-semibold text-xl", poppins.className)}>Music</h1>
+      <h1 className={cn("font-semibold text-xl")}>Music</h1>
       <div className=" text-muted-foreground">
         Music has always been something near to my heart. Whether it&apos;s a
         happy day or a sad one, there is a memory linked with it, and a song
@@ -46,9 +44,7 @@ export default function ClientPage() {
         <RecentPlay data={recent.data?.data} />
       </div>
       <div className="mt-10">
-        <h1 className={cn("font-semibold text-xl", poppins.className)}>
-          Fav Songs
-        </h1>
+        <h1 className={cn("font-semibold text-xl")}>Fav Songs</h1>
       </div>
       <div className="text-muted-foreground">
         I listen to a lot of Spotify, Over the last 12 months, Below you can

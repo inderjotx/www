@@ -1,7 +1,6 @@
 "use client";
-import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import React, { Dispatch, SetStateAction } from "react";
+import dynamic from "next/dynamic";
 
 interface GraphChangeButtonProps {
   buttons: { title: string; action: string }[];
@@ -16,6 +15,11 @@ export function GraphChangeButton({
   curData,
   updateState,
 }: GraphChangeButtonProps) {
+  const Motion = dynamic(
+    () => import("framer-motion").then((mod) => mod.motion.div),
+    { ssr: false }
+  ) as React.ComponentType<any>;
+
   return (
     <div className="flex gap-2">
       {buttons.map((button) => (
@@ -27,11 +31,11 @@ export function GraphChangeButton({
           <div className="z-20">{button.title}</div>
 
           {curData === button.action && (
-            <motion.div
+            <Motion
               layout
               layoutId={`blob_${type}`}
               className="z-10 absolute inset-0 backdrop-blur-sm rounded-sm bg-blue-900  "
-            ></motion.div>
+            ></Motion>
           )}
         </div>
       ))}

@@ -34,10 +34,6 @@ interface FormatedChessGame {
   };
 }
 
-import { Luckiest_Guy } from "next/font/google";
-
-const luckGuy = Luckiest_Guy({ subsets: ["latin"], weight: ["400"] });
-
 export function ChessRating() {
   const { data } = useQuery({
     queryKey: ["rapid-rating"],

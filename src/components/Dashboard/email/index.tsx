@@ -6,7 +6,6 @@ import { sendEmailSchema } from "@/lib/schema";
 import { sendEmail } from "@/action/sendEmail";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
-import { poppins } from "@/lib/fonts/poppins";
 import { useRef } from "react";
 
 export function SendEmail() {
@@ -43,9 +42,7 @@ export function SendEmail() {
       }}
     >
       <div className="flex flex-col bg-gradient-to-b from-zinc-800 to-zinc-950  gap-4 w-full px-3 py-6">
-        <h1 className={cn(poppins.className, "pl-1 text-sm")}>
-          Drop a Message
-        </h1>
+        <h1 className={cn("pl-1 text-sm")}>Drop a Message</h1>
 
         <Input
           className="focus-visible:ring-0  "

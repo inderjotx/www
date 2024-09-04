@@ -3,9 +3,6 @@ import Link from "next/link";
 import { Crown } from "lucide-react";
 import { ChessBackground } from "./chess-background";
 import { cn } from "@/lib/utils";
-import { Luckiest_Guy } from "next/font/google";
-
-const luckGuy = Luckiest_Guy({ subsets: ["latin"], weight: ["400"] });
 
 export function ChessMatchCard({ data }: { data: FormatedChessGame }) {
   return (
@@ -66,8 +63,7 @@ export function ChessMatchCard({ data }: { data: FormatedChessGame }) {
                   "2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000",
               }}
               className={cn(
-                luckGuy.className,
-                "  font-extrabold text-4xl md:text-4xl  ",
+                "  font-extrabold text-4xl md:text-4xl font-lucky ",
                 data.result === "Win"
                   ? "text-[#00FF00]"
                   : data.result === "Lose"

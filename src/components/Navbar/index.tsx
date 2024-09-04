@@ -5,10 +5,7 @@ import React, { useEffect, useState } from "react";
 import { MoreLarge } from "./more/triggerLarge";
 import { MoreSmall } from "./more/triggerSmall";
 import { usePathname } from "next/navigation";
-import { motion } from "framer-motion";
-// import { useTheme } from 'next-themes'
-
-type nav = "home" | "about" | "project" | "more";
+import dynamic from "next/dynamic";
 
 const navLinks = [
   {
@@ -31,16 +28,14 @@ export function Navbar() {
   let pathname = usePathname();
 
   const [curLink, setLink] = useState("");
-  // const { setTheme, theme } = useTheme()
+  const Motion = dynamic(
+    async () => await import("framer-motion").then((mod) => mod.motion.div),
+    { ssr: false }
+  ) as React.ComponentType<any>;
 
   useEffect(() => {
     setLink(pathname);
   }, [pathname]);
-
-  // useEffect(() => {
-  //     setTheme("dark")
-  //     console.log(theme)
-  // }, [theme, setTheme])
 
   return (
     <div className="h-20 mb-2 top-0  w-full flex justify-center">
@@ -56,7 +51,7 @@ export function Navbar() {
             >
               <h1>{link.text} </h1>
               {pathname === link.href && (
-                <motion.div
+                <Motion
                   layout
                   layoutId="blob"
                   className="absolute left-0 top-0 h-full w-full bg-muted -z-10 rounded-full"

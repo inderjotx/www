@@ -1,4 +1,3 @@
-import { poppins } from "@/lib/fonts/poppins";
 import { cn } from "@/lib/utils";
 import React from "react";
 import { BookCard, LoadingBookCard } from "./_components/BookCard";
@@ -22,7 +21,7 @@ export default async function Page() {
 
   return (
     <div className="flex flex-col gap-8 h-full w-full">
-      <h1 className={cn("font-semibold text-xl", poppins.className)}>Books</h1>
+      <h1 className={cn("font-semibold text-xl")}>Books</h1>
 
       <div className=" text-muted-foreground">
         I am trying to develop habbit of reading books . This is the latest list

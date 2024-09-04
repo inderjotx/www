@@ -1,20 +1,12 @@
 "use client";
 
 import * as React from "react";
-import {
-  Area,
-  AreaChart,
-  BarChart,
-  CartesianGrid,
-  XAxis,
-  YAxis,
-} from "recharts";
+import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
 
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
@@ -33,7 +25,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { TrendingUp } from "lucide-react";
 
 type BarGraphInput = {
   startIntervalMiliSec: number;

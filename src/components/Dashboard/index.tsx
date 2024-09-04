@@ -1,18 +1,33 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { GithubRef } from "./GithubRef";
 import { Github } from "./github";
 import { Anime } from "./anime";
 import { Discord } from "./discord";
-import { Tools } from "./tools-carousel";
-import { Post } from "./LatestPost";
 import { Spotify } from "./spotify";
 import { LinkedIn } from "./linkedin";
 import { X } from "./X";
 import { Code } from "./code";
-import { BookCard } from "./book";
-import { Analytics } from "./analytics";
-import { SendEmail } from "./email";
-import { ChessRating, LastChessGame } from "./chess";
+import dynamic from "next/dynamic";
+
+// Dynamically imported components
+const Tools = dynamic(() =>
+  import("./tools-carousel").then((mod) => mod.Tools)
+);
+const Post = dynamic(() => import("./LatestPost").then((mod) => mod.Post));
+const BookCard = dynamic(() => import("./book").then((mod) => mod.BookCard));
+const Analytics = dynamic(
+  () => import("./analytics").then((mod) => mod.Analytics),
+  { ssr: false }
+);
+const SendEmail = dynamic(() => import("./email").then((mod) => mod.SendEmail));
+const ChessRating = dynamic(() =>
+  import("./chess").then((mod) => mod.ChessRating)
+);
+const LastChessGame = dynamic(
+  () => import("./chess").then((mod) => mod.LastChessGame),
+
+  { ssr: false }
+);
 
 export function Dashboard() {
   return (
@@ -67,13 +82,11 @@ export function Dashboard() {
       </div>
 
       <div className="h-52  bg-background flex overflow-hidden rounded-md">
-        {/* we show rating graph */}
         <ChessRating />
       </div>
 
       <div className="h-52 grid gap-3 grid-cols-3">
         <div className="col-span-3   dashboard_box">
-          {/* information about last chess game  */}
           <LastChessGame />
         </div>
       </div>

@@ -4,7 +4,7 @@ import { cachedRapidRating } from "@/lib/chess";
 export const revalidate = 60 * 60 * 24  // 1 day 
 
 
-export async function GET(req: NextRequest) {
+export async function GET() {
 
 
     const data = await cachedRapidRating()

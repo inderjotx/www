@@ -1,4 +1,3 @@
-import { poppins } from "@/lib/fonts/poppins";
 import { cn, getAge } from "@/lib/utils";
 import { Dashboard } from "../components/Dashboard";
 import { Anchor, AnchorArrow } from "@/components/Anchor";
@@ -16,7 +15,6 @@ export default function Home() {
       <div>
         <h2
           className={cn(
-            poppins.className,
             "text-lg inline-block  font-medium text-transparent  bg-gradient-to-r from-indigo-200 via-indigo-300 to-indigo-500 bg-clip-text"
           )}
         >

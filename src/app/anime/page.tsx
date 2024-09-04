@@ -1,7 +1,6 @@
 import { AnimePoster } from "@/app/anime/_components/anime-poster";
 import { StarRating } from "@/components/Star";
 import { getFavouriteShow, getRecentShow } from "@/lib/anime";
-import { poppins } from "@/lib/fonts/poppins";
 import { cn } from "@/lib/utils";
 import { Eye, Tv } from "lucide-react";
 import Image from "next/image";
@@ -23,7 +22,7 @@ export default async function Anime() {
 
   return (
     <div className="flex flex-col gap-8 ">
-      <h1 className={cn("font-semibold text-xl", poppins.className)}>Anime</h1>
+      <h1 className={cn("font-semibold text-xl")}>Anime</h1>
 
       <div className="text-base text-muted-foreground">
         I have loved watching anime since childhood. My first anime was Death

@@ -1,11 +1,6 @@
 "use client";
 import { cn, fetcher } from "@/lib/utils";
 import { Eye } from "lucide-react";
-import { redirect } from "next/navigation";
-import React, { use, useEffect, useState } from "react";
-import { incrementView } from "@/lib/redis";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
 
 interface ArticleTitleProps {
@@ -27,6 +22,7 @@ export default function ArticleTitle({
     views: number;
   }>({
     queryKey: ["/api/blog?title=" + redis_key],
+    // @ts-ignore
     queryFn: async () =>
       await fetcher<ArticleTitleProps>(`/api/blog?title=${redis_key}`),
   });

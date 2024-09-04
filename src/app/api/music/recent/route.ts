@@ -5,12 +5,11 @@ import { unstable_noStore as noStore } from 'next/cache';
 
 
 
-export async function GET(req: NextRequest) {
+export async function GET() {
 
-    // to get dynamic data
     noStore()
 
-    const currentTrack = await getCurrentTrack()
+    const [currentTrack, recentTrack] = await Promise.all([getCurrentTrack(), getRecentTrack()])
 
 
     if (currentTrack) {
@@ -24,7 +23,6 @@ export async function GET(req: NextRequest) {
         })
     }
 
-    const recentTrack = await getRecentTrack()
 
     if (recentTrack) {
 

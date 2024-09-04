@@ -5,8 +5,8 @@ import React from "react";
 
 export function FallbackMusic() {
   return (
-    <Link href={"/music"} className="w-full">
-      <div className="relative overflow-hidden bg-zinc-900 w-full">
+    <Link href={"/music"} className="w-full h-full">
+      <div className="relative overflow-hidden bg-zinc-900 w-full h-full">
         <Disc3 className="animate-spin  h-32 w-32  -mx-16" />
 
         <Image
@@ -14,6 +14,7 @@ export function FallbackMusic() {
           src={"/dashboard/musicCat.gif"}
           height={100}
           width={100}
+          unoptimized
           alt="cat-music"
         />
       </div>

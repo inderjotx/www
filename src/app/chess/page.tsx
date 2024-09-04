@@ -5,11 +5,17 @@ import {
   getAllAnalytics,
 } from "@/lib/chess";
 
-import { Luckiest_Guy, Zeyada } from "next/font/google";
 import Image from "next/image";
 import { Title } from "../uses/_components/title";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import { RatingChart } from "@/components/Dashboard/chess/RatingChart.client";
+import dynamic from "next/dynamic";
+
+const RatingChart = dynamic(() =>
+  import("@/components/Dashboard/chess/RatingChart.client").then(
+    (mod) => mod.RatingChart
+  )
+);
+
 import { cn } from "@/lib/utils";
 
 const profileLink = "https://www.chess.com/member/x_index";
@@ -20,9 +26,6 @@ export const revalidate = 60 * 60 * 24;
 
 import { Crown, Link } from "lucide-react";
 import { ChessBackground } from "@/components/ui/chess-background";
-
-const luckGuy = Luckiest_Guy({ subsets: ["latin"], weight: ["400"] });
-const zeyada = Zeyada({ subsets: ["latin"], weight: ["400"] });
 
 export default async function page() {
   const [rapidRatingForGraph, recentMatches, totalGamesData] =
@@ -101,7 +104,7 @@ export default async function page() {
               <Image
                 width={200}
                 height={200}
-                src={"/avatar/me.png"}
+                src={"/avatar/me.webp"}
                 alt="inderjot's avatar in chess.com"
                 className="h-32 w-full  object-center object-cover"
               ></Image>
@@ -138,9 +141,7 @@ export default async function page() {
       </div>
 
       <div className="space-y-4 mt-10">
-        <h2
-          className={cn("text-5xl text-center font-semibold", zeyada.className)}
-        >
+        <h2 className={cn("text-5xl text-center font-semibold font-lucky")}>
           Recent Matches
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
@@ -212,8 +213,7 @@ export function ChessMatchCard({ data }: { data: FormatedChessGame }) {
                   "2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000",
               }}
               className={cn(
-                luckGuy.className,
-                "  font-extrabold text-4xl md:text-4xl  ",
+                "  font-extrabold text-4xl md:text-4xl  font-lucky",
                 data.result === "Win"
                   ? "text-[#00FF00]"
                   : data.result === "Lose"

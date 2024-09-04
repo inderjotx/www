@@ -15,7 +15,6 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart";
-// import { Icon } from "@/components/Icon";
 
 const chartConfig = {
   desktop: {
@@ -81,7 +80,6 @@ export function BarList({
                 offset={8}
                 className="fill-foreground"
                 fontSize={12}
-                // content={(props) => <CustomLabel {...props} data={data} />}
               />
               <LabelList
                 dataKey="value"
@@ -97,28 +95,3 @@ export function BarList({
     </Card>
   );
 }
-
-// const CustomLabel = (props: any) => {
-//   const { x, y, width, height, value, name, data } = props;
-//   const iconKey = data?.find((item: DataItem) => item.name === name)?.iconKey;
-//   // const Icon = data.find((item) => item.name === name)?.icon;
-
-//   console.log(props);
-
-//   const formattedValue = new Intl.NumberFormat("en-US", {
-//     style: "currency",
-//     currency: "USD",
-//   }).format(value);
-
-//   return (
-//     <g
-//       x={x}
-//       y={y}
-//       width={width}
-//       height={height}
-//       transform={`translate(${x},${y})`}
-//     >
-//       <Icon code={iconKey} />
-//     </g>
-//   );
-// };

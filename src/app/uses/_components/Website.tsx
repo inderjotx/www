@@ -4,24 +4,6 @@ import Image from "next/image";
 
 type Data = { image_url: string; href: string }[];
 
-const data: Data = [
-  { image_url: "/uses/next.svg", href: "https://nextjs.org" },
-];
-
-/**
- *
- * next js
- * drizzle orm
- * shadcn
- * tailwind
- * aws
- * kubenres
- * docker
- * mdx
- *
- *
- */
-
 export function Website() {
   return (
     <div className="flex flex-col gap-6 my-10">
@@ -29,9 +11,12 @@ export function Website() {
 
       <div className="flex flex-col gap-4 text-muted-foreground">
         <p>
-          This website is created with Next.js, Tailwind CSS, MDX, Umami, and
-          PlanetScale. It&apso;s hosted on Vercel. If you&apos;jre curious, feel
-          free to explore the source code on GitHub.
+          This website is created with Next.js, Tailwind CSS, MDX, Recharts ,
+          ShadCN, and Postgres. It&apso;s hosted on Vercel. I recently made this
+          github repo private because people were forking and updating it ,
+          without attributing me , which voilates the license . However, If you
+          are genuinely interested in the code, feel free to contact , I will
+          invite you to the repo.
         </p>
       </div>
 

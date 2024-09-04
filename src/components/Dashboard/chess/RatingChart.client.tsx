@@ -2,9 +2,6 @@
 
 import * as React from "react";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
-import { Zeyada } from "next/font/google";
-
-const zeyada = Zeyada({ subsets: ["latin"], weight: ["400"] });
 
 import { Card } from "@/components/ui/card";
 import {
@@ -36,8 +33,7 @@ export function RatingChart({
     <Card className="w-full h-full border-none relative overflow-hidden rounded-md">
       <h1
         className={cn(
-          "pl-2 bottom-[20%] left-2 text-3xl font-semibold absolute  ",
-          zeyada.className
+          "pl-2 bottom-[20%] left-2 text-3xl font-semibold absolute  font-lucky"
         )}
       >
         Chess Ratings{" "}

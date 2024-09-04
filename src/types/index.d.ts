@@ -23,3 +23,15 @@ type demographics = keyof Analytics & ("cityData" | "countryData" | "refData")
 type userDevice = keyof Analytics & ("browserData" | "osData" | "deviceData")
 
 
+
+
+type UserInfo = {
+    browser: string,
+    city: string,
+    country: string,
+    os: string,
+    ref: string,
+    device: string,
+    ip: string,
+    clickedOn: number
+}

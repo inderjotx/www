@@ -3,7 +3,7 @@ import React from 'react'
 import { latestPost } from '@/config'
 import Image from 'next/image'
 import Link from 'next/link'
-import { useMediaQuery } from 'react-responsive'
+import { useMediaQuery } from '@/hooks/useMediaQuery'
 
 
 export function Post() {
