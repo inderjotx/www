@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { Footer } from "@/components/Footer";
 import { QueryProvider } from "@/components/Provider/QueryProvider";
 import dynamic from "next/dynamic";
-import { Luckiest_Guy, Zeyada, Poppins } from "next/font/google";
+import { Luckiest_Guy, Inter } from "next/font/google";
 
 const UserClickManager = dynamic(
   () => import("@/components/UserClickManager"),
@@ -15,7 +15,7 @@ const UserClickManager = dynamic(
   }
 );
 
-export const poppins = Poppins({
+export const poppins = Inter({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
 });
@@ -25,11 +25,11 @@ const luckGuy = Luckiest_Guy({
   weight: ["400"],
   variable: "--font-lucky",
 });
-const zeyada = Zeyada({
-  subsets: ["latin"],
-  weight: ["400"],
-  variable: "--font-zeyada",
-});
+// const zeyada = Zeyada({
+//   subsets: ["latin"],
+//   weight: ["400"],
+//   variable: "--font-zeyada",
+// });
 
 export const metadata: Metadata = {
   title: "Inderjot Singh",
@@ -58,7 +58,6 @@ export default function RootLayout({
       <body
         className={cn(
           poppins.className,
-          zeyada.variable,
           luckGuy.variable,
           " relative   overflow-x-hidden dark selection:bg-white/80 selection:text-black"
         )}

@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import { MoreLarge } from "./more/triggerLarge";
 import { MoreSmall } from "./more/triggerSmall";
 import { usePathname } from "next/navigation";
-import dynamic from "next/dynamic";
+import { motion } from "framer-motion";
 
 const navLinks = [
   {
@@ -28,10 +28,6 @@ export function Navbar() {
   let pathname = usePathname();
 
   const [curLink, setLink] = useState("");
-  const Motion = dynamic(
-    async () => await import("framer-motion").then((mod) => mod.motion.div),
-    { ssr: false }
-  ) as React.ComponentType<any>;
 
   useEffect(() => {
     setLink(pathname);
@@ -51,7 +47,7 @@ export function Navbar() {
             >
               <h1>{link.text} </h1>
               {pathname === link.href && (
-                <Motion
+                <motion.div
                   layout
                   layoutId="blob"
                   className="absolute left-0 top-0 h-full w-full bg-muted -z-10 rounded-full"

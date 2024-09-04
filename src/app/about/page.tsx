@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function page() {
   return (
-    <div className="flex flex-col gap-10 w-full ">
+    <div className="flex min-h-screen flex-col gap-10 w-full ">
       <Title title="About" />
       <section id="about" className="flex flex-col gap-10">
         <div className="flex flex-col md:flex-row gap-1 md:gap-6 text-muted-foreground">

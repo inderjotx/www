@@ -2,6 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { RatingChart } from "./RatingChart.client";
+import { Skeleton } from "@/components/ui/skeleton";
 import { fetcher } from "@/lib/utils";
 import { ChessMatchCard } from "@/components/ui/ChessMatchCard";
 
@@ -48,7 +49,7 @@ export function ChessRating() {
   console.log("chess rating", data);
 
   if (!data?.data) {
-    return <div>loading</div>;
+    return <Skeleton className="h-full w-full" />;
   } else {
     return <RatingChart rapidStats={data.data} />;
   }
@@ -64,7 +65,7 @@ export function LastChessGame() {
   console.log("last chess game", data);
 
   if (!data) {
-    return <div>loading</div>;
+    return <Skeleton className="h-full w-full" />;
   }
 
   return <ChessMatchCard data={data} />;

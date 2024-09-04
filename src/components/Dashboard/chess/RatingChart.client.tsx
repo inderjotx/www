@@ -33,7 +33,7 @@ export function RatingChart({
     <Card className="w-full h-full border-none relative overflow-hidden rounded-md">
       <h1
         className={cn(
-          "pl-2 bottom-[20%] left-2 text-3xl font-semibold absolute  font-lucky"
+          "pl-2 bottom-[20%] left-2 text-2xl font-semibold absolute  font-lucky"
         )}
       >
         Chess Ratings{" "}

@@ -10,6 +10,8 @@ module.exports = {
     './node_modules/@tremor/**/*.{js,ts,jsx,tsx}',
   ],
   prefix: "",
+
+
   theme: {
     container: {
       center: true,
@@ -19,6 +21,12 @@ module.exports = {
       },
     },
     extend: {
+
+
+
+
+
+
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -89,16 +97,30 @@ module.exports = {
             'transform': "translateX(-100%)"
           }
         },
+        "spin": {
+          "0%": {
+            "transform": "rotate(0deg)"
+          },
+          "100%": {
+            "transform": "rotate(360deg)"
+          }
+        }
       },
     },
+
+    fontFamily: {
+      "lucky": ["var(--font-lucky)", "sans-serif"]
+    },
+
     animation: {
       "accordion-down": "accordion-down 0.2s ease-out",
       "accordion-up": "accordion-up 0.2s ease-out",
       "slide_left": "slide_left 40s infinite linear ",
       "slide_right": "slide_right 40s infinite linear ",
+      "spin": "spin 1s linear infinite",
     },
 
   },
 
-  plugins: [],
+  plugins: [require("tailwindcss-animate")],
 };
