@@ -22,11 +22,16 @@ export async function POST(request: NextRequest) {
 
     const data = userAgent(request)
     const ip = request.ip
+    console.log(`----------------------------------------------------------------------------------------------------------`)
+    console.log('ip of the request', ip)
+
     try {
 
         if (ip) {
 
             const hasAlreadyClicked = await alreadyClicked(ip)
+            console.log(`----------------------------------------------------------------------------------------------------------`)
+            console.log(`data from the click table ${data}`)
 
             if (!hasAlreadyClicked) {
 
@@ -37,7 +42,7 @@ export async function POST(request: NextRequest) {
                     os: data.os.name,
                     //@ts-ignore
                     ref: request.referer || request.referrer || "self",
-                    ip: request.ip,
+                    ip: ip,
                     device: data.device.type === 'mobile' ? 'Mobile' : 'Desktop',
                     browser: data.browser.name
                 }
@@ -47,8 +52,13 @@ export async function POST(request: NextRequest) {
 
 
             }
+            else {
+                console.log(`----------------------------------------------------------------------------------------------------------`)
+                console.log('already clicked')
+            }
         }
         else {
+            console.log('no ip data available')
         }
 
         return NextResponse.json({ success: true })
