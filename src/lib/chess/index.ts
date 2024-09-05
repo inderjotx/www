@@ -267,27 +267,32 @@ export async function about(userName = 'x_index') {
 
 
 
-async function recentMatches() {
+export async function recentMatches() {
+
+
     try {
+
+        let data: { games: ChessGame[] } = {}
+
+
         const url = 'https://www.chess.com/callback/user/games?locale=en_US&all=1&userId=349027177'
 
         const response = await fetch(url)
 
-        if (!response.ok) {
-            return {
-                status: false,
-                data: [] as FormatedChessGame[]
-            }
 
-        }
 
-        const data = await response.json() as ChessGame[]
 
+        data = await response.json()
+
+
+
+        console.log('data from the recent matches', data)
 
         return {
             status: true,
-            data: await Promise.all(data.map(formatChessGame))
+            data: await Promise.all(data.games.map(formatChessGame))
         }
+
 
     }
     catch (error) {
@@ -302,13 +307,14 @@ async function recentMatches() {
 }
 
 
-export const cachedRecentMatches = cache(recentMatches, ['recent-matches'], {
-    revalidate: 60 * 60 * 5   // 5 hours
-})
+// export const cachedRecentMatches = cache(recentMatches, ['recent-matches'], {
+//     revalidate: 60 * 60 * 5   // 5 hours
+// })
 
 
 export const getLastMatch = async () => {
-    const { data } = await cachedRecentMatches()
+    const { data } = await recentMatches()
+    console.log('renet match data ', data)
     return data[0] ?? null
 }
 

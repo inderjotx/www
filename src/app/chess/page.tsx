@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  cachedRapidRating,
-  cachedRecentMatches,
-  getAllAnalytics,
-} from "@/lib/chess";
+import { cachedRapidRating, recentMatches, getAllAnalytics } from "@/lib/chess";
 
 import Image from "next/image";
 import { Title } from "../uses/_components/title";
@@ -28,10 +24,10 @@ import { Crown, Link } from "lucide-react";
 import { ChessBackground } from "@/components/ui/chess-background";
 
 export default async function page() {
-  const [rapidRatingForGraph, recentMatches, totalGamesData] =
+  const [rapidRatingForGraph, recentMatchesData, totalGamesData] =
     await Promise.all([
       cachedRapidRating(),
-      cachedRecentMatches(),
+      recentMatches(),
       getAllAnalytics(),
     ]);
 
@@ -145,7 +141,7 @@ export default async function page() {
           Recent Matches
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 ">
-          {recentMatches.data?.slice(0, 10).map((match, index) => {
+          {recentMatchesData.data?.slice(0, 10).map((match, index) => {
             return (
               <div className="w-full h-48" key={`chess-${match.href}`}>
                 <ChessMatchCard data={match} key={index} />

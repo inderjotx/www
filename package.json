@@ -27,6 +27,7 @@
     "@types/mdx": "^2.0.11",
     "@types/react-syntax-highlighter": "^15.5.11",
     "@upstash/redis": "^1.28.4",
+    "axios": "^1.7.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "framer-motion": "^11.0.24",
@@ -43,6 +44,7 @@
     "sonner": "^1.4.41",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
+    "ua-parser-js": "^1.0.38",
     "vaul": "^0.9.0",
     "zod": "^3.22.4"
   },
@@ -50,6 +52,7 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "@types/ua-parser-js": "^0.7.39",
     "autoprefixer": "^10.0.1",
     "code-inspector-plugin": "^0.15.2",
     "eslint": "^8",
