@@ -1,7 +1,10 @@
 import { getAnalytics } from "@/lib/analytics";
+import { unstable_noStore } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest, { params }: { params: { frequency: string } }) {
+
+    unstable_noStore()
 
 
     const frequency = params?.frequency

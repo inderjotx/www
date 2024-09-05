@@ -45,6 +45,7 @@ export async function POST(request: NextRequest) {
 
                 await Promise.all([registerClick(view), addClickToDB(view)])
 
+
             }
         }
         else {
