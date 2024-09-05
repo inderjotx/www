@@ -268,25 +268,36 @@ export async function about(userName = 'x_index') {
 
 
 async function recentMatches() {
+    try {
+        const url = 'https://www.chess.com/callback/user/games?locale=en_US&all=1&userId=349027177'
 
-    const url = 'https://www.chess.com/callback/user/games?locale=en_US&all=1&userId=349027177'
+        const response = await fetch(url)
 
-    const response = await fetch(url)
+        if (!response.ok) {
+            return {
+                status: false,
+                data: [] as FormatedChessGame[]
+            }
 
-    if (!response.ok) {
+        }
+
+        const data = await response.json() as ChessGame[]
+
+
+        return {
+            status: true,
+            data: await Promise.all(data.map(formatChessGame))
+        }
+
+    }
+    catch (error) {
+        console.log('error while fetching recent matches')
         return {
             status: false,
             data: [] as FormatedChessGame[]
         }
-
     }
 
-    const data = await response.json() as ChessGame[]
-
-    return {
-        status: true,
-        data: await Promise.all(data.map(formatChessGame))
-    }
 
 }
 
@@ -298,7 +309,7 @@ export const cachedRecentMatches = cache(recentMatches, ['recent-matches'], {
 
 export const getLastMatch = async () => {
     const { data } = await cachedRecentMatches()
-    return data[0]
+    return data[0] ?? null
 }
 
 
