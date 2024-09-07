@@ -3,12 +3,12 @@ import { ChevronDown } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import { MoreData } from "./moreData";
 import { cn } from "@/lib/utils";
-
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+
 import { usePathname } from "next/navigation";
 import { useClient } from "@/hooks/useClient";
 
@@ -38,7 +38,7 @@ export function MoreLarge() {
   function onEnd() {
     const timeOut = setTimeout(() => {
       setOper(false);
-    }, 800);
+    }, 400);
 
     timeOutRef.current = timeOut;
   }
@@ -55,27 +55,24 @@ export function MoreLarge() {
   }
 
   return (
-    <DropdownMenu open={open} onOpenChange={onDropDownChange}>
-      <DropdownMenuTrigger onMouseEnter={onStart} onMouseLeave={onEnd}>
-        <div className="flex cursor-pointer items-center gap-1 group relative p-1">
+    <Popover open={open} onOpenChange={onDropDownChange}>
+      <PopoverTrigger onMouseEnter={onStart} onMouseLeave={onEnd}>
+        <div className="flex cursor-pointer   items-center gap-1 group relative p-1">
           <span>more</span>
           <ChevronDown
-            className={cn(
-              "size-4",
-              open ? "-rotate-180  duration-200" : "rotate-0 duration-200"
-            )}
+            className={cn("size-4 transition-transform", open && "rotate-180")}
           />
         </div>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent
+      </PopoverTrigger>
+      <PopoverContent
         onMouseEnter={onStart}
         onMouseLeave={onEnd}
-        className="w-[300px]"
+        className="w-[300px] p-1"
         side="bottom"
         align="start"
       >
         <MoreData />
-      </DropdownMenuContent>
-    </DropdownMenu>
+      </PopoverContent>
+    </Popover>
   );
 }

@@ -26,7 +26,7 @@ export default function ClientPage() {
             data: MusicCardTrack & { type: "current" | "recent" };
           }>("/api/music/recent"),
 
-        refetchInterval: 1000 * 10, // every 10 seconds
+        refetchInterval: 1000 * 30, // every 10 seconds
       },
     ],
   });

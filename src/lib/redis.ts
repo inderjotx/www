@@ -1,4 +1,3 @@
-import { UserInfo } from '@/middleware'
 import { Redis } from '@upstash/redis'
 
 

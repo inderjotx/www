@@ -4,16 +4,6 @@ import { useEffect } from "react";
 export default function UserClickManager() {
   useEffect(() => {
     const sendClick = async () => {
-      // const lastClickTime = localStorage.getItem("lastClickTime");
-      // if (lastClickTime) {
-      //   const currentTime = new Date().getTime();
-      //   const timeDifference = currentTime - parseInt(lastClickTime, 10);
-
-      //   if (timeDifference < 60 * 60 * 1000) {
-      //     return;
-      //   }
-      // }
-
       try {
         console.log(
           "sending click......................................................"

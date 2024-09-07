@@ -4,8 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { parseDate } from "@/lib/utils";
 import { Music } from "lucide-react";
-import { getRecentTrack } from "@/lib/music";
-import { useQuery } from "@tanstack/react-query";
 import { MusicCardTrack } from "@/interfaces/music/music";
 
 export function RecentPlay({
@@ -22,7 +20,7 @@ export function RecentPlay({
 
 function TrackCard({ data }: { data: MusicCardTrack }) {
   return (
-    <Link href={data.href}>
+    <a href={data.href} target="_blank" rel="norefferer noopener">
       <div className="w-full h-20 active:ring active:ring-red-500 bg-muted-foreground/10 relative rounded-sm flex">
         <div className="w-1/6 h-full rounded-l-sm overflow-hidden relative">
           <Image
@@ -47,30 +45,28 @@ function TrackCard({ data }: { data: MusicCardTrack }) {
         </div>
         <div className="absolute top-0 left-0 h-full transition-all w-full hover:bg-black/30"></div>
       </div>
-    </Link>
+    </a>
   );
 }
 
-export function LoadingRecent() {
+function LoadingRecent() {
   return (
-    <Link href={"/"}>
-      <div className="w-full h-20 active:ring active:ring-red-500 bg-muted-foreground/10 relative rounded-sm flex">
-        <div className="w-1/6 h-full bg-muted-foreground/5 rounded-l-sm  overflow-hidden flex items-center justify-center">
-          <Music className="size-8" />
-        </div>
-        <div className="w-5/6 p-2  justify-center pl-5 h-full flex flex-col ">
-          <div className="text-[12px]  font-mono flex items-center  gap-2  text-red-400">
-            Fetching ...
-          </div>
-          <div className="font-semibold flex gap-1">
-            <span>Title</span>
-          </div>
-          <div className="font-semibold text-sm text-muted-foreground flex gap-1">
-            <span>Artist</span>
-          </div>
-        </div>
-        <div className="absolute top-0 left-0 h-full transition-all w-full hover:bg-black/30"></div>
+    <div className="w-full h-20 active:ring active:ring-red-500 bg-muted-foreground/10 relative rounded-sm flex">
+      <div className="w-1/6 h-full bg-muted-foreground/5 rounded-l-sm  overflow-hidden flex items-center justify-center">
+        <Music className="size-8" />
       </div>
-    </Link>
+      <div className="w-5/6 p-2  justify-center pl-5 h-full flex flex-col ">
+        <div className="text-[12px]  font-mono flex items-center  gap-2  text-red-400">
+          Fetching ...
+        </div>
+        <div className="font-semibold flex gap-1">
+          <span>Title</span>
+        </div>
+        <div className="font-semibold text-sm text-muted-foreground flex gap-1">
+          <span>Artist</span>
+        </div>
+      </div>
+      <div className="absolute top-0 left-0 h-full transition-all w-full hover:bg-black/30"></div>
+    </div>
   );
 }
