@@ -11,7 +11,7 @@ import { All } from "./_components/All";
 
 export const metadata = {
   title: "Inderjot // Uses",
-  description: "Uses page of Inderjot Singh",
+  description: "Things Inderjot Singh uses",
 };
 
 export default function page() {

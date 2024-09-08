@@ -3,7 +3,7 @@ import ClientPage from "./page.client";
 
 export const metadata = {
   title: "Inderjot // Music",
-  description: "Music page of Inderjot Singh",
+  description: "Inderjot Favourite Music List ",
 };
 
 export default function page() {

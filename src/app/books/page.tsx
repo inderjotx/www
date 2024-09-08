@@ -10,7 +10,7 @@ export const revalidate = 24 * 60 * 60;
 
 export const metadata = {
   title: "Inderjot // Books",
-  description: "Books page of Inderjot Singh",
+  description: "Favourite Books of Inderjot Singh",
 };
 
 export default async function Page() {

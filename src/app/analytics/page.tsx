@@ -2,7 +2,7 @@ import { AnalyticsChart } from "./_components/AnalyticsChart";
 
 export const metadata = {
   title: "Inderjot // Analytics",
-  description: "Analytics page of Inderjot Singh",
+  description: "Analytics on Inderjot Singh's website",
 };
 
 export default async function page() {

@@ -8,7 +8,7 @@ import React from "react";
 
 export const metadata = {
   title: "Inderjot // Anime",
-  description: "Anime page of Inderjot Singh",
+  description: "Inderjot Singh Favourite Anime List",
 };
 
 // revalidate after 24 hours

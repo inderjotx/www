@@ -11,7 +11,7 @@ import { getAnalytics } from "@/lib/analytics";
 const buttonDemograph: { title: string; action: demographics }[] = [
   { title: "City", action: "cityData" },
   { title: "Country", action: "countryData" },
-  { title: "Ref", action: "refData" },
+  // { title: "Ref", action: "refData" },
 ];
 
 const buttonUserData: { title: string; action: userDevice }[] = [

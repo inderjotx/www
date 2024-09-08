@@ -16,7 +16,7 @@ type Metadata = {
 
 export const metadata = {
   title: "Inderjot // Writings",
-  description: "Writings page of Inderjot Singh",
+  description: "Articles by Inderjot Singh",
 };
 
 export default async function page() {

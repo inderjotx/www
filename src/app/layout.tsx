@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { QueryProvider } from "@/components/Provider/QueryProvider";
 import dynamic from "next/dynamic";
 import { Luckiest_Guy, Inter } from "next/font/google";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const UserClickManager = dynamic(
   () => import("@/components/UserClickManager"),
@@ -15,7 +16,7 @@ const UserClickManager = dynamic(
   }
 );
 
-export const poppins = Inter({
+export const inter = Inter({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
   subsets: ["latin"],
 });
@@ -25,22 +26,35 @@ const luckGuy = Luckiest_Guy({
   weight: ["400"],
   variable: "--font-lucky",
 });
-// const zeyada = Zeyada({
-//   subsets: ["latin"],
-//   weight: ["400"],
-//   variable: "--font-zeyada",
-// });
 
 export const metadata: Metadata = {
   title: "Inderjot Singh",
   metadataBase: new URL("https://www.inderjot.tech"),
-  description: "Personal website of Inderjot Singh",
+  description: "Inderjot Singh's personal website",
+  keywords: [
+    "Inderjot Singh",
+    "Inderjot",
+    "Inderjot Singh Jalandhar",
+    "Inderjot Singh Canada",
+    "inderjot",
+    "inderjot website",
+    "website inderjot ",
+    "website of inderjot",
+    "inderjot singh website",
+    "inderjot singh personal website",
+    "inderjot singh instagram",
+    "inderjot instagram",
+    "inderjot singh github",
+    "inderjot github",
+    "inderjot linkedin",
+    "inderjot singh github",
+  ],
   openGraph: {
     images: "/opengraph-image.png",
     type: "website",
     url: "https://www.inderjot.tech",
     title: "Inderjot Singh",
-    description: "Personal website of Inderjot Singh",
+    description: "Inderjot Singh's personal website",
   },
 };
 
@@ -57,11 +71,12 @@ export default function RootLayout({
     >
       <body
         className={cn(
-          poppins.className,
+          inter.className,
           luckGuy.variable,
           " relative   overflow-x-hidden dark selection:bg-white/80 selection:text-black"
         )}
       >
+        <GoogleAnalytics />
         <UserClickManager />
         <QueryProvider>
           <div className="flex   flex-col gap-2 max-w-3xl px-4 md:px-0  md:mx-auto relative  ">
