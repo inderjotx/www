@@ -10,36 +10,12 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { Code } from "./code";
 import dynamic from "next/dynamic";
 
-const Tools = dynamic(
-  () => import("./tools-carousel").then((mod) => mod.Tools),
-  {
-    loading: () => <Skeleton className="h-full w-full" />,
-  }
-);
-const Post = dynamic(() => import("./LatestPost").then((mod) => mod.Post));
-const BookCard = dynamic(() => import("./book").then((mod) => mod.BookCard), {
-  loading: () => <Skeleton className="h-full w-full" />,
-});
-const Analytics = dynamic(
-  () => import("./analytics").then((mod) => mod.Analytics),
-  {
-    loading: () => <Skeleton className="h-full w-full" />,
-  }
-);
-const SendEmail = dynamic(() => import("./email").then((mod) => mod.SendEmail));
-const ChessRating = dynamic(
-  () => import("./chess").then((mod) => mod.ChessRating),
-  {
-    loading: () => <Skeleton className="h-full w-full" />,
-  }
-);
-const LastChessGame = dynamic(
-  () => import("./chess").then((mod) => mod.LastChessGame),
-
-  {
-    loading: () => <Skeleton className="h-full w-full" />,
-  }
-);
+import { Tools } from "./tools-carousel";
+import { Post } from "./LatestPost";
+import { BookCard } from "./book";
+import { Analytics } from "./analytics";
+import { SendEmail } from "./email";
+import { ChessRating, LastChessGame } from "./chess";
 
 export function Dashboard() {
   return (

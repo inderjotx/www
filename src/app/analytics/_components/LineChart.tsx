@@ -2,6 +2,8 @@
 
 import * as React from "react";
 import { Area, AreaChart, CartesianGrid, XAxis } from "recharts";
+import { Skeleton } from "@/components/ui/skeleton";
+import { motion } from "framer-motion";
 
 import {
   Card,
@@ -83,70 +85,74 @@ export function ShadcnLineChart({
             Showing total clicks for the selected time range
           </CardDescription>
         </div>
-        <SelectFrequency freq={timeRange} setFreq={setTimeRange} />
+        <GraphChangeButton freq={timeRange} setFreq={setTimeRange} />
       </CardHeader>
       <CardContent className="px-2 pt-4 sm:px-6 sm:pt-6">
-        <ChartContainer
-          config={chartConfig}
-          className="aspect-auto h-[350px] w-full"
-        >
-          <AreaChart data={filteredData}>
-            <defs>
-              <linearGradient id="fillClicks" x1="0" y1="0" x2="0" y2="1">
-                <stop
-                  offset="5%"
-                  stopColor="var(--color-clicks)"
-                  stopOpacity={0.8}
-                />
-                <stop
-                  offset="95%"
-                  stopColor="var(--color-clicks)"
-                  stopOpacity={0.1}
-                />
-              </linearGradient>
-            </defs>
-            <CartesianGrid vertical={false} />
-            <XAxis
-              dataKey="time"
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-              minTickGap={32}
-              tickFormatter={(value) => {
-                const date = new Date(value);
-                return date.toLocaleDateString("en-US", {
-                  month: "short",
-                  day: "numeric",
-                  hour: "numeric",
-                  minute: "numeric",
-                });
-              }}
-            />
-            <ChartTooltip
-              cursor={false}
-              content={
-                <ChartTooltipContent
-                  labelFormatter={(value) => {
-                    return new Date(value).toLocaleDateString("en-US", {
-                      month: "short",
-                      day: "numeric",
-                      hour: "numeric",
-                      minute: "numeric",
-                    });
-                  }}
-                  indicator="dot"
-                />
-              }
-            />
-            <Area
-              dataKey="clicks"
-              type="linear"
-              fill="url(#fillClicks)"
-              stroke="var(--color-clicks)"
-            />
-            <ChartLegend content={<ChartLegendContent />} />
-          </AreaChart>
-        </ChartContainer>
+        {filteredData.length > 0 ? (
+          <ChartContainer
+            config={chartConfig}
+            className="aspect-auto h-[350px] w-full"
+          >
+            <AreaChart data={filteredData}>
+              <defs>
+                <linearGradient id="fillClicks" x1="0" y1="0" x2="0" y2="1">
+                  <stop
+                    offset="5%"
+                    stopColor="var(--color-clicks)"
+                    stopOpacity={0.8}
+                  />
+                  <stop
+                    offset="95%"
+                    stopColor="var(--color-clicks)"
+                    stopOpacity={0.1}
+                  />
+                </linearGradient>
+              </defs>
+              <CartesianGrid vertical={false} />
+              <XAxis
+                dataKey="time"
+                tickLine={false}
+                axisLine={false}
+                tickMargin={8}
+                minTickGap={32}
+                tickFormatter={(value) => {
+                  const date = new Date(value);
+                  return date.toLocaleDateString("en-US", {
+                    month: "short",
+                    day: "numeric",
+                    hour: "numeric",
+                    minute: "numeric",
+                  });
+                }}
+              />
+              <ChartTooltip
+                cursor={false}
+                content={
+                  <ChartTooltipContent
+                    labelFormatter={(value) => {
+                      return new Date(value).toLocaleDateString("en-US", {
+                        month: "short",
+                        day: "numeric",
+                        hour: "numeric",
+                        minute: "numeric",
+                      });
+                    }}
+                    indicator="dot"
+                  />
+                }
+              />
+              <Area
+                dataKey="clicks"
+                type="linear"
+                fill="url(#fillClicks)"
+                stroke="var(--color-clicks)"
+              />
+              <ChartLegend content={<ChartLegendContent />} />
+            </AreaChart>
+          </ChartContainer>
+        ) : (
+          <Skeleton className="w-full h-[350px] rounded-md" />
+        )}
       </CardContent>
     </Card>
   );
@@ -171,5 +177,36 @@ function SelectFrequency({
         <SelectItem value="Months">Last Month</SelectItem>
       </SelectContent>
     </Select>
+  );
+}
+
+export function GraphChangeButton({
+  setFreq,
+  freq,
+}: {
+  freq: TimeFrame;
+  setFreq: React.Dispatch<React.SetStateAction<TimeFrame>>;
+}) {
+  const options: TimeFrame[] = ["Hours", "Days", "Weeks", "Months"];
+
+  return (
+    <div className="flex gap-0.5 bg-muted p-1 rounded-md">
+      {options.map((option) => (
+        <div
+          key={option}
+          className="flex cursor-pointer items-center  relative text-sm px-3 py-4 h-5 mx-0"
+          onClick={() => setFreq(option as TimeFrame)}
+        >
+          <span className="z-20">{option}</span>
+          {freq === option && (
+            <motion.div
+              layout
+              layoutId="frequesy_blob"
+              className="z-10 absolute inset-0 backdrop-blur-sm rounded-sm bg-blue-800"
+            ></motion.div>
+          )}
+        </div>
+      ))}
+    </div>
   );
 }

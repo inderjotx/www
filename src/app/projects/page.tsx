@@ -20,7 +20,7 @@ export const metadata = {
 
 export default function page() {
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex min-h-screen flex-col gap-6">
       {/* title */}
       <Title title="Projects" />
 

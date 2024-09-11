@@ -5,7 +5,7 @@ import { ChevronRight, Code2 } from "lucide-react";
 const timelineContent = [
   {
     title: "E-Commerce Website",
-    fromDate: "Current",
+    fromDate: "⚡ Current",
     shortSummary:
       "Developed a scalable e-commerce platform using Astro, React, and Vendure, optimized for high traffic and performance.",
     actions: [

@@ -7,7 +7,7 @@ import { Footer } from "@/components/Footer";
 import { QueryProvider } from "@/components/Provider/QueryProvider";
 import dynamic from "next/dynamic";
 import { Luckiest_Guy, Inter } from "next/font/google";
-import GoogleAnalytics from "@/components/GoogleAnalytics";
+// import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const UserClickManager = dynamic(
   () => import("@/components/UserClickManager"),
@@ -76,7 +76,7 @@ export default function RootLayout({
           " relative   overflow-x-hidden dark selection:bg-white/80 selection:text-black"
         )}
       >
-        <GoogleAnalytics />
+        {/* <GoogleAnalytics /> */}
         <UserClickManager />
         <QueryProvider>
           <div className="flex   flex-col gap-2 max-w-3xl px-4 md:px-0  md:mx-auto relative  ">

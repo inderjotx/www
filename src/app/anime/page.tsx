@@ -69,7 +69,12 @@ function RecentAnime({
   href: string;
 }) {
   return (
-    <a href={href} target="_blank" rel="noopenner norefferer">
+    <a
+      href={href}
+      target="_blank"
+      rel="noopenner norefferer"
+      className="min-h-screen"
+    >
       <div className="w-full h-24 active:ring active:ring-purple-400 bg-muted-foreground/10  rounded-md flex">
         <div className="w-1/6 h-full rounded-sm overflow-hidden relative">
           <Image

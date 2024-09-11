@@ -7,7 +7,7 @@ export const metadata = {
 
 export default async function page() {
   return (
-    <div className="h-[120vh]">
+    <div className="min-h-screen">
       <AnalyticsChart />
     </div>
   );

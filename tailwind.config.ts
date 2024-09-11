@@ -105,6 +105,19 @@ module.exports = {
             "transform": "rotate(360deg)"
           }
         }
+        ,
+        "pulse": {
+
+          "0%": {
+            "opacity": "1"
+          },
+          "50%": {
+            "opacity": "0.5"
+          },
+          "100%": {
+            "opacity": "1"
+          },
+        }
       },
     },
 
@@ -118,9 +131,9 @@ module.exports = {
       "slide_left": "slide_left 40s infinite linear ",
       "slide_right": "slide_right 40s infinite linear ",
       "spin": "spin 1s linear infinite",
+      "pulse": "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite"
     },
-
   },
 
-  plugins: [require("tailwindcss-animate")],
+  plugins: [],
 };

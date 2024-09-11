@@ -20,7 +20,7 @@ export default async function Page() {
   ]);
 
   return (
-    <div className="flex flex-col gap-8 h-full w-full">
+    <div className="flex flex-col gap-8 h-full w-full min-h-screen">
       <h1 className={cn("font-semibold text-xl")}>Books</h1>
 
       <div className=" text-muted-foreground">

@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 
 export function FallbackBook() {
   return (
-    <div className="h-full w-full flex relative flex-col items-center justify-center">
+    <div className="h-full w-full flex relative flex-col items-center justify-center bg-muted">
       <h1 className={cn("absolute   top-2  ")}>Fetching...</h1>
       <Image
         className="absolute object-fill"

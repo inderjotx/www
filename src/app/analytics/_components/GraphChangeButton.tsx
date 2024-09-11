@@ -16,7 +16,7 @@ export function GraphChangeButton({
   updateState,
 }: GraphChangeButtonProps) {
   return (
-    <div className="flex gap-2">
+    <div className="flex p-1 bg-muted rounded-md gap-2">
       {buttons.map((button) => (
         <div
           className="flex cursor-pointer items-center relative text-[12px]  p-3 h-5 mx-0 "
