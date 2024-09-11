@@ -4,14 +4,7 @@ import { cachedRapidRating, recentMatches, getAllAnalytics } from "@/lib/chess";
 import Image from "next/image";
 import { Title } from "../uses/_components/title";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
-import dynamic from "next/dynamic";
-
-const RatingChart = dynamic(() =>
-  import("@/components/Dashboard/chess/RatingChart.client").then(
-    (mod) => mod.RatingChart
-  )
-);
-
+import { RatingChart } from "@/components/Dashboard/chess/RatingChart.client";
 import { cn } from "@/lib/utils";
 
 const profileLink = "https://www.chess.com/member/x_index";

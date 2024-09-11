@@ -154,7 +154,7 @@ function getAccumulatedData(rawData: Click[]) {
 }
 
 
-function updateArrayClickInfo<T extends boolean>(clicks: Click, key: string | null, dataArray: DataArray, type: "city" | "country" | "ref" | "browser" | "os" | "device") {
+function updateArrayClickInfo(click: Click, key: string | null, dataArray: DataArray, type: "city" | "country" | "ref" | "browser" | "os" | "device") {
 
 
     if (key === null) return
@@ -171,13 +171,13 @@ function updateArrayClickInfo<T extends boolean>(clicks: Click, key: string | nu
 
     // not found , create one
     if (type === 'city') {
-        const dataItem = { name: key, value: 1, iconKey: clicks.country || "" }
+        const dataItem = { name: key, value: 1, iconKey: click?.code || "XX" }
         dataArray.push(dataItem)
         return
 
     }
 
-    const dataItem = { name: key, value: 1, iconKey: key.toLowerCase() }
+    const dataItem = { name: key, value: 1, iconKey: click?.code || "XX" }
     dataArray.push(dataItem)
 
 }

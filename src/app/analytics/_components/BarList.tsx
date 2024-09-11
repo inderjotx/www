@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+// import IconData from "@/lib/icons/data.json";
 
 import {
   Bar,
@@ -67,7 +68,7 @@ export function BarList({
                 tickFormatter={(value) => value.slice(0, 3)}
                 hide
               />
-              <XAxis dataKey="value" type="number" hide />
+              <XAxis dataKey="value" type="number" />
               <ChartTooltip
                 cursor={false}
                 content={
@@ -91,6 +92,7 @@ export function BarList({
                   offset={8}
                   className="fill-foreground"
                   fontSize={12}
+                  // formatter={(value) => GetIconLabel(value, data)}
                 />
               </Bar>
             </BarChart>
@@ -102,3 +104,9 @@ export function BarList({
     </Card>
   );
 }
+
+// const GetIconLabel = (name: string, items: DataItem[]) => {
+//   const item = items.find((item) => item.name === name);
+//   const icon = IconData[item?.iconKey as keyof typeof IconData];
+//   return `${icon} ${item?.name}`;
+// };

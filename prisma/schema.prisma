@@ -5,6 +5,7 @@ generator client {
 datasource db {
   provider = "postgresql"
   url      = env("DIRECT_URL")
+  // directUrl = env("DATABASE_URL") only for migrations 
 }
 
 model Click {
@@ -13,6 +14,7 @@ model Click {
   city      String?
   country   String?
   os        String?
+  code      String?
   ref       String?
   device    String?
   ip        String?

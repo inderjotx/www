@@ -29,7 +29,7 @@ export function GraphChangeButton({
             <motion.div
               layout
               layoutId={`blob_${type}`}
-              className="z-10 absolute inset-0 backdrop-blur-sm rounded-sm bg-blue-900  "
+              className="z-10 absolute inset-0 backdrop-blur-sm rounded-sm bg-blue-700  "
             ></motion.div>
           )}
         </div>

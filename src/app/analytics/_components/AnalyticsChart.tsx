@@ -4,7 +4,6 @@ import { BarList } from "./BarList";
 import { getHumanReadTime } from "@/lib/utils";
 import { useState } from "react";
 import { GraphChangeButton } from "./GraphChangeButton";
-import { Loading } from "./Loading";
 import { useQuery } from "@tanstack/react-query";
 import { getAnalytics } from "@/lib/analytics";
 

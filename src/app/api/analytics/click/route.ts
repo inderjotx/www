@@ -14,6 +14,7 @@ export type UserInfo = {
     device: string,
     ip: string,
     clickedOn: number
+    code?: string
 }
 
 async function getIPInfo(ip: string) {
@@ -48,6 +49,7 @@ export async function POST(request: NextRequest) {
                     country: ipInfo?.country_name,
                     os: parsedUA.os.name,
                     ref: request.headers.get('referer') || "self",
+                    code: ipInfo?.country,
                     ip: ip,
                     device: parsedUA.device.type === 'mobile' ? 'Mobile' : 'Desktop',
                     browser: parsedUA.browser.name
