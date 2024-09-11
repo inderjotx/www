@@ -9,6 +9,8 @@ import analytics from "../../../../public/navbar/more/analytics.webp";
 import music from "../../../../public/navbar/more/music.webp";
 import uses from "../../../../public/navbar/more/uses.webp";
 import work from "../../../../public/navbar/more/work.webp";
+import faq from "../../../../public/navbar/more/faq.webp";
+import chess from "../../../../public/navbar/more/chess.webp";
 
 export function MoreData() {
   const data = [
@@ -18,6 +20,8 @@ export function MoreData() {
     { image_url: music, slug: "music" },
     { image_url: uses, slug: "uses" },
     { image_url: work, slug: "writing" },
+    { image_url: faq, slug: "faq" },
+    { image_url: chess, slug: "chess" },
   ];
 
   return (

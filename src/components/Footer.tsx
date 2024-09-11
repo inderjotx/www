@@ -5,8 +5,11 @@ import React from "react";
 export function Footer() {
   return (
     <div className="mt-20  flex border-t-2 flex-col   max-w-3xl mx-4 md:mx-auto  py-3 ">
-      <div className="flex justify-between">
-        <h1>
+      <div className="flex justify-between items-center">
+        <h1 className="flex gap-1 items-center">
+          <span className="size-[30px] p-2 flex items-center justify-center rounded-full bg-black border-2">
+            α
+          </span>
           <a
             href={config.links.twitter}
             target="_blank"
@@ -22,8 +25,10 @@ export function Footer() {
             target="_blank"
             rel="norefferer noopener"
           >
-            <Linkedin className="hover:scale-105 size-5  transition-transform" />
-            <span className="sr-only">LinkedIn </span>
+            <span className="size-[30px] p-1.5 flex items-center justify-center rounded-full bg-black border-2">
+              <Linkedin className="hover:scale-105 size-5  transition-transform" />
+              <span className="sr-only">LinkedIn </span>
+            </span>
           </a>
 
           <a
@@ -31,8 +36,10 @@ export function Footer() {
             target="_blank"
             rel="norefferer noopener"
           >
-            <GithubIcon className="hover:scale-105 size-5  transition-transform" />
-            <span className="sr-only">Github</span>
+            <span className="size-[30px] p-1 flex items-center justify-center rounded-full bg-black border-2">
+              <GithubIcon className="hover:scale-105 size-5  transition-transform" />
+              <span className="sr-only">Github</span>
+            </span>
           </a>
 
           <a
@@ -40,11 +47,16 @@ export function Footer() {
             target="_blank"
             rel="norefferer noopener"
           >
-            <TwitterIcon className="hover:scale-105 size-5  transition-transform" />
-            <span className="sr-only">Twitter</span>
+            <span className="size-[30px] p-1 flex items-center justify-center rounded-full bg-black border-2">
+              <TwitterIcon className="hover:scale-105 size-5  transition-transform" />
+              <span className="sr-only">Twitter</span>
+            </span>
           </a>
         </div>
       </div>
+      <span className="text-muted-foreground mx-auto text-sm">
+        Copyright© {new Date().getFullYear()} Inderjot Singh
+      </span>
     </div>
   );
 }

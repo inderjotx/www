@@ -16,7 +16,7 @@ export const metadata = {
 
 export default function page() {
   return (
-    <div className="flex flex-col gap-10 w-full ">
+    <div className="flex flex-col gap-10 w-full min-h-screen">
       <h1 className={cn("text-2xl")}>Uses</h1>
 
       <div className="text-muted-foreground flex flex-col gap-2">

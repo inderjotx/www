@@ -11,12 +11,19 @@ import {
 
 import { usePathname } from "next/navigation";
 import { useClient } from "@/hooks/useClient";
+import { motion } from "framer-motion";
 
-export function MoreLarge() {
+export function MoreLarge({}) {
   const [open, setOper] = useState(true);
   const pathname = usePathname();
   const [isClient] = useClient();
   const timeOutRef = useRef<NodeJS.Timeout | null>(null);
+
+  const isMore = !(
+    pathname === "/" ||
+    pathname.includes("work") ||
+    pathname.includes("projects")
+  );
 
   useEffect(() => {
     setOper(() => false);
@@ -57,8 +64,17 @@ export function MoreLarge() {
   return (
     <Popover open={open} onOpenChange={onDropDownChange}>
       <PopoverTrigger onMouseEnter={onStart} onMouseLeave={onEnd}>
-        <div className="flex cursor-pointer   items-center gap-1 group relative p-1">
-          <span>more</span>
+        <div className="flex cursor-pointer   items-center gap-1 group relative py-1 pl-2 pr-1">
+          <span>
+            more
+            {isMore && (
+              <motion.div
+                layout
+                layoutId="blob"
+                className="absolute left-0 top-0 h-full w-full bg-muted -z-10 rounded-full"
+              />
+            )}
+          </span>
           <ChevronDown
             className={cn("size-4 transition-transform", open && "rotate-180")}
           />

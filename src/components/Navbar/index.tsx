@@ -1,23 +1,20 @@
 "use client";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { MoreLarge } from "./more/triggerLarge";
-import { MoreSmall } from "./more/triggerSmall";
+import React, { useEffect, useState, lazy, Suspense } from "react";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
+import { useMediaQuery } from "@/hooks/useMediaQuery";
 
 const navLinks = [
   {
     text: "α",
     href: "/",
   },
-
   {
     text: "work",
     href: "/work",
   },
-
   {
     text: "projects",
     href: "/projects",
@@ -26,12 +23,26 @@ const navLinks = [
 
 export function Navbar() {
   let pathname = usePathname();
-
+  const isMobile = useMediaQuery({ maxWidth: 765 });
   const [curLink, setLink] = useState("");
+  const [MoreLarge, setMoreLarge] = useState<React.ComponentType | null>(null);
+  const [MoreSmall, setMoreSmall] = useState<React.ComponentType | null>(null);
 
   useEffect(() => {
     setLink(pathname);
   }, [pathname]);
+
+  useEffect(() => {
+    if (!isMobile) {
+      import("./more/triggerLarge").then((module) => {
+        setMoreLarge(() => module.MoreLarge);
+      });
+    } else {
+      import("./more/triggerSmall").then((module) => {
+        setMoreSmall(() => module.MoreSmall);
+      });
+    }
+  }, [isMobile]);
 
   return (
     <div className="h-20 mb-2 top-0  w-full flex justify-center">
@@ -56,11 +67,11 @@ export function Navbar() {
             </Link>
           );
         })}
-        <div className="hidden lg:flex">
-          <MoreLarge />{" "}
+        <div className="hidden md:flex">
+          {!isMobile && MoreLarge && <MoreLarge />}
         </div>
-        <div className="flex lg:hidden">
-          <MoreSmall />{" "}
+        <div className="flex md:hidden">
+          {isMobile && MoreSmall && <MoreSmall />}
         </div>
       </div>
     </div>
