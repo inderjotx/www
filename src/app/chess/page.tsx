@@ -147,7 +147,7 @@ export default async function page() {
   );
 }
 
-export function ChessMatchCard({ data }: { data: FormatedChessGame }) {
+function ChessMatchCard({ data }: { data: FormatedChessGame }) {
   return (
     <a
       rel="noopener noreferrer"

@@ -22,9 +22,10 @@ export default function ArticleTitle({
     views: number;
   }>({
     queryKey: ["/api/blog?title=" + redis_key],
-    // @ts-ignore
     queryFn: async () =>
-      await fetcher<ArticleTitleProps>(`/api/blog?title=${redis_key}`),
+      await fetcher<{ success: boolean; views: number }>(
+        `/api/blog?title=${redis_key}`
+      ),
   });
 
   return (

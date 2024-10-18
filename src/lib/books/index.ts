@@ -51,7 +51,7 @@ const getAccessToken = cache(async () => {
 
 
 
-async function fetcher<T>(body: string, isAccessToken = false): Promise<T> {
+async function fetcher<T>(body: string, isAccessToken = false) {
 
     const url = 'https://literal.club/graphql/';
 
@@ -154,7 +154,7 @@ export const getRecentBook = cache(async () => {
     });
 
     const data = await fetcher<MyReadingStateResult>(body)
-    const curStatus = data.myReadingStates.find(({ status }) => status == "IS_READING")
+    const curStatus = data.myReadingStates.find((val: ReadingState) => val.status == "IS_READING")
     return curStatus as ReadingState
 
 }, [], { revalidate: REVALIDATE_TIME.ONE_HOUR })

@@ -54,7 +54,7 @@ export function Footer() {
           </a>
         </div>
       </div>
-      <span className="text-muted-foreground mx-auto text-sm">
+      <span className="text-muted-foreground mx-auto text-xs  sm:text-sm">
         Copyright© {new Date().getFullYear()} Inderjot Singh
       </span>
     </div>

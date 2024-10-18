@@ -16,8 +16,8 @@ const navLinks = [
     href: "/work",
   },
   {
-    text: "projects",
-    href: "/projects",
+    text: "music",
+    href: "/music",
   },
 ];
 

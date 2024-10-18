@@ -8,25 +8,13 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     pageExtensions: ['js', 'jsx', 'mdx', 'ts', 'tsx'],
-
-    typescript : {
-        ignoreBuildErrors: true
-    }
-    ,
-    // output : process.env.NEXT_PUBLIC_PROVIDER === 'self-host' ? "standalone" : "export" ,
-
     webpack: (config , {dev , isServer }) => {
      config.plugins.push(codeInspectorPlugin({ bundler : "webpack"}))
      return config
-    }
-    ,
-
-
+    },
     experimental : {
         optimizePackageImports  :['framer-motion', 'lucide-react' , 'recharts'] , 
-    }
-,
-
+    },
     images: {
         remotePatterns: [
             {
@@ -56,7 +44,6 @@ const nextConfig = {
             }
         ],
     },
-    
 
 }
 

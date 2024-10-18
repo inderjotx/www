@@ -44,7 +44,7 @@ export default async function Page() {
         Some of my all time favourite books
       </p>
       <div className="grid gap-3 md:gap-4 grid-cols-1 md:grid-cols-2 ">
-        {books.map((book, index) => (
+        {books.map((book: any, index: number) => (
           <BookCard {...book} key={index} />
         ))}
       </div>

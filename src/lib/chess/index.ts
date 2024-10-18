@@ -272,7 +272,7 @@ export async function recentMatches() {
 
     try {
 
-        let data: { games: ChessGame[] } = {}
+        let data: { games: ChessGame[] } | {} = {}
 
 
         const url = 'https://www.chess.com/callback/user/games?locale=en_US&all=1&userId=349027177'
@@ -290,7 +290,7 @@ export async function recentMatches() {
 
         return {
             status: true,
-            data: await Promise.all(data.games.map(formatChessGame))
+            data: await Promise.all((data as { games: ChessGame[] }).games.map(formatChessGame) ?? [])
         }
 
 

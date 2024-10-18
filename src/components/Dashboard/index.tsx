@@ -6,9 +6,7 @@ import { Discord } from "./discord";
 import { Spotify } from "./spotify";
 import { LinkedIn } from "./linkedin";
 import { X } from "./X";
-import { Skeleton } from "@/components/ui/skeleton";
 import { Code } from "./code";
-import dynamic from "next/dynamic";
 
 import { Tools } from "./tools-carousel";
 import { Post } from "./LatestPost";
