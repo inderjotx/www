@@ -79,7 +79,7 @@ export default function RootLayout({
         {/* <GoogleAnalytics /> */}
         <UserClickManager />
         <QueryProvider>
-          <div className="flex   flex-col gap-2 max-w-3xl px-4 md:px-0  md:mx-auto relative  ">
+          <div className="flex   flex-col gap-2 max-w-3xl xl:max-w-5xl px-4 md:px-0  md:mx-auto relative  ">
             <Navbar />
             <Toaster richColors />
             {children}

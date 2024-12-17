@@ -10,12 +10,14 @@ export default function Home() {
       <div>
         <h2
           className={cn(
-            "text-lg inline-block  font-medium text-transparent  bg-gradient-to-r from-indigo-200 via-indigo-300 to-indigo-500 bg-clip-text"
+            "text-xl inline-block  font-medium text-transparent  bg-gradient-to-r from-indigo-200 via-indigo-300 to-indigo-500 bg-clip-text"
           )}
         >
           Inderjot Singh
         </h2>
-        <h3 className=" text-muted-foreground">{age} y/o Software Developer</h3>
+        <h3 className="text-lg text-muted-foreground">
+          {age} y/o Software Developer
+        </h3>
       </div>
       <div>
         <p className=" text-muted-foreground  md:text-base">
