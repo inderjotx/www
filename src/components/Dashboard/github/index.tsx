@@ -3,7 +3,19 @@ import { cn } from "@/lib/utils";
 import React from "react";
 
 export async function Github() {
-  const data = await githubStats();
+  let data;
+
+  try {
+    data = await githubStats();
+  } catch (error) {
+    data = {
+      followers: 9,
+      following: 26,
+      repos: 90,
+      image_url:
+        "https://avatars.githubusercontent.com/u/112561014?s=400&u=fb7e9217dbffeafb8e7a09bb3c5ae06a2dca5bde&v=4",
+    };
+  }
 
   return (
     <a
