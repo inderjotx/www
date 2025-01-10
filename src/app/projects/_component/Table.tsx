@@ -7,7 +7,7 @@ const dataArray: TableData[] = [
     tags: ["TS", "React", "NextJS", "Tailwind", "Redis"],
     year: 2024,
     githubUrl: "https://github.com/inderjotx/jobs",
-    liveUrl: "https://token-jobs.inderjot.tech",
+    liveUrl: "https://token-jobs.inderjot.me",
   },
   {
     projectName: "www",
@@ -15,7 +15,7 @@ const dataArray: TableData[] = [
     tags: ["TS", "React", "NextJS", "Tailwind", "Redis"],
     year: 2024,
     githubUrl: "https://github.com/inderjotx/www",
-    liveUrl: "https://www.inderjot.tech",
+    liveUrl: "https://www.inderjot.me",
   },
 
   {
@@ -24,7 +24,7 @@ const dataArray: TableData[] = [
     tags: ["TS", "React", "NextJS", "Tailwind", "Redis"],
     year: 2024,
     githubUrl: "https://github.com/inderjotx/linkTree",
-    liveUrl: "https://hi.inderjot.tech",
+    liveUrl: "https://hi.inderjot.me",
   },
 
   {
@@ -33,7 +33,7 @@ const dataArray: TableData[] = [
     tags: ["NodeJS", "NextJs", "Tailwind", "React"],
     year: 2024,
     githubUrl: "https://github.com/inderjotx/striver-frontend",
-    liveUrl: "https://code.inderjot.tech/create",
+    liveUrl: "https://code.inderjot.me/create",
   },
 
   {
@@ -42,7 +42,7 @@ const dataArray: TableData[] = [
     tags: ["AWS", "NextJs", "Tailwind", "React", "TS"],
     year: 2024,
     githubUrl: "https://github.com/inderjotx/designFly",
-    liveUrl: "https://designfly.inderjot.tech",
+    liveUrl: "https://designfly.inderjot.me",
   },
 ];
 
