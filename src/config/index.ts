@@ -3,7 +3,7 @@ export const config = {
         "github": "https://github.com/inderjotx",
         "linkedIn": "https://www.linkedin.com/in/inderjot-singh-4a5404226/",
         "twitter": "https://twitter.com/__Inderjot",
-        "website": "https://www.inderjot.tech",
+        "website": "https://www.inderjot.me",
         "discord": "https://discordapp.com/users/1061624989473845308"
     }
 }
